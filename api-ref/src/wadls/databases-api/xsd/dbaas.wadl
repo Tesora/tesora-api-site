@@ -27,6 +27,7 @@
                             owner of the specified
                         instance.</para></wadl:doc>
                 </param>
+                <!-- gratuitous comment to force building -->
                 <!-- add later when trove extensions are supported -->
                 <!--<resource id="extensions" type="#ExtensionList"
                     path="extensions">

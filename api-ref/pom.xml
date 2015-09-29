@@ -5,6 +5,7 @@
   <!-- ################################################ -->
   <!-- USE "mvn clean generate-sources" to run this POM -->
   <!-- ################################################ -->
+  <!-- comment to cause build -->
   <parent>
     <groupId>org.openstack.docs</groupId>
     <artifactId>parent-pom</artifactId>
