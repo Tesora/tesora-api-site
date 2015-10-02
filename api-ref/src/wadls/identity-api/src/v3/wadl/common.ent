@@ -785,6 +785,44 @@
         <para>The role name.</para>
     </wadl:doc>
 </param>'>
+<!ENTITY roleObjectResponseParam '
+<param name="role" style="plain" type="xsd:string"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The <code>role</code> object.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY roleResponseParam '
+<param name="id" style="plain" type="csapi:uuid"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The role ID.</para>
+    </wadl:doc>
+</param>
+<param name="links" style="plain" type="xsd:dict"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The links for the role.</para>
+    </wadl:doc>
+</param>
+<param name="name" style="plain" type="xsd:string"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The role name.</para>
+    </wadl:doc>
+</param>'>
 <!-- create a group parameters -->
 <!ENTITY groupCreateRequestParams '
 <param name="description" style="plain" type="xsd:string"
@@ -803,6 +841,54 @@
      xmlns="http://docbook.org/ns/docbook"
         xml:lang="EN">
         <para>The ID of the domain for the group.</para>
+    </wadl:doc>
+</param>
+<param name="name" style="plain" type="xsd:string"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The group name.</para>
+    </wadl:doc>
+</param>'>
+<!-- create a group response parameters -->
+<!ENTITY groupObjectResponseParams '
+<param name="group" style="plain" type="xsd:string"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The <code>group</code> object.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY groupResponseParams '
+<param name="description" style="plain" type="xsd:string"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The group description.</para>
+    </wadl:doc>
+</param>
+<param name="domain_id" style="plain" type="csapi:uuid"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The ID of the domain for the group.</para>
+    </wadl:doc>
+</param>
+<param name="links" style="plain" type="xsd:dict"
+ xmlns="http://wadl.dev.java.net/2009/02"
+    required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>The links for the group.</para>
     </wadl:doc>
 </param>
 <param name="name" style="plain" type="xsd:string"
@@ -1135,6 +1221,30 @@
             this parameter to the ID of the parent region.
         </para>
     </wadl:doc>
+</param>'>
+<!ENTITY user_defined_region_idRequestParam '
+<param name="user_defined_region_id" style="template"
+type="xsd:string" required="true"
+xmlns="http://wadl.dev.java.net/2009/02">
+<wadl:doc
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+        A user-defined region ID.
+    </para>
+    <para>
+        You must URL-encode the user-defined region ID
+        if it contains characters that are not allowed
+        in an URI.
+    </para>
+    <para>
+        The user-defined region ID must be unique to
+        the OpenStack deployment. Otherwise, the call
+        returns the HTTP <code>Conflict (409)</code>
+        status code.
+    </para>
+</wadl:doc>
 </param>'>
 <!ENTITY RegionsResponseParams '
 <param name="description" style="plain" type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02"

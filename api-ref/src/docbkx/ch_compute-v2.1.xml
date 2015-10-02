@@ -124,7 +124,7 @@
    <section xml:id="os-shelve-v2.1">
       <title>Servers shelve (servers, action)</title>
       <para>
-         Shelves running servers, restores shelved servers, and removes
+         Shelves servers, restores shelved servers, and removes
          shelved servers.
       </para>
       <para>
@@ -235,6 +235,13 @@
       <para>
          Shows <code>OS-SRV-USG:launched_at</code> and <code>OS-SRV-
          USG:terminated_at</code> attributes in server responses.
+      </para>
+      <para>
+         To hide <code>addresses</code> information for instances in a
+         specified state, set the
+         <code>osapi_hide_server_address_states</code> configuration option.
+         Set this option to a valid VM state in the <code>nova.conf</code>
+         configuration file.
       </para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-server-usage-v2.1.wadl"
@@ -677,12 +684,34 @@
    <section xml:id="os-services-v2.1">
         <title>Manage services (os-services)</title>
         <para>
-            Lists, enables, disables, and deletes Compute services in all
-            hosts.
+            Lists all or only disabled Compute services for all hosts in a
+            specified tenant. Logs information for disabled services. Enables
+            or disables scheduling for, forces down, unsets the forced-down
+            state of, or deletes a specified service.
          </para>
-         <wadl:resources
-            href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl"
-            xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl#os-services">
+               <wadl:method href="#listServices"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl#detail">
+               <wadl:method href="#getDisableReasonDetail"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl#enable">
+               <wadl:method href="#enableScheduling"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl#disable">
+               <wadl:method href="#disableScheduling"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl#disable-log-reason">
+               <wadl:method href="#disableLogReason"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl#force">
+               <wadl:method href="#putForceDown"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl#os-services">
+               <wadl:method href="#deleteService"/>
+            </wadl:resource>
+         </wadl:resources>
     </section>
     <section xml:id="os-simple-tenant-usage-v2.1">
         <title>Usage reports (os-simple-tenant-usage)</title>

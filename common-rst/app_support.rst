@@ -179,6 +179,8 @@ The following Launchpad Bugs areas are available:
 
 -  `Bugs: Database service (trove) <https://bugs.launchpad.net/trove>`__
 
+-  `Bugs: Deployment service (tuskar) <https://bugs.launchpad.net/tuskar>`__
+
 -  `Bugs: Key Manager Service (barbican) <https://bugs.launchpad.net/barbican>`__
 
 -  `Bugs: Orchestration (heat) <https://bugs.launchpad.net/heat>`__
@@ -187,6 +189,9 @@ The following Launchpad Bugs areas are available:
 
 -  `Bugs: Telemetry
    (ceilometer) <https://bugs.launchpad.net/ceilometer>`__
+
+-  `Bugs: Workflow service
+   (mistral) <https://bugs.launchpad.net/mistral>`__
 
 -  `Bugs: Messaging service
    (zaqar) <https://bugs.launchpad.net/zaqar>`__
