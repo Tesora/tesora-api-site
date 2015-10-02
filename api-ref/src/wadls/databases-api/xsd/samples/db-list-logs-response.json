@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "status": "Unavailable",
+            "container": "None",
+            "name": "error",
+            "published": 0,
+            "type": "SYS",
+            "pending": 0
+        },
+        {
+            "status": "Disabled",
+            "container": "None",
+            "name": "slow_query",
+            "published": 0,
+            "type": "USER",
+            "pending": 0
+        },
+        {
+            "status": "Ready",
+            "container": "None",
+            "name": "guest",
+            "published": 0,
+            "type": "SYS",
+            "pending": 230447
+        },
+        {
+            "status": "Disabled",
+            "container": "None",
+            "name": "general",
+            "published": 0,
+            "type": "USER",
+            "pending": 0
+        }
+    ]
+}

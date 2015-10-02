@@ -66,6 +66,7 @@
                         <method href="#detachConfigGroup"/>
                         <method href="#deleteInstance"/>
                         <method href="#listConfigDefaults"/>
+                        <method href="#listLogs"/>
                         <resource id="instanceAction" path="action">
                             <method href="#resizeInstance"/>
                             <method href="#resizeVolume"/>
@@ -1679,4 +1680,35 @@
             </representation>
         </response> &commonFaults; &getFaults; &postPutFaults;
     </method>
+    <method name="GET" id="listLogs">
+        <wadl:doc xml:lang="EN" title="List available guest logs"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Lists the available guest logs for a
+                specified instance.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-logs-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-logs-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-list-logs-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>    
 </application>
