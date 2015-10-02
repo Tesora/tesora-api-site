@@ -1892,7 +1892,7 @@ router.</para>
         <para>Load balancer description.</para>
     </wadl:doc>
 </param>
-<param xmlns="http://wadl.dev.java.net/2009/02" required="false"
+<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
     name="vip_subnet_id" style="plain" type="csapi:uuid">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1909,6 +1909,22 @@ router.</para>
           The ID of the tenant who owns the load balancer. Only administrative users can
           specify a tenant ID other than their own.
         </para>
+    </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02" required="false"
+    name="vip_address" style="plain" type="xsd:ip">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>The IP address of the VIP.</para>
+    </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02" required="false"
+    name="provider" style="plain" type="xsd:string">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>The name of the provider.</para>
     </wadl:doc>
 </param>' >
 <!ENTITY lbUpdateRequestParams '
@@ -2304,8 +2320,9 @@ router.</para>
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
         <para>
-          The protocol to load balance. A valid values is HTTP, HTTPS, TCP, or
-          UDP.
+          The protocol to load balance. A valid value is <code>HTTP</code>,
+          <code>HTTPS</code>, <code>TCP</code>, or
+          <code>TERMINATED_HTTPS</code>.
         </para>
     </wadl:doc>
 </param>
@@ -2330,7 +2347,7 @@ router.</para>
         </para>
     </wadl:doc>
 </param>
-<param xmlns="http://wadl.dev.java.net/2009/02" required="false"
+<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
     name="loadbalancer_id" style="plain" type="csapi:uuid">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
@@ -3019,42 +3036,6 @@ router.</para>
         </para>
     </wadl:doc>
 </param>' >
-<!ENTITY memberCreateRequestParams '
-<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
-    name="tenant_id" style="plain" type="csapi:uuid">
-    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02"
-        xml:lang="EN">
-        <para>
-          The ID of the tenant who owns the member. Only administrative users can
-          specify a tenant ID other than their own.
-        </para>
-    </wadl:doc>
-</param>
-<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
-    name="address" style="plain" type="xsd:ip">
-    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02"
-        xml:lang="EN">
-        <para>The IP address of the member.</para>
-    </wadl:doc>
-</param>
-<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
-    name="protocol_port" style="plain" type="xsd:int">
-    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02"
-        xml:lang="EN">
-        <para>The port where the application is hosted.</para>
-    </wadl:doc>
-</param>
-<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
-    name="subnet_id" style="plain" type="xsd:int">
-    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02"
-        xml:lang="EN">
-        <para>Subnet in which to access this member.</para>
-    </wadl:doc>
-</param>' >
 <!ENTITY memberCreatev2RequestParams '
 <param xmlns="http://wadl.dev.java.net/2009/02" required="true"
     name="tenant_id" style="plain" type="csapi:uuid">
@@ -3091,17 +3072,6 @@ router.</para>
         <para>
           If you omit this parameter, LBaaS uses the
           <code>vip_subnet_id</code> parameter value for the subnet ID.
-        </para>
-    </wadl:doc>
-</param>' >
-<!ENTITY memberUpdateRequestParams '
-<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
-    name="admin_state_up" style="plain" type="xsd:boolean">
-    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
-        <para>
-          The administrative state of the member, which is up
-          (<code>true</code>) or down (<code>false</code>).
         </para>
     </wadl:doc>
 </param>' >
@@ -3912,7 +3882,7 @@ router.</para>
     </wadl:doc>
 </param>' >
 <!ENTITY memberCreateRequestParams '
-<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
+<param xmlns="http://wadl.dev.java.net/2009/02" required="false"
     name="tenant_id" style="plain" type="csapi:uuid">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -3937,14 +3907,6 @@ router.</para>
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
         <para>The IP address of the member.</para>
-    </wadl:doc>
-</param>
-<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
-    name="protocol" style="plain" type="xsd:string">
-    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02"
-        xml:lang="EN">
-        <para>The protocol of the VIP address. A valid value is TCP, HTTP, or HTTPS.</para>
     </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02" required="true"
@@ -3976,7 +3938,7 @@ router.</para>
     </wadl:doc>
 </param>'>
 <!ENTITY memberUpdateRequestParams '
-<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
+<param xmlns="http://wadl.dev.java.net/2009/02" required="false"
     name="pool_id" style="plain" type="csapi:uuid">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -5530,6 +5492,51 @@ router.</para>
         <para>The number of security groups allowed for each tenant.</para>
     </wadl:doc>
 </param>'>
+<!ENTITY health_monitorQuotaParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
+    name="health_monitor" style="plain" type="xsd:int">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>The number of health monitors for each tenant.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY vipQuotaParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
+    name="vip" style="plain" type="xsd:int">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>The number of virtual IP (VIP) addresses for each tenant.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY memberQuotaParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
+    name="member" style="plain" type="xsd:int">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>The number of pool members for each tenant.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY poolQuotaParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
+    name="pool" style="plain" type="xsd:int">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>The number of pools for each tenant.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY rbac_policyQuotaParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
+    name="rbac_policy" style="plain" type="xsd:int">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>The number of role-based access control (RBAC) policies for each tenant.</para>
+    </wadl:doc>
+</param>'>
 <!ENTITY subnetpoolCreateReqParameters '
 <param xmlns="http://wadl.dev.java.net/2009/02" required="true"
     name="name" style="plain" type="xsd:string">
@@ -5959,4 +5966,64 @@ router.</para>
           10.
         </para>
     </wadl:doc>
+</param>'>
+<!-- Service type response parameters -->
+<!ENTITY servicetypeResponseParameters '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="service_providers" style="plain"
+   type="xsd:dict"
+   required="true">
+ <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN" title="Service provider description">
+    <para>
+       A <code>service_providers</code> object.
+    </para>
+ </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02" name="service_type" style="plain"
+   type="xsd:string"
+   required="true">
+ <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN" title="Service type">
+    <para>
+      The service type, which is
+      <code>CORE</code>,
+      <code>DUMMY</code>,
+      <code>FIREWALL</code>,
+      <code>FLAVORS</code>,
+      <code>L3_ROUTER_NAT</code>,
+      <code>LOADBALANCER</code>,
+      <code>LOADBALANCERV2</code>,
+      <code>METERING</code>,
+      <code>QOS</code>, or
+      <code>VPN</code>.
+    </para>
+ </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02" name="default" style="plain"
+   type="xsd:boolean"
+   required="true">
+ <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN" title="default">
+    <para>
+      Defines whether the provider is or is not the default for
+      the specified service type. If this value is
+      <code>true</code>, the provider is the default. If this
+      value is <code>false</code>, the provider is not the
+      default.
+    </para>
+ </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02" name="name" style="plain"
+   type="xsd:string"
+   required="true">
+ <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN" title="name">
+    <para>
+       User-facing provider name.
+    </para>
+ </wadl:doc>
 </param>'>
