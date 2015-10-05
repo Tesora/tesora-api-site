@@ -66,7 +66,9 @@
                         <method href="#detachConfigGroup"/>
                         <method href="#deleteInstance"/>
                         <method href="#listConfigDefaults"/>
-                        <method href="#listLogs"/>
+                        <resource id="log" path="log">
+                            <method href="#listLogs"/>
+                        </resource>
                         <resource id="instanceAction" path="action">
                             <method href="#resizeInstance"/>
                             <method href="#resizeVolume"/>
@@ -1685,7 +1687,7 @@
             xmlns="http://docbook.org/ns/docbook">
             <para role="shortdesc">
                 Lists the available guest logs for a
-                specified instance.
+                specified instance. 
             </para>
         </wadl:doc>
         <request>

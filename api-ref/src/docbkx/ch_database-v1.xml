@@ -37,8 +37,11 @@
                 <wadl:method href="#attachConfigGroup"/>
                 <wadl:method href="#detachConfigGroup"/>
                 <wadl:method href="#listConfigDefaults"/>
-                <wadl:method href="#listLogs"/>
             </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#log">
+                <wadl:method href="#listLogs"/>
+            </wadl:resource>        
             <wadl:resource
             href="../wadls/databases-api/xsd/dbaas.wadl#root">
                 <wadl:method href="#createRoot"/>
