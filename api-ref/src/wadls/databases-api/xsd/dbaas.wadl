@@ -68,6 +68,7 @@
                         <method href="#listConfigDefaults"/>
                         <resource id="log" path="log">
                             <method href="#listLogs"/>
+                            <method href="#publishLog"/>
                         </resource>
                         <resource id="instanceAction" path="action">
                             <method href="#resizeInstance"/>
@@ -1712,5 +1713,44 @@
                 </wadl:doc>
             </representation>
         </response> &commonFaults; &getFaults;
+    </method>
+    <method name="POST" id="publishLog">
+        <wadl:doc xml:lang="EN" title="Publish a guest log"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Copies the contents of a guest log file to a swift container, thus making the contents available for retrieval.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-log-publish-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-log-publish-request.json"/>
+                </wadl:doc>
+                <param name="name" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name of the guest log you want to publish.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-log-publish-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-log-publish-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults; &postPutFaults;
     </method>
 </application>
