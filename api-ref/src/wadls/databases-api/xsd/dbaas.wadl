@@ -70,6 +70,21 @@
                             <method href="#listLogs"/>
                             <method href="#publishLog"/>
                         </resource>
+                        <resource id="log-name" path="log-name">
+                            <resource id="logName" path="{logName}">
+                                <param name="logName" style="template"
+                                    type="xsd:string">
+                                    <wadl:doc
+                                        xmlns="http://docbook.org/ns/docbook"
+                                        xml:lang="EN">
+                                        <para>
+                                            The name of the log.
+                                        </para>
+                                    </wadl:doc>
+                                </param>
+                                <method href="#tailLog"/>
+                            </resource>
+                        </resource>
                         <resource id="instanceAction" path="action">
                             <method href="#resizeInstance"/>
                             <method href="#resizeVolume"/>
@@ -1752,5 +1767,56 @@
                 </wadl:doc>
             </representation>
         </response> &commonFaults; &getFaults; &postPutFaults;
+    </method>
+    <method name="GET" id="tailLog">
+        <wadl:doc xml:lang="EN" title="Display log entries"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Outputs lines at the end of the log to the console.
+            </para>
+            <para>
+                By default, this operation outputs the last 100 lines of the log. You can use the <code>lines</code> option to specify a different number of lines to output.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-tail-log-request-json-http.txt"
+                    />
+                </wadl:doc>
+                <param name="lines" style="plain" type="xsd:int"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            The number of lines to display.
+                        </para>
+                    </wadl:doc>
+                </param>
+                    <param name="publish" style="plain"
+                        type="xsd:string" required="false">
+                        <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                            xml:lang="EN">
+                            <para>
+                                Publish latest entries from guest before display.
+                            </para>
+                        </wadl:doc>
+                    </param>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-tail-log-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-tail-log-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
     </method>
 </application>

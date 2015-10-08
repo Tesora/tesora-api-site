@@ -44,6 +44,10 @@
                 <wadl:method href="#publishLog"/>
             </wadl:resource>
             <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#logName">
+                <wadl:method href="#tailLog"/>
+            </wadl:resource>
+            <wadl:resource
             href="../wadls/databases-api/xsd/dbaas.wadl#root">
                 <wadl:method href="#createRoot"/>
                 <wadl:method href="#isRootEnabled"/>
