@@ -65,7 +65,6 @@
                         <method href="#attachConfigGroup"/>
                         <method href="#detachConfigGroup"/>
                         <method href="#deleteInstance"/>
-                        <method href="#listConfigDefaults"/>
                         <resource id="log" path="log">
                             <method href="#listLogs"/>
                             <method href="#publishLog"/>
@@ -82,8 +81,11 @@
                                         </para>
                                     </wadl:doc>
                                 </param>
-                                <method href="#tailLog"/>
+                                <method href="#getLogName"/>
                             </resource>
+                        </resource>
+                        <resource id="configuration" path="configuration">
+                            <method href="#listConfigDefaults"/>                                        
                         </resource>
                         <resource id="instanceAction" path="action">
                             <method href="#resizeInstance"/>
@@ -399,6 +401,19 @@
                         <para>
                             The volume size, in gigabytes (GB). A valid value
                             is from 1 to 50.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="type" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            The volume type to use. You can list the available volume types on your 
+                            system by using the <code>cinder type-list</code> command.
+                        </para>
+                        <para>
+                            If you want to specify a volume type, you must also specify a volume size.
                         </para>
                     </wadl:doc>
                 </param>
@@ -1733,7 +1748,7 @@
         <wadl:doc xml:lang="EN" title="Publish a guest log"
             xmlns="http://docbook.org/ns/docbook">
             <para role="shortdesc">
-                Copies the contents of a guest log file to a swift container, thus making the contents available for retrieval.
+                Copies the contents of a guest log file to a Swift container, thus making the contents available for retrieval.
             </para>
         </wadl:doc>
         <request>
@@ -1754,6 +1769,26 @@
                         </para>
                     </wadl:doc>
                 </param>
+                <param name="disable" style="plain" type="xsd:int"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            If you want to disable logging for the log specified 
+                            by <code>name</code>, set <code>disable</code>  
+                            to 1.
+                        </para>
+                        <para>
+                            For USER logs, this disables logging on the guest and 
+                            deletes the associated container. For SYS logs, this 
+                            deletes the associated container.
+                        </para>
+                        <para>
+                            To turn logging back on again, run the publish operation without 
+                            the disable option.
+                        </para>
+                    </wadl:doc>
+                </param>
             </representation>
         </request>
         <response status="202">
@@ -1768,14 +1803,15 @@
             </representation>
         </response> &commonFaults; &getFaults; &postPutFaults;
     </method>
-    <method name="GET" id="tailLog">
-        <wadl:doc xml:lang="EN" title="Display log entries"
+    <method name="GET" id="getLogName">
+        <wadl:doc xml:lang="EN" title="Get log contents"
             xmlns="http://docbook.org/ns/docbook">
             <para role="shortdesc">
-                Outputs lines at the end of the log to the console.
+                Returns the name of the Swift container that contains the log. 
             </para>
             <para>
-                By default, this operation outputs the last 100 lines of the log. You can use the <code>lines</code> option to specify a different number of lines to output.
+                You can then get the log contents by passing in this container name   
+                with Swift APIs.
             </para>
         </wadl:doc>
         <request>
@@ -1786,24 +1822,6 @@
                         href="samples/db-tail-log-request-json-http.txt"
                     />
                 </wadl:doc>
-                <param name="lines" style="plain" type="xsd:int"
-                    required="false">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            The number of lines to display.
-                        </para>
-                    </wadl:doc>
-                </param>
-                    <param name="publish" style="plain"
-                        type="xsd:string" required="false">
-                        <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                            xml:lang="EN">
-                            <para>
-                                Publish latest entries from guest before display.
-                            </para>
-                        </wadl:doc>
-                    </param>
             </representation>
         </request>
         <response status="200">

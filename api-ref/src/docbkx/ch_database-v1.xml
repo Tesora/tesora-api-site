@@ -36,7 +36,6 @@
                 <wadl:method href="#deleteInstance"/>
                 <wadl:method href="#attachConfigGroup"/>
                 <wadl:method href="#detachConfigGroup"/>
-                <wadl:method href="#listConfigDefaults"/>
             </wadl:resource>
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#log">
@@ -45,12 +44,16 @@
             </wadl:resource>
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#logName">
-                <wadl:method href="#tailLog"/>
+                <wadl:method href="#getLogName"/>
             </wadl:resource>
             <wadl:resource
             href="../wadls/databases-api/xsd/dbaas.wadl#root">
                 <wadl:method href="#createRoot"/>
                 <wadl:method href="#isRootEnabled"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#configuration">
+                <wadl:method href="#listConfigDefaults"/>
             </wadl:resource>
         </wadl:resources>
     </section>
