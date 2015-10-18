@@ -68,6 +68,8 @@
                             <method href="#setVolumeimagemetadata"/>
                             <method href="#unsetVolumeimagemetadata"/>
                             <method href="#attachVolume"/>
+                            <method href="#unmanageVolume"/>
+                            <method href="#forcedetachVolume"/>
                         </resource>
                     </resource>
                 </resource>
@@ -644,6 +646,60 @@
         </request>
         <response status="202"/>
     </method>
+    <method name="POST" id="unmanageVolume">
+        <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
+            title="Unmanage volume">
+            <para role="shortdesc">
+                Unmanages the specified volume.
+                Specify the <code>os-unmanage</code> action in the request body.
+            </para>
+            <para>
+                This calls removes the volume from Block Storage management
+                without actually removing the back-end storage object
+                associated with it.
+            </para>
+            <para>Preconditions</para>
+            <itemizedlist>
+                <listitem><para>Volume status must be <code>available</code>.</para></listitem>
+            </itemizedlist>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="api_samples/os-unmanage/os-unmanage-request.json"
+                    />
+                </wadl:doc>
+                &unmanageVolumeReqParameters;
+            </representation>
+        </request>
+        <response status="202"/>
+    </method>
+    <method name="POST" id="forcedetachVolume">
+        <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
+            title="Force detach volume">
+            <para role="shortdesc">
+                Forces detach the specified volume.
+                Specify the <code>os-force_detach</code> action in the request body.
+            </para>
+            <para>
+                Roll back a bad detach after the volume been disconnected.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="api_samples/os-force-detach/os-force-detach-request.json"
+                    />
+                </wadl:doc>
+                &forcedetachVolumeReqParameters;
+            </representation>
+        </request>
+        <response status="202"/>
+    </method>
     <method name="GET" id="getVolumeTypes">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="List volume types">
@@ -827,7 +883,6 @@
                 volume from the snapshot.</para>
         </wadl:doc>
         <request>
-
             <representation mediaType="application/xml">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">

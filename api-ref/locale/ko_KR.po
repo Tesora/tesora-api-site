@@ -4,26 +4,27 @@
 # Sungjin Kang <potopro@gmail.com>, 2014-2015
 # Ying Chun Guo <daisy.ycguo@gmail.com>, 2015
 # OpenStack Infra <zanata@openstack.org>, 2015. #zanata
+# Sungjin Kang <gang.sungjin@gmail.com>, 2015. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-01 15:57+0000\n"
+"POT-Creation-Date: 2015-10-16 02:04+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-09-09 02:50+0000\n"
-"Last-Translator: Ying Chun Guo <daisy.ycguo@gmail.com>\n"
+"PO-Revision-Date: 2015-10-15 11:53+0000\n"
+"Last-Translator: Sungjin Kang <gang.sungjin@gmail.com>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/openstack/openstack-"
 "manuals-i18n/language/ko_KR/)\n"
 "Language: ko-KR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Zanata 3.7.1\n"
 
-msgid "2010-2014"
-msgstr "2010-2014"
-
 msgid "2010-2015"
 msgstr "2010-2015"
+
+msgid "2015"
+msgstr "2015"
 
 msgid "<code>token</code>. The authentication token for Object Storage."
 msgstr "<code>token</code>. 오브젝트 스토리지에 대한 인증 토큰."
@@ -79,8 +80,8 @@ msgstr "볼륨 생성중 오류가 발생했습니다."
 msgid "An error occurred during volume deletion."
 msgstr "볼륨 삭제중 오류가 발생했습니다."
 
-msgid "Attach interfaces (os-interface)"
-msgstr "인터페이스 연결 (os-interface)"
+msgid "Availability zones"
+msgstr "가용성 존"
 
 msgid "Backup statuses"
 msgstr "백업 상태"
@@ -100,9 +101,6 @@ msgstr "클러스터"
 msgid "Containers"
 msgstr "컨테이너"
 
-msgid "Coverage reports (os-coverage)"
-msgstr "적용 범위 레포트 (os-coverage)"
-
 msgid "Creates and deletes flavors."
 msgstr "Flavors 생성 및 삭제"
 
@@ -115,6 +113,9 @@ msgstr ""
 
 msgid "Creates and shows details for a root certificate."
 msgstr "Root certificate에 대한 상세 정보를 보여주고 생성합니다."
+
+msgid "Creates, lists, updates, and deletes images."
+msgstr "이미지를 목록을 확인하고, 생성하고, 업데이트하고, 삭제합니다."
 
 msgid "Credentials"
 msgstr "인증서"
@@ -159,27 +160,11 @@ msgstr ""
 "를 활성화하고 다수의 물리적 바인딩 네트워크 목록 또는 세부 사항을 볼 수 있습"
 "니다."
 
-msgid ""
-"Encode the file contents as a Base64 string. The compute providers "
-"determines the maximum size of the file contents. This value can vary based "
-"on the image that is used to create the server."
-msgstr ""
-"파일 내용은 Base64 스트링으로 인코딩됩니다. Compute provider가 파일 내용의 최"
-"대 크기를 결정합니다. 이 값들은 서버를 생성하는데 사용하는 이미지에 따라 차이"
-"가 있을 수 있습니다."
-
 msgid "Endpoints"
 msgstr "엔드 포인트"
 
 msgid "Extensions"
 msgstr "확장"
-
-msgid ""
-"Extensions add features, MIME types, actions, states, headers, parameters, "
-"and resources to the core Compute API without requiring a version change."
-msgstr ""
-"확장에서 기능, MIME 형식, 동작, 상태, 해더, 매개 변수, 버전 변경에 필요하지 "
-"않는 코어 Compute API에 대한 리소스를 추가합니다."
 
 msgid "Fixed IPs (os-fixed-ips)"
 msgstr "고정 IP (os-fixed-ips)"
@@ -192,9 +177,6 @@ msgstr "Flavors (flavors)"
 
 msgid "Flavors with extended attributes (flavors)"
 msgstr "Flavors의 확장 속성 (flavors)"
-
-msgid "Flavors with rxtx_factor extended attribute (flavors)"
-msgstr "Flavors의 rxtx_factor 확장 속성 (flavors)"
 
 msgid "Floating IP DNS records (os-floating-ip-dns)"
 msgstr "유동 IP DNS 레코드 (os-floating-ip-dns)"
@@ -214,14 +196,14 @@ msgstr "파일을 입력할때 다음 지침을 따르십시오:"
 msgid "General API information"
 msgstr "일반적인 API 정보"
 
+msgid "Gets an authentication token that permits access to the Compute API."
+msgstr "Compute API에 접근할 수 있는 인증 토큰을 가져옵니다."
+
 msgid "Groups"
 msgstr "그룹"
 
 msgid "Guest agents (os-agents)"
 msgstr "게스트 에이전트 (os-agents)"
-
-msgid "Host aggregates (os-aggregates)"
-msgstr "호스트 집계 (os-aggregates)"
 
 msgid "Hosts (os-hosts)"
 msgstr "호스트 (os-hosts)"
@@ -232,15 +214,8 @@ msgstr "하이퍼바이져 (os-hypervisors)"
 msgid "INACTIVE"
 msgstr "INACTIVE"
 
-msgid ""
-"If you do not specify a password, a randomly generated password is assigned "
-"and returned in the response object. This password is guaranteed to meet the "
-"security requirements set by the compute provider. For security reasons, the "
-"password is not returned in subsequent calls."
-msgstr ""
-"만약 암호를 지정하지 않는다면, 랜덤하게 만들어진 암호를 할당하고 리스폰스 객"
-"체를 반환합니다.이 암호는 compute provider가 설정한 보안 요구사항을 충족하도"
-"록 보장됩니다. 보안을 위해 암호는 이후에는 호출 반환되지 않습니다."
+msgid "Identity Admin API v2.0 (SUPPORTED)"
+msgstr "Identity Admin API v2.0 (지원)"
 
 msgid "Image data"
 msgstr "이미지 데이타"
@@ -251,14 +226,17 @@ msgstr "이미지 메타 데이타"
 msgid "Image schemas"
 msgstr "이미지 스키마"
 
+msgid "Image service API v2 (CURRENT)"
+msgstr "Image service API v2 (현재 사용)"
+
+msgid "Image service API v2.0, API v2.1, and API v2.2."
+msgstr "Image service API v2.0, API v2.1, and API v2.2."
+
 msgid "Image tags"
 msgstr "이미지 태그"
 
 msgid "Images"
 msgstr "이미지"
-
-msgid "Images with size attribute (images)"
-msgstr "이미지의 크기 속성 (images)"
 
 msgid "Instance usage audit log (os-instance-usage-audit-log)"
 msgstr "인스턴스 사용량 감사 로그 (os-instance-usage-audit-log)"
@@ -275,9 +253,6 @@ msgstr "Jobs"
 msgid "Keypairs"
 msgstr "Keypairs"
 
-msgid "Keypairs (os-keypairs)"
-msgstr "키패어 (os-keypairs)"
-
 msgid "Layer-3 networking"
 msgstr "레이어-3 네트워킹"
 
@@ -286,12 +261,6 @@ msgstr "제한"
 
 msgid "Limits (limits)"
 msgstr "제한 (limits)"
-
-msgid "Limits with project usage (limits)"
-msgstr "프로젝트 사용 제한 (limits)"
-
-msgid "Limits with project usage for administrators (limits)"
-msgstr "관라자에 대한 프로젝트 사용 제한 (limits)"
 
 msgid ""
 "Lists available Networking API v2.0 extensions and shows details for a "
@@ -386,6 +355,24 @@ msgstr "OpenStack API 전체 참조"
 msgid "OpenStack API Reference"
 msgstr "OpenStack API 참조"
 
+msgid "OpenStack Block Storage API v1 (SUPPORTED)"
+msgstr "OpenStack Block Storage API v1 (지원)"
+
+msgid "OpenStack Database Service API v1.0 (CURRENT)"
+msgstr "OpenStack Database Service API v1.0 (현재 사용)"
+
+msgid "OpenStack Identity API v2 (SUPPORTED)"
+msgstr "OpenStack Identity API v2 (지원)"
+
+msgid "OpenStack Identity API v3 (CURRENT)"
+msgstr "OpenStack Identity API v3 (현재 사용)"
+
+msgid "OpenStack Shared File Systems API v2.0 (CURRENT)"
+msgstr "OpenStack Shared File Systems API v2.0 (현재 사용)"
+
+msgid "OpenStack Telemetry API v2 (CURRENT)"
+msgstr "OpenStack Telemetry API v2 (현재 사용)"
+
 msgid "Or:"
 msgstr "또는:"
 
@@ -464,12 +451,6 @@ msgstr "시큐리티 그룹 (os-security-groups)"
 msgid "Server access addresses"
 msgstr "서버 접근 주소"
 
-msgid "Server actions"
-msgstr "서버 작업"
-
-msgid "Server addresses"
-msgstr "서버 주소"
-
 msgid "Server groups (os-server-groups)"
 msgstr "서버 그룹 (os-server-groups)"
 
@@ -485,29 +466,17 @@ msgstr "서버 프로필"
 msgid "Servers"
 msgstr "서버"
 
-msgid "Servers and images with disk config (servers, images)"
-msgstr "서버와 이미지에대한 디스크 구성 (servers, images)"
-
 msgid "Servers multiple create (servers)"
 msgstr "서버 다중 생성 (servers)"
-
-msgid "Servers with block device mapping format (servers)"
-msgstr "서버에대한 블록 디바이스 맵핑 포맷 (servers)"
-
-msgid "Servers with extended availability zones (servers)"
-msgstr "확장된 가용성 존의 서버 (servers)"
-
-msgid "Servers with scheduler hints (servers)"
-msgstr "서버에대한 스케쥴러 hint (server)"
 
 msgid "Service catalog"
 msgstr "서비스 카탈로그"
 
+msgid "Services"
+msgstr "서비스"
+
 msgid "Shared images"
 msgstr "공유 이미지"
-
-msgid "Shows metadata for servers."
-msgstr "서버에대한 메타데이터를 보여줍니다."
 
 msgid "Snapshot statuses"
 msgstr "스냅샷 상태"
@@ -696,41 +665,6 @@ msgstr ""
 "잡한 요구사항을 충족해야합니다. 만약 복잡한 요구사항에 충족되지 못한다면, 서"
 "버에 <code>ERROR</code> 상태를 입력할 수 있습니다. 이 상황에서는 클라이언트에"
 "서 서버 암호를 리셋할 수 있는 암호 변경 작업을 진행할 수 있습니다."
-
-msgid ""
-"You can customize the personality of a server instance by injecting data "
-"into its file system. For example, you might want to insert ssh keys, set "
-"configuration files, or store data that you want to retrieve from inside the "
-"instance. This feature provides a minimal amount of launch-time "
-"personalization. If you require significant customization, create a custom "
-"image."
-msgstr ""
-"파일 시스템에 데이터를 입력하여 서버 인스턴스의 프로필을 사용자 정의 설정을 "
-"할 수 있습니다. 예를 들어, 인스턴스 내부에 ssh 키를 넣거나, 설정 구성 파일을 "
-"저장하거나 데이터를 삽입할 수 있습니다. 이 기능은 실행 시간 개인 설정의 최소"
-"량을 제공합니다. 중요한 사용자 지정이 필요한 경우, 사용자 정의 이미지를 만들 "
-"수 있습니다."
-
-msgid ""
-"You can specify custom server metadata at server launch time. The maximum "
-"size for each metadata key-value pair is 255 bytes. The maximum number of "
-"key-value pairs that can be supplied per server is determined by the compute "
-"provider. You can query this value through the <code>maxServerMeta</code> "
-"absolute limit."
-msgstr ""
-"서버 실행시 사용자 지정 서비스 메타데이터를 지정할 수 있습니다. 각 메나테이"
-"터 키값 쌍에대한 최대 값은 255바이트입니다. 서버당 제공할 수 있는 키-값 쌍의 "
-"최대 갯수는 compute provider에 의해 결정됩니다. <code>maxServerMeta</code>절"
-"대 한계치를 이용하여 값을 쿼리할 수 있습니다."
-
-msgid ""
-"You can specify networks to which the server connects at launch time. You "
-"can specify one or more networks. Users can also specify a specific port on "
-"the network or the fixed IP address to assign to the server interface."
-msgstr ""
-"서버 작동시 지정한 네트워크로 서버를 연결합니다. 네트워크를 하나 또는 여러개"
-"를 지정할 수 있습니다. 네트워크에 포트를 지정하여 사용하거나 서버 인터페이스"
-"에 고정 IP 주소를 할당할 수있습니다."
 
 msgid ""
 "You can use both IPv4 and IPv6 addresses as access addresses and you can "

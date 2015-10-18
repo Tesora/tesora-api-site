@@ -24,48 +24,48 @@
     <resources base="https://neutron.example.com/" xml:id="os-lbaas-v2.0">
         <resource id="version" path="//v2.0/lbaas">
             <resource id="loadbalancers" path="loadbalancers">
-                <method href="#listLoadBalancers"/>
-                <method href="#createLoadBalancer"/>
+                <method href="#listLoadBalancersv2"/>
+                <method href="#createLoadBalancerv2"/>
                 <resource id="lb_id" path="{loadbalancer_id}">
-                    <method href="#showLoadBalancer"/>
-                    <method href="#updateLoadBalancer"/>
-                    <method href="#deleteLoadBalancer"/>
+                    <method href="#showLoadBalancerv2"/>
+                    <method href="#updateLoadBalancerv2"/>
+                    <method href="#deleteLoadBalancerv2"/>
                 </resource>
             </resource>
             <resource id="Listeners" path="listeners">
-                <method href="#listListeners"/>
-                <method href="#createListener"/>
+                <method href="#listListenersv2"/>
+                <method href="#createListenerv2"/>
                 <resource id="listener_id" path="{listener_id}">
-                    <method href="#showListener"/>
-                    <method href="#updateListener"/>
-                    <method href="#deleteListener"/>
+                    <method href="#showListenerv2"/>
+                    <method href="#updateListenerv2"/>
+                    <method href="#deleteListenerv2"/>
                 </resource>
             </resource>
             <resource id="lb-pools" path="pools">
-                <method href="#listPools"/>
-                <method href="#createPool"/>
+                <method href="#listPoolsv2"/>
+                <method href="#createPoolv2"/>
                 <resource id="pool_id" path="{pool_id}">
-                    <method href="#showPool"/>
-                    <method href="#updatePool"/>
-                    <method href="#deletePool"/>
+                    <method href="#showPoolv2"/>
+                    <method href="#updatePoolv2"/>
+                    <method href="#deletePoolv2"/>
                     <resource id="lb-members" path="members">
-                        <method href="#listMembers"/>
-                        <method href="#createMember"/>
+                        <method href="#listMembersv2"/>
+                        <method href="#createMemberv2"/>
                         <resource id="member_id" path="{member_id}">
-                            <method href="#showMember"/>
-                            <method href="#updateMember"/>
-                            <method href="#deleteMember"/>
+                            <method href="#showMemberv2"/>
+                            <method href="#updateMemberv2"/>
+                            <method href="#deleteMemberv2"/>
                         </resource>
                     </resource>
                 </resource>
             </resource>
             <resource id="lb-health_monitors" path="health_monitors">
-                <method href="#createHealthMonitor"/>
-                <method href="#listHealthMonitors"/>
+                <method href="#createHealthMonitorv2"/>
+                <method href="#listHealthMonitorsv2"/>
                 <resource id="health_monitor_id_hm" path="{health_monitor_id}">
-                    <method href="#showHealthMonitor"/>
-                    <method href="#updateHealthMonitor"/>
-                    <method href="#deleteHealthMonitor"/>
+                    <method href="#showHealthMonitorv2"/>
+                    <method href="#updateHealthMonitorv2"/>
+                    <method href="#deleteHealthMonitorv2"/>
                 </resource>
             </resource>
         </resource>
@@ -75,7 +75,7 @@
     <!--               All Methods                             -->
     <!--*******************************************************-->
     <!-- load balancer -->
-    <method name="GET" id="listLoadBalancers">
+    <method name="GET" id="listLoadBalancersv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List load balancers">
             <para role="shortdesc">Lists load balancers.</para>
             <para>
@@ -103,9 +103,9 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/loadbalancer-list-resp.json"/>
-                </wadl:doc> &lbLoadbalancersParam; &lbLoadbalancerParam; &lbResponseParams;</representation>
+                </wadl:doc> &lbLoadbalancersParam; &lbResponseParams;</representation>
         </response> &fault401; &fault500; &fault503;</method>
-    <method name="GET" id="showLoadBalancer">
+    <method name="GET" id="showLoadBalancerv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show load balancer details">
             <para role="shortdesc">Shows details for a specified load
@@ -184,7 +184,7 @@
                     <xsdxt:code href="api_samples/loadbalancer-get-detail-resp.json"/>
                 </wadl:doc> &lbLoadbalancerParam; &lbResponseParams; </representation>
         </response> &fault401; &fault403; &fault404; &fault409; &fault413; &fault500; &fault503; </method>
-    <method name="POST" id="createLoadBalancer">
+    <method name="POST" id="createLoadBalancerv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Create load balancer">
             <para role="shortdesc">Creates a load balancer.</para>
             <para>
@@ -289,7 +289,7 @@
                 </wadl:doc> &lbLoadbalancerParam; &lbResponseParams; </representation>
         </response> &fault401; &fault404; &fault409; &fault413; &fault500; &fault503;
     </method>
-    <method name="PUT" id="updateLoadBalancer">
+    <method name="PUT" id="updateLoadBalancerv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Update load balancer">
             <para role="shortdesc">Updates a specified load balancer.</para>
             <para>
@@ -329,9 +329,9 @@
         <response status="200"><representation mediaType="application/json">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                 <xsdxt:code href="api_samples/loadbalancer-put-resp.json"/>
-            </wadl:doc> &lbResponseParams; </representation>
+            </wadl:doc> &lbLoadbalancerParam; &lbResponseParams; </representation>
         </response> &fault400; &fault401; &fault413; &fault500; &fault503; </method>
-    <method name="DELETE" id="deleteLoadBalancer">
+    <method name="DELETE" id="deleteLoadBalancerv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Remove load balancer">
             <para role="shortdesc">Removes a specified load balancer.</para>
             <para>
@@ -344,7 +344,7 @@
         </wadl:doc>
         <response status="204"/> &fault400; &fault401; &fault413; &fault500; &fault503; </method>
     <!--Listeners-->
-    <method name="POST" id="createListener">
+    <method name="POST" id="createListenerv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Create listener">
             <para role="shortdesc">Creates a listener.</para>
             <para>
@@ -384,18 +384,18 @@
                         <code>TCP</code>, or <code>TERMINATED_HTTPS</code>.
                     </para>
                 </listitem>
-                <listitem>
-                    <para>
-                        <code>protocol_port</code>. The port on which the
-                        front end listens. Must be an integer from 1 to 65535.
-                    </para>
-                </listitem>
             </itemizedlist>
             <para>
                 Some attributes receive default values if not specified in the
                 request:
             </para>
             <itemizedlist>
+                <listitem>
+                    <para>
+                        <code>protocol_port</code>. The port on which the
+                        front end listens. Must be an integer from 1 to 65535.
+                    </para>
+                </listitem>
                 <listitem>
                     <para>
                         <code>default_tls_container_ref</code>. The reference
@@ -472,7 +472,7 @@
                 </wadl:doc>
             </representation>
         </response> &fault401; &fault404; &fault409; &fault413; &fault500; &fault503; </method>
-    <method name="GET" id="listListeners">
+    <method name="GET" id="listListenersv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List listeners">
             <para role="shortdesc">Lists listeners.</para>
             <para>
@@ -506,7 +506,7 @@
                 </wadl:doc>
             </representation>
         </response> &fault401; &fault500; &fault503; </method>
-    <method name="GET" id="showListener">
+    <method name="GET" id="showListenerv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show listener details">
             <para role="shortdesc">Shows details for a specified listener.</para>
@@ -543,7 +543,7 @@
                 </wadl:doc>
             </representation>
         </response> &fault401; &fault403; &fault404; &fault409; &fault413; &fault500; &fault503;</method>
-    <method name="PUT" id="updateListener">
+    <method name="PUT" id="updateListenerv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Update listener">
             <para role="shortdesc">Updates a specified listener.</para>
             <para>
@@ -591,7 +591,7 @@
                 </wadl:doc>
             </representation>
         </response> &fault500; &fault503; &fault401; &fault400;&fault413;</method>
-    <method name="DELETE" id="deleteListener">
+    <method name="DELETE" id="deleteListenerv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Remove listener">
             <para role="shortdesc">Removes a specified listener.</para>
             <para>
@@ -609,7 +609,7 @@
         </wadl:doc>
         <response status="204"/> &fault400; &fault401; &fault409; &fault413; &fault500; &fault503; </method>
     <!-- pool -->
-    <method name="POST" id="createPool">
+    <method name="POST" id="createPoolv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Create pool">
             <para role="shortdesc">Creates a pool.</para>
@@ -640,12 +640,12 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <code>lb_method</code>. The load-balancer algorithm,
-                        which is round-robin, least-connections, and so on,
-                        that is used to distribute traffic to the pool
-                        members. This value, which must be supported, is
-                        dependent on the load-balancer provider.
-                        The round-robin algorithm must be supported.
+                        <code>lb_algorithm</code>. The load-balancer algorithm,
+                        such as <code>ROUND_ROBIN</code>,
+                        <code>LEAST_CONNECTIONS</code>, and <code>SOURCE_IP</code>,
+                       that is used to distribute traffic to the pool members.
+                       This value, which must be supported, is dependent on
+                       the load-balancer provider.
                     </para>
                 </listitem>
                 <listitem>
@@ -699,15 +699,15 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/pool-post-req.json"/>
-                </wadl:doc> &poolCreateRequestParams; </representation>
+                </wadl:doc> &poolCreateRequestParamsv2; </representation>
         </request>
         <response status="201">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/pool-post-resp.json"/>
-                </wadl:doc> &poolcreateResponseParams; </representation>
+                </wadl:doc> &poolObject; &poolcreateResponseParams; </representation>
         </response> &fault401; &fault404; &fault409; &fault413; &fault500; &fault503; </method>
-    <method name="GET" id="listPools">
+    <method name="GET" id="listPoolsv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List pools">
             <para role="shortdesc">Lists pools.</para>
             <para>
@@ -725,7 +725,7 @@
                 <listitem><para><code>name</code></para></listitem>
                 <listitem><para><code>description</code></para></listitem>
                 <listitem><para><code>protocol</code></para></listitem>
-                <listitem><para><code>lb_method</code></para></listitem>
+                <listitem><para><code>lb_algorithm</code></para></listitem>
                 <listitem><para><code>session_persistence</code></para></listitem>
                 <listitem><para><code>admin_state_up</code></para></listitem>
                 <listitem><para><code>listeners</code></para></listitem>
@@ -738,9 +738,9 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/pool-list-resp.json"/>
-                </wadl:doc> &poolResponseParams; </representation>
+                </wadl:doc> &poolResponseParamsv2; </representation>
         </response> &fault401; &fault500; &fault503;</method>
-    <method name="GET" id="showPool">
+    <method name="GET" id="showPoolv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show pool details">
             <para role="shortdesc">Shows details for a specified pool.</para>
@@ -761,7 +761,7 @@
                 <listitem><para><code>name</code></para></listitem>
                 <listitem><para><code>description</code></para></listitem>
                 <listitem><para><code>protocol</code></para></listitem>
-                <listitem><para><code>lb_method</code></para></listitem>
+                <listitem><para><code>lb_algorithm</code></para></listitem>
                 <listitem><para><code>session_persistence</code></para></listitem>
                 <listitem><para><code>admin_state_up</code></para></listitem>
                 <listitem><para><code>listeners</code></para></listitem>
@@ -774,10 +774,10 @@
             <representation mediaType="application/json"><wadl:doc
                     xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/pool-get-detail-resp.json"/>
-                </wadl:doc> &poolResponseParams; </representation>
+                </wadl:doc> &poolResponseParamsv2; </representation>
         </response> &fault401; &fault403; &fault404; &fault409; &fault413; &fault500; &fault503;
     </method>
-    <method name="PUT" id="updatePool">
+    <method name="PUT" id="updatePoolv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Update pool">
             <para role="shortdesc">Updates a specified pool.</para>
             <para>
@@ -793,7 +793,7 @@
                 <listitem><para><code>name</code></para></listitem>
                 <listitem><para><code>description</code></para></listitem>
                 <listitem><para><code>admin_state_up</code></para></listitem>
-                <listitem><para><code>lb_method</code></para></listitem>
+                <listitem><para><code>lb_algorithm</code></para></listitem>
                 <listitem><para><code>session_persistence</code></para></listitem>
             </itemizedlist>
             <para>
@@ -815,15 +815,15 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/pool-put-req.json"/>
-                </wadl:doc> &poolUpdateRequestParams; </representation>
+                </wadl:doc> &poolObject; &poolUpdateRequestParams; </representation>
         </request>
         <response status="200">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/pool-put-resp.json"/>
-                </wadl:doc> &poolResponseParams; </representation>
+                </wadl:doc> &poolResponseParamsv2; </representation>
         </response>  &fault400; &fault401; &fault413; &fault500; &fault503;</method>
-    <method name="DELETE" id="deletePool">
+    <method name="DELETE" id="deletePoolv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Remove pool">
             <para role="shortdesc">Removes a specified pool.</para>
             <para>
@@ -840,7 +840,7 @@
         </wadl:doc>
         <response status="204"/> &fault400; &fault401; &fault409; &fault413; &fault500; &fault503; </method>
     <!-- member -->
-    <method name="POST" id="createMember">
+    <method name="POST" id="createMemberv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Add member to pool">
             <para role="shortdesc">Adds a member to a pool.</para>
@@ -908,15 +908,15 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Add member to a pool: JSON request">
                     <xsdxt:code href="api_samples/Member-post-req.json"/>
-                </wadl:doc> &memberCreatev2RequestParams; </representation>
+                </wadl:doc> &memberObject; &memberCreatev2RequestParams; </representation>
         </request>
         <response status="201">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/Member-post-resp.json"/>
-                </wadl:doc> &membercreateResponseParams; </representation>
+                </wadl:doc> &memberObject; &membercreateResponseParams; </representation>
         </response> &fault401; &fault404; &fault409; &fault413; &fault500; &fault503; </method>
-    <method name="GET" id="listMembers">
+    <method name="GET" id="listMembersv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List pool members">
             <para role="shortdesc">Lists members of a specified pool.</para>
             <para>
@@ -945,9 +945,9 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/member-list-resp.json"/>
-                </wadl:doc> &memberResponseParams; </representation></response> &fault401;
+                </wadl:doc> &membersObject; &memberResponseParams; </representation></response> &fault401;
         &fault503; &fault500;</method>
-    <method name="GET" id="showMember">
+    <method name="GET" id="showMemberv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show pool member details">
             <para role="shortdesc">Shows details for a specified pool member.</para>
@@ -978,10 +978,10 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/Member-get-detail-resp.json"/>
-                </wadl:doc> &memberResponseParams; </representation>
+                </wadl:doc> &memberObject; &memberResponseParams; </representation>
         </response>&fault401; &fault403; &fault404;&fault409;&fault413;&fault500;&fault503;
     </method>
-    <method name="PUT" id="updateMember">
+    <method name="PUT" id="updateMemberv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Update pool member">
             <para role="shortdesc">Updates a specified member of a pool.</para>
@@ -1015,15 +1015,15 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/member-put-req.json"/>
-                </wadl:doc> &memberUpdateRequestParams; </representation>
+                </wadl:doc> &memberObject; &memberUpdateRequestParams; </representation>
         </request>
         <response status="200">
             <representation mediaType="application/json"><wadl:doc
                     xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/member-put-resp.json"/>
-                </wadl:doc> &memberResponseParams; </representation>
+                </wadl:doc> &memberObject; &memberResponseParams; </representation>
         </response> &fault400; &fault401;  &fault413; &fault500; &fault503; </method>
-    <method name="DELETE" id="deleteMember">
+    <method name="DELETE" id="deleteMemberv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Remove member from pool">
             <para role="shortdesc">Removes a member from a pool.</para>
             <para>
@@ -1040,7 +1040,7 @@
         </wadl:doc>
         <response status="204"/> &fault400; &fault401; &fault409; &fault413; &fault500; &fault503; </method>
     <!-- health Monitor -->
-    <method name="POST" id="createHealthMonitor">
+    <method name="POST" id="createHealthMonitorv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Create health monitor">
             <para role="shortdesc">Creates a health monitor.</para>
@@ -1095,13 +1095,13 @@
             <representation mediaType="application/json"><wadl:doc
                     xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/HealthMonitor-post-req.json"/>
-                </wadl:doc> &hmCreateRequestParams; </representation>
+                </wadl:doc> &hmObject; &hmCreateRequestParams; </representation>
         </request>
         <response status="201">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/HealthMonitor-post-resp.json"/>
-                </wadl:doc> &hmResponseParams; </representation>
+                </wadl:doc> &hmObject; &hmResponseParams; </representation>
         </response> &fault401; &fault404; &fault409; &fault413; &fault500; &fault503; </method>
     <method name="GET" id="listHealthMonitors">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List health monitors">
@@ -1128,9 +1128,9 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/healthmonitor-list-resp.json"/>
-                </wadl:doc> &hmResponseParams; </representation>
+                </wadl:doc> &hmsObject; &hmResponseParams; </representation>
         </response> &fault401; &fault500; &fault503;</method>
-    <method name="GET" id="showHealthMonitor">
+    <method name="GET" id="showHealthMonitorv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show health monitor details">
             <para role="shortdesc">Shows details for a specified health monitor.</para>
@@ -1165,10 +1165,10 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/HealthMonitor-get-detail-resp.json"/>
-                </wadl:doc> &hmResponseParams; </representation>
+                </wadl:doc> &hmObject; &hmResponseParams; </representation>
         </response> &fault401; &fault403; &fault404; &fault409; &fault413; &fault500; &fault503;
     </method>
-    <method name="PUT" id="updateHealthMonitor">
+    <method name="PUT" id="updateHealthMonitorv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Update health monitor">
             <para role="shortdesc">Updates a specified health monitor.</para>
             <para>
@@ -1201,15 +1201,15 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/healthmonitor-put-req.json"/>
-                </wadl:doc> &hmUpdateRequestParams; </representation>
+                </wadl:doc> &hmObject; &hmUpdateRequestParams; </representation>
         </request>
         <response status="200">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="api_samples/healthmonitor-put-resp.json"/>
-                </wadl:doc> &hmResponseParams; </representation>
+                </wadl:doc> &hmObject; &hmResponseParams; </representation>
         </response> &fault400; &fault401; &fault413; &fault500; &fault503; </method>
-    <method name="DELETE" id="deleteHealthMonitor">
+    <method name="DELETE" id="deleteHealthMonitorv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Remove health monitor">
             <para role="shortdesc">Removes a specified health monitor.</para>
             <para>

@@ -1,9 +1,9 @@
 {
     "user": {
-        "email": "john.smith@example.org",
+        "username": "nova",
+        "name": "nova",
         "enabled": true,
-        "id": "u1000",
-        "name": "jqsmith",
-        "username": "jqsmith"
+        "email": null,
+        "id": "405ecdef1a434c70bb1e441cd295245d"
     }
 }

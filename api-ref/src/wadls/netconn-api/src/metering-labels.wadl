@@ -79,6 +79,8 @@
                         href="api_samples/metering-labels-list-get-resp.json"
                     />
                 </wadl:doc>
+                &meteringlabelsObject;
+                &CommonMeteringLabelResponseParams;
             </representation>
         </response>
         <response status="401"
@@ -104,7 +106,8 @@
                         href="api_samples/metering-label-create-req.json"
                     />
                 </wadl:doc>
-                &CreateMeteringLabelRequestParams;
+                &meteringlabelObject;
+                &CommonMeteringLabelRequestParams;
             </representation>
         </request>
         <response status="201">
@@ -115,7 +118,8 @@
                         href="api_samples/metering-label-create-resp.json"
                     />
                 </wadl:doc>
-                &CreateMeteringLabelReponseParams;
+                &meteringlabelObject;
+                &CommonMeteringLabelResponseParams;
             </representation>
         </response>
         <response status="400"
@@ -128,6 +132,12 @@
             xmlns="http://wadl.dev.java.net/2009/02">
             <representation mediaType="application/xml"
                 element="metering:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="403"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="metering:forbidden"/>
             <representation mediaType="application/json"/>
         </response>
     </method>
@@ -159,6 +169,8 @@
                         href="api_samples/metering-label-get-resp.json"
                     />
                 </wadl:doc>
+                &meteringlabelObject;
+                &CommonMeteringLabelResponseParams;
             </representation>
         </response>
         <response status="401"
@@ -294,6 +306,12 @@
                 element="metering:unauthorized"/>
             <representation mediaType="application/json"/>
         </response>
+        <response status="403"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="metering:forbidden"/>
+            <representation mediaType="application/json"/>
+        </response>
         <response status="404"
             xmlns="http://wadl.dev.java.net/2009/02">
             <representation mediaType="application/xml"
@@ -303,7 +321,7 @@
         <response status="409"
             xmlns="http://wadl.dev.java.net/2009/02">
             <representation mediaType="application/xml"
-                element="metering:buildInProgress"/>
+                element="metering:conflict"/>
             <representation mediaType="application/json"/>
         </response>
     </method>

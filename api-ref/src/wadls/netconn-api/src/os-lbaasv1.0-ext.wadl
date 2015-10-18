@@ -122,7 +122,7 @@
             title="List VIPs">
             <para role="shortdesc">Lists VIPs.</para>
         </wadl:doc>
-        <response status="200"> &vipResponseParams; <representation
+        <response status="200"> &vipsObject; &vipResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -136,7 +136,7 @@
             title="Create a load balancer VIP">
             <para role="shortdesc">Creates a load balancer VIP.</para>
         </wadl:doc>
-        <request> &vipCreateRequestParams; <representation
+        <request> &vipObject; &vipCreateRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -144,7 +144,7 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="201"> &vipResponseParams; <representation
+        <response status="201"> &vipObject; &vipResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -159,7 +159,7 @@
             <para role="shortdesc">Shows details for a specified
                 VIP.</para>
         </wadl:doc>
-        <response status="200"> &vipResponseParams; <representation
+        <response status="200"> &vipObject; &vipResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -174,7 +174,7 @@
             <para role="shortdesc">Updates a specified load balancer
                 VIP.</para>
         </wadl:doc>
-        <request> &vipUpdateRequestParams; <representation
+        <request> &vipObject; &vipUpdateRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -183,7 +183,7 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="200"> &vipResponseParams; <representation
+        <response status="200"> &vipObject; &vipResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -205,7 +205,8 @@
             title="List pools">
             <para role="shortdesc">Lists pools.</para>
         </wadl:doc>
-        <response status="200"> &poolResponseParams; <representation
+        <response status="200"> &poolsObject; &poolResponseParams;
+            <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -220,7 +221,7 @@
             <para role="shortdesc">Creates a load balancer
                 pool.</para>
         </wadl:doc>
-        <request> &poolCreateRequestParams; <representation
+        <request> &poolObject; &poolCreateRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -229,7 +230,8 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="201"> &poolResponseParams; <representation
+        <response status="201"> &poolObject; &poolResponseParams;
+            <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -244,7 +246,7 @@
             <para role="shortdesc">Shows details for a specified
                 pool.</para>
         </wadl:doc>
-        <response status="200"> &poolResponseParams; <representation
+        <response status="200"> &poolObject; &poolResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -259,7 +261,7 @@
             <para role="shortdesc">Updates a specified load balancer
                 pool.</para>
         </wadl:doc>
-        <request> &poolUpdateRequestParams; <representation
+        <request> &poolObject; &poolUpdateRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -268,7 +270,8 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="200"> &poolResponseParams; <representation
+        <response status="200"> &poolObject; &poolResponseParams;
+            <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -290,7 +293,8 @@
             title="List members">
             <para role="shortdesc">Lists members.</para>
         </wadl:doc>
-        <response status="200"> &memberResponseParams; <representation
+        <response status="200"> &membersObject; &memberResponseParams;
+            <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -305,7 +309,7 @@
             <para role="shortdesc">Creates a load balancer
                 member.</para>
         </wadl:doc>
-        <request> &memberCreateRequestParams; <representation
+        <request> &memberObject; &memberCreateRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -314,7 +318,8 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="201"> &memberResponseParams; <representation
+        <response status="201"> &memberObject; &memberResponseParams;
+            <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -329,7 +334,8 @@
             <para role="shortdesc">Shows details for a specified
                 member.</para>
         </wadl:doc>
-        <response status="200"> &memberResponseParams; <representation
+        <response status="200"> &memberObject; &memberResponseParams;
+            <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -345,7 +351,7 @@
             <para role="shortdesc">Updates a specified load balancer
                 member.</para>
         </wadl:doc>
-        <request> &memberUpdateRequestParams; <representation
+        <request> &memberObject; &memberUpdateRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -355,7 +361,8 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="200"> &memberResponseParams; <representation
+        <response status="200"> &memberObject; &memberResponseParams;
+            <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -378,7 +385,7 @@
             title="List health monitors">
             <para role="shortdesc">Lists health monitors.</para>
         </wadl:doc>
-        <response status="200"> &hmResponseParams; <representation
+        <response status="200"> &hmsObject; &hmResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -392,7 +399,7 @@
             <para role="shortdesc">Creates a load balancer health
                 monitor.</para>
         </wadl:doc>
-        <request> &hmCreateRequestParams; <representation
+        <request> &hmObject; &hmCreateRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -402,7 +409,7 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="201"> &hmResponseParams; <representation
+        <response status="201"> &hmObject; &hmResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -418,7 +425,7 @@
             <para role="shortdesc">Shows details for a specified
                 health monitor.</para>
         </wadl:doc>
-        <response status="200"> &hmResponseParams; <representation
+        <response status="200"> &hmObject; &hmResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -434,7 +441,7 @@
             <para role="shortdesc">Updates a specified load balancer
                 health monitor.</para>
         </wadl:doc>
-        <request> &hmUpdateRequestParams; <representation
+        <request> &hmObject; &hmUpdateRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -444,7 +451,7 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="200"> &hmResponseParams; <representation
+        <response status="200"> &hmObject; &hmResponseParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -469,7 +476,7 @@
             <para role="shortdesc">Associates a health monitor with a
                 specified pool.</para>
         </wadl:doc>
-        <request> &hmCreateRequestParams; <representation
+        <request> &hmObject; &hmassociatepoolRequestParams; <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -479,7 +486,8 @@
                 </wadl:doc>
             </representation>
         </request>
-        <response status="201"> &hmResponseParams; <representation
+        <response status="201"> &hmObject;
+            <representation
                 mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
