@@ -26,14 +26,14 @@ associated components:
 
 -  `Installation Guide for openSUSE 13.2 and SUSE Linux Enterprise
    Server 12
-   <http://docs.openstack.org/kilo/install-guide/install/zypper/content/>`__
+   <http://docs.openstack.org/liberty/install-guide-obs/>`__
 
 -  `Installation Guide for Red Hat Enterprise Linux 7, CentOS 7, and
    Fedora
-   21 <http://docs.openstack.org/kilo/install-guide/install/yum/content/>`__
+   21 <http://docs.openstack.org/liberty/install-guide-rdo/>`__
 
 -  `Installation Guide for Ubuntu
-   14.04 <http://docs.openstack.org/kilo/install-guide/install/apt/content/>`__
+   14.04 <http://docs.openstack.org/liberty/install-guide-ubuntu/>`__
 
 The following books explain how to configure and run an OpenStack cloud:
 
@@ -44,14 +44,14 @@ The following books explain how to configure and run an OpenStack cloud:
    Guide <http://docs.openstack.org/admin-guide-cloud/>`__
 
 -  `Configuration
-   Reference <http://docs.openstack.org/juno/config-reference/content/>`__
+   Reference <http://docs.openstack.org/liberty/config-reference/content/>`__
 
 -  `Operations Guide <http://docs.openstack.org/ops/>`__
 
 -  `Networking Guide <http://docs.openstack.org/networking-guide>`__
 
 -  `High Availability
-   Guide <http://docs.openstack.org/high-availability-guide/content/>`__
+   Guide <http://docs.openstack.org/ha-guide/>`__
 
 -  `Security Guide <http://docs.openstack.org/sec/>`__
 
@@ -61,8 +61,7 @@ The following books explain how to configure and run an OpenStack cloud:
 The following books explain how to use the OpenStack dashboard and
 command-line clients:
 
--  `API Quick
-   Start <http://docs.openstack.org/api/quick-start/content/>`__
+-  `API Guide <http://developer.openstack.org/api-guide/quick-start/>`__
 
 -  `End User Guide <http://docs.openstack.org/user-guide/>`__
 
@@ -141,7 +140,7 @@ Some tips:
 
 -  Be sure to include the software and package versions that you are
    using, especially if you are using a development branch, such as,
-   ``"Juno release" vs git commit bc79c3ecc55929bac585d04a03475b72e06a3208``.
+   ``"Kilo release" vs git commit bc79c3ecc55929bac585d04a03475b72e06a3208``.
 
 -  Any deployment-specific information is helpful, such as whether you
    are using Ubuntu 14.04 or are performing a multi-node installation.
