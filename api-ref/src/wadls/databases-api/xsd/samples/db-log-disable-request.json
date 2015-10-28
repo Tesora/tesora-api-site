@@ -1,4 +1,4 @@
 {
     "name": "guest",
-    "publish": "True"
+    "disable": "True"
 }

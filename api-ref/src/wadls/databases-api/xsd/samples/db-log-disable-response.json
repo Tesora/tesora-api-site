@@ -1,0 +1,10 @@
+{
+    "log": {
+        "name": "general",
+        "type": "USER",
+        "status": "Disabled",
+        "published": "30103",
+        "pending": "0",
+        "container": "log-mysql-general-<id>"
+    }
+}

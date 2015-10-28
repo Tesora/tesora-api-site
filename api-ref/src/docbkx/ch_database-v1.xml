@@ -41,6 +41,9 @@
                 href="../wadls/databases-api/xsd/dbaas.wadl#log">
                 <wadl:method href="#listLogs"/>
                 <wadl:method href="#publishLog"/>
+                <wadl:method href="#enableLog"/>
+                <wadl:method href="#disableLog"/>
+                <wadl:method href="#discardLog"/>
             </wadl:resource>
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#logName">

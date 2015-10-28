@@ -68,6 +68,9 @@
                         <resource id="log" path="log">
                             <method href="#listLogs"/>
                             <method href="#publishLog"/>
+                            <method href="#enableLog"/>
+                            <method href="#disableLog"/>
+                            <method href="#discardLog"/>
                         </resource>
                         <resource id="log-name" path="log-name">
                             <resource id="logName" path="{logName}">
@@ -1750,6 +1753,15 @@
             <para role="shortdesc">
                 Copies the contents of a guest log file to a Swift container, thus making the contents available for retrieval.
             </para>
+            <para>
+                The publish operation also automatically enables the log. Enabling
+                a log means telling the guest agent to start writing information
+                to the log.
+            </para>
+            <para>
+                Note that some datastores (such as PostgreSQL) require you to restart the instance
+                after you run this operation. After the restart, you run the operation again.
+            </para>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -1769,14 +1781,23 @@
                         </para>
                     </wadl:doc>
                 </param>
-                <param name="disable" style="plain" type="xsd:int"
+                <param name="publish" style="plain" type="xsd:boolean"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            You must set <code>publish</code> to True to indicate that you want to publish the log.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="disable" style="plain" type="xsd:boolean"
                     required="false">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
                         <para>
-                            If you want to disable logging for the log specified
+                            To disable logging for the log specified
                             by <code>name</code>, set <code>disable</code>
-                            to 1.
+                            to True.
                         </para>
                         <para>
                             For USER logs, this disables logging on the guest and
@@ -1784,8 +1805,19 @@
                             deletes the associated container.
                         </para>
                         <para>
-                            To turn logging back on again, run the publish operation without
-                            the disable option.
+                            To turn logging back on again, run the enable operation.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="discard" style="plain" type="xsd:int"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            To discard the Swift container that currently has
+                            the contents of the log specified
+                            by <code>name</code>, set <code>discard</code>
+                            to True.
                         </para>
                     </wadl:doc>
                 </param>
@@ -1799,6 +1831,164 @@
                         href="samples/db-log-publish-response-json-http.txt"/>
                     <xsdxt:code
                         href="samples/db-log-publish-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults; &postPutFaults;
+    </method>
+    <method name="POST" id="enableLog">
+        <wadl:doc xml:lang="EN" title="Enable a guest log"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Tells the guest agent to start writing information to the log.
+            </para>
+            <para>
+                Note that some datastores (such as PostgreSQL) require you to restart the instance
+                after you run this operation. After the restart, you run the operation again.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-log-enable-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-log-enable-request.json"/>
+                </wadl:doc>
+                <param name="name" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name of the guest log you want to enable.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="enable" style="plain" type="xsd:boolean"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            You must set <code>enable</code> to True to indicate that you want to enable the log.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-log-enable-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-log-enable-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults; &postPutFaults;
+    </method>
+    <method name="POST" id="disableLog">
+        <wadl:doc xml:lang="EN" title="Disable a guest log"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Tells the guest agent to stop writing information to the log.
+            </para>
+            <para>
+                You can run this operation only with USER logs,
+                because SYS logs are enabled by default (and cannot be disabled).
+            </para>
+            <para>
+                Note that some datastores (such as PostgreSQL) require you to restart the instance
+                after you run this operation. After the restart, you run the operation again.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-log-disable-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-log-disable-request.json"/>
+                </wadl:doc>
+                <param name="name" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name of the guest log you want to disable.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="disable" style="plain" type="xsd:boolean"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            You must set <code>disable</code> to True to indicate that you want to disable the log.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-log-disable-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-log-disable-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults; &postPutFaults;
+    </method>
+    <method name="POST" id="discardLog">
+        <wadl:doc xml:lang="EN" title="Discard log's Swift container"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Deletes the Swift container that has the current log information.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-log-discard-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-log-discard-request.json"/>
+                </wadl:doc>
+                <param name="name" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name of the guest log whose Swift container
+                            you want to discard.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="discard" style="plain" type="xsd:boolean"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            You must set <code>discard</code> to True to indicate
+                            that you want to discard the log's Swift container.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-log-discard-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-log-discard-response.json"/>
                 </wadl:doc>
             </representation>
         </response> &commonFaults; &getFaults; &postPutFaults;
