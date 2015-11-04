@@ -65,6 +65,7 @@
                         <method href="#attachConfigGroup"/>
                         <method href="#detachConfigGroup"/>
                         <method href="#deleteInstance"/>
+                        <method href="#detachReplica"/>
                         <resource id="log" path="log">
                             <method href="#listLogs"/>
                             <method href="#publishLog"/>
@@ -129,6 +130,7 @@
                         <resource id="root" path="root">
                             <method href="#createRoot"/>
                             <method href="#isRootEnabled"/>
+                            <method href="#disableRoot"/>
                         </resource>
                     </resource>
                 </resource>
@@ -478,6 +480,51 @@
                         xml:lang="EN"><para>The password for those
                             users on instance
                         creation.</para></wadl:doc>
+                </param>
+                <param name="datastore" style="plain"
+                    type="xsd:string" required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name of the datastore to use when creating the instance.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="datastore_version" style="plain"
+                    type="xsd:string" required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name or ID of the datastore version to use when creating the instance.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="configuration" style="plain"
+                    type="xsd:string" required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            ID of the configuration group to attach to the instance.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="replica_of" style="plain"
+                    type="xsd:string" required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            ID or name of an existing instance to replicate from.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="replica_count" style="plain"
+                    type="xsd:int" required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Number of replicas to create (defaults to 1).
+                        </para>
+                    </wadl:doc>
                 </param>
             </representation>
         </request>
@@ -1800,9 +1847,9 @@
                             to True.
                         </para>
                         <para>
-                            For USER logs, this disables logging on the guest and
-                            deletes the associated container. For SYS logs, this
-                            deletes the associated container.
+                            For USER logs, this disables logging on the guest.
+                            For SYS logs, this has no effect because
+                            SYS logs cannot be disabled.
                         </para>
                         <para>
                             To turn logging back on again, run the enable operation.
@@ -1823,7 +1870,7 @@
                 </param>
             </representation>
         </request>
-        <response status="202">
+        <response status="200">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -1875,7 +1922,7 @@
                 </param>
             </representation>
         </request>
-        <response status="202">
+        <response status="200">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -1931,7 +1978,7 @@
                 </param>
             </representation>
         </request>
-        <response status="202">
+        <response status="200">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -1981,7 +2028,7 @@
                 </param>
             </representation>
         </request>
-        <response status="202">
+        <response status="200">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -2027,4 +2074,84 @@
             </representation>
         </response> &commonFaults; &getFaults;
     </method>
+    <method name="DELETE" id="disableRoot">
+        <wadl:doc xml:lang="EN" title="Disable root user"
+            xmlns="http://docbook.org/ns/docbook"><para
+                role="shortdesc">Disables the root user.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-root-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-root-response-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="PATCH" id="detachReplica">
+        <wadl:doc xml:lang="EN" title="Detach replica"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Detaches a replica from its replication source.
+            </para>
+            <para>If you created an instance that is a replica of a source instance,
+                you can detach the replica from the source. This can be useful if
+                the source becomes unavailable. In this case, you can detach the
+                replica from the source, making the replica a standalone database
+                instance. You can then take the new standalone instance and create
+                a new replica of that instance.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-detach-replica-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-detach-replica-request.json"/>
+                </wadl:doc>
+                <param name="replica_of" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            To detach a replica, set <code>replica_of</code> to null.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="slave_of" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            To detach a replica, set <code>slave_of</code> to null.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-detach-replica-response-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults; &postPutFaults;
+    </method>    
 </application>
