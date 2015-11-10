@@ -91,7 +91,7 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Filters the results by a specified server name in URL format.</para>
+   <para>Filters the results by a server name in URL format.</para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -99,7 +99,7 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Filters the results by a specified server name in string format.</para>
+   <para>Filters the results by a server name in string format.</para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -108,7 +108,7 @@
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
-    Filters the results by a specified image status. For example,
+    Filters the results by a image status. For example,
     <code>ACTIVE</code>.
   </para>
 </wadl:doc>
@@ -120,7 +120,7 @@
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
-    Filters the results by a specified image type. For example,
+    Filters the results by a image type. For example,
     <code>BASE</code>, <code>SERVER</code>, or <code>ALL</code>.
   </para>
 </wadl:doc>
@@ -161,8 +161,8 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>The availability zone in which
-      to launch the server.
+   <para>
+      The availability zone in which to launch the server.
    </para>
 </wadl:doc>
 </param>
@@ -172,7 +172,9 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>server.</para>
+   <para>
+      server.
+   </para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -181,10 +183,8 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>The image reference for the desired image
-      for your server instance.
-   </para>
    <para>
+      The image reference for the desired image for your server instance.
       Specify as an ID or full URL.
    </para>
 </wadl:doc>
@@ -195,10 +195,9 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>The flavor reference for the desired flavor
-      for your server instance.
-   </para>
-   <para>Specify as an ID or full URL.
+   <para>
+      The flavor reference for the desired flavor for your server instance.
+      Specify as an ID or full URL.
    </para>
 </wadl:doc>
 </param>
@@ -208,24 +207,22 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>A <code>networks</code> object. By default,
-      the server instance is provisioned with all
-      isolated networks for the tenant.
+   <para>
+      A <code>networks</code> object. By default, the server instance is
+      provisioned with all isolated networks for the tenant.
    </para>
-   <para>Optionally, you can create one or more NICs
-      on the server.
+   <para>
+      Optionally, you can create one or more NICs on the server.
    </para>
-   <para>To provision the server instance with a NIC
-      for a network, specify the UUID of the network
-      in the <code>uuid</code> attribute in a
+   <para>
+      To provision the server instance with a NIC for a network, specify the
+      UUID of the network in the <code>uuid</code> attribute in a
       <code>networks</code> object.
    </para>
-   <para>To provision the server instance with a NIC
-      for an already existing port, specify the
-      port-id in the <code>port</code> attribute in
-      a <code>networks</code> object.
-   </para>
-   <para>You can specify multiple NICs on the server.
+   <para>
+      To provision the server instance with a NIC for an already existing
+      port, specify the port-id in the <code>port</code> attribute in a
+      <code>networks</code> object.
    </para>
 </wadl:doc>
 </param>
@@ -235,11 +232,11 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>To provision the server instance with a NIC
-      for a network, specify the UUID of the network
-      in the <code>uuid</code> attribute in a
-      <code>networks</code> object. Required if you
-      omit the <code>port</code> attribute.
+   <para>
+      To provision the server instance with a NIC for a network, specify the
+      UUID of the network in the <code>uuid</code> attribute in a
+      <code>networks</code> object. Required if you omit the <code>port</code>
+      attribute.
    </para>
 </wadl:doc>
 </param>
@@ -249,12 +246,11 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>To provision the server instance with a NIC
-      for an already existing port, specify the
-      port-id in the <code>port</code> attribute in
-      a <code>networks</code> object. The port
-      status must be <code>DOWN</code>.  Required if
-      you omit the <code>uuid</code> attribute.
+   <para>
+      To provision the server instance with a NIC for an already existing
+      port, specify the port-id in the <code>port</code> attribute in a
+      <code>networks</code> object. The port status must be <code>DOWN</code>.
+      Required if you omit the <code>uuid</code> attribute.
    </para>
 </wadl:doc>
 </param>
@@ -264,8 +260,8 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>A fixed IPv4 address for the NIC. Valid with
-      a <code>neutron</code> or
+   <para>
+      A fixed IPv4 address for the NIC. Valid with a <code>neutron</code> or
       <code>nova-networks</code> network.
    </para>
 </wadl:doc>
@@ -276,7 +272,9 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>The server name.</para>
+   <para>
+      The server name.
+   </para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -285,9 +283,9 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Metadata key and value pairs. The maximum
-      size of the metadata key and value is 255
-      bytes each.
+   <para>
+      Metadata key and value pairs. The maximum size of the metadata key and
+      value is 255 bytes each.
    </para>
 </wadl:doc>
 </param>
@@ -297,12 +295,11 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>File path and contents (text only) to inject
-      into the server at launch. The maximum size of
-      the file path data is 255 bytes. The maximum
-      limit refers to the number of bytes in the
-      decoded data and not the number of characters
-      in the encoded data.
+   <para>
+      File path and contents (text only) to inject into the server at launch.
+      The maximum size of the file path data is 255 bytes. The maximum limit
+      refers to the number of bytes in the decoded data and not the number of
+      characters in the encoded data.
    </para>
 </wadl:doc>
 </param>
@@ -313,10 +310,10 @@
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
-      Enables booting the server from a volume when additional parameters are
-      given. If specified, the volume status must be <code>available</code>,
-      and the volume <code>attach_status</code> in the OpenStack Block Storage
-      database must be <code>detached</code>.
+      Enables you to boot a server from a volume when you specify additional
+      parameters. If you specify the volume status, you must set it to
+      <code>available</code>. In the OpenStack Block Storage database, the
+      volume <code>attach_status</code> must be <code>detached</code>.
    </para>
 </wadl:doc>
 </param>
@@ -366,7 +363,8 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>To delete the boot volume when the server stops, specify
+   <para>
+      To delete the boot volume when the server stops, specify
       <code>true</code>. Otherwise, specify <code>false</code>.
    </para>
 </wadl:doc>
@@ -397,20 +395,7 @@
    </para>
 </wadl:doc>
 </param>
-<param xmlns="http://wadl.dev.java.net/2009/02" name="config_drive" style="plain"
-   type="xsd:boolean" required="false">
-<wadl:doc xmlns="http://docbook.org/ns/docbook"
-   xmlns:wadl="http://wadl.dev.java.net/2009/02"
-   xml:lang="EN">
-   <para>
-      Enables metadata injection in a server through a configuration drive.
-   </para>
-   <para>
-      Specify <code>true</code> to enable a configuration drive. Otherwise,
-      specify <code>false</code>.
-   </para>
-</wadl:doc>
-</param>
+&config_driveRequestParameter;
 <param xmlns="http://wadl.dev.java.net/2009/02" name="key_name" style="plain"
    type="xsd:string" required="false">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -433,6 +418,53 @@
    </para>
 </wadl:doc>
 </param>'>
+<!ENTITY serverObjectParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="server" style="plain" required="true"
+   type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>A <code>server</code> object.</para>
+</wadl:doc>
+</param>'>
+<!ENTITY serversObjectParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="servers" style="plain" required="true"
+   type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>A <code>servers</code> object.</para>
+</wadl:doc>
+</param>'>
+<!ENTITY config_driveRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="config_drive" style="plain"
+   type="xsd:boolean" required="true">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>
+      Indicates whether metadata injection is enabled through a configuration
+      drive.
+   </para>
+</wadl:doc>
+</param>'>
+<!ENTITY config_driveResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="config_drive" style="plain"
+   type="xsd:boolean" required="false">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>
+      Enables metadata injection in a server through a configuration drive.
+   </para>
+   <para>
+      Specify <code>true</code> to enable a configuration drive. Otherwise,
+      specify <code>false</code>.
+   </para>
+</wadl:doc>
+</param>'>
 <!ENTITY imageRefRequestParameter '
 <param name="imageRef" style="plain" required="false"
    xmlns:csapi="http://docs.openstack.org/compute/api/v2"
@@ -450,6 +482,266 @@
       </para>
    </wadl:doc>
 </param>'>
+<!-- SERVER ACTIONS -->
+<!ENTITY addFixedIpActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="addFixedIp" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY attachActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="attach" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY changePasswordActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="changePassword" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY confirmBackupActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="confirmBackup" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY confirmResizeActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="confirmResize" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY createImageActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="createImage" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY createBackupActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="createBackup" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY forceDeleteActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="forceDelete" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY injectNetworkInfoActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="injectNetworkInfo" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY lockActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="lock" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY migrateActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="migrate" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY os-getConsoleOutputActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="os-getConsoleOutput" style="plain"
+  type="xsd:string" required="true">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+    <para>
+        The action.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-getSerialConsoleActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="os-getSerialConsole" style="plain"
+  type="xsd:string" required="true">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+    <para>
+        The action.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-getVNCConsoleActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="os-getVNCConsole" style="plain"
+  type="xsd:string" required="true">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+    <para>
+      The action.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-getRDPConsoleActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="os-getRDPConsole" style="plain"
+  type="xsd:string" required="true">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+    <para>
+      The action.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-getSPICEConsoleActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="os-getSPICEConsole" style="plain"
+  type="xsd:string" required="true">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+    <para>
+      The action.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-migrateLiveActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="os-migrateLive" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY os-resetStateActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="os-resetState" style="plain" type="xsd:string"
+  required="true" id="os-start">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+      <para>
+         The action.
+      </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-startActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="os-start" style="plain" type="xsd:string"
+  required="true" id="os-start">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+      <para>
+         The action.
+      </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-stopActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="os-stop" style="plain" type="xsd:string"
+  required="true" id="os-stop">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+      <para>
+         The action.
+      </para>
+   </wadl:doc>
+</param>'>
+<!ENTITY pauseActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="pause" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY rebootActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="reboot" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
 <!ENTITY rebuildActionRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
   name="rebuild" style="plain" required="true"
@@ -458,10 +750,245 @@
   xmlns:wadl="http://wadl.dev.java.net/2009/02"
   xml:lang="EN">
   <para>
-     Specify the <code>rebuild</code> action in the request body.
+     The action.
   </para>
 </wadl:doc>
 </param>'>
+<!ENTITY removeFixedIpActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="removeFixedIp" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY rescueActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="rescue" style="plain" type="xsd:string"
+     required="true">
+     <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+         <para>
+            The action.
+         </para>
+     </wadl:doc>
+</param>'>
+<!ENTITY resetNetworkActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="resetNetwork" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY resizeActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="resize" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY restoreActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="restore" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY resumeActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="resume" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY revertResizeActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="revertResize" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY shelveActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="shelve" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY shelveOffloadActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+    name="shelveOffload" style="plain" required="true"
+    type="xsd:string">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            The action.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY suspendActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="suspend" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY unlockActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="unlock" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY unrescueActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="unrescue" style="plain" type="xsd:string"
+   required="true">
+   <wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+      <para>
+         The action.
+      </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY unshelveActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+      name="unshelve"
+      style="plain"
+      type="xsd:string"
+      required="true" id="os-unshelve">
+   <wadl:doc xmlns="http://docbook.org/ns/docbook"
+       xmlns:wadl="http://wadl.dev.java.net/2009/02"
+       xml:lang="EN">
+       <para>
+         The action.
+       </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY unpauseActionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="unpause" style="plain" required="true"
+  type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  xml:lang="EN">
+  <para>
+     The action.
+  </para>
+</wadl:doc>
+</param>'>
+<!ENTITY diskConfigRequestParameter '  
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="OS-DCF:diskConfig" style="plain" required="false" type="xsd:string">
+   <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+      <para>
+         Controls how the disk is partitioned when servers are created,
+         rebuilt, or resized. A server inherits the <code>OS-DCF:diskConfig</code>
+         value from the image it was created with, and
+         an image inherits the <code>OS-DCF:diskConfig</code> value of the
+         server from which it was created. To override the inherited setting,
+         you can include this attribute in the request body of a server
+         create, rebuild, or resize request.
+      </para>
+      <para>
+         If an image has <code>OS-DCF:diskConfig</code> value of
+         <code>MANUAL</code>, you cannot create a server from that image
+         with a <code>OS-DCF:diskConfig</code> value of <code>AUTO</code>.
+      </para>
+      <para>
+         A valid value is:
+      </para>
+      <itemizedlist>
+         <listitem>
+            <para>
+               <code>AUTO</code>. The server is built with a single
+               partition the size of the target flavor disk. The file system is automatically
+               adjusted to fit the entire partition.
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               <code>MANUAL</code>. The server is built using whatever
+               partition scheme and file system is in the source image. If the target flavor
+               disk is larger, the remaining disk space is left unpartitioned.
+            </para>
+         </listitem>
+      </itemizedlist>
+   </wadl:doc>
+</param>'>
+<!ENTITY return_reservation_idRequestParameter '   
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="return_reservation_id" style="plain"
+   required="false" type="xsd:boolean">
+   <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+      <para>
+         Set to <code>True</code> to request that a reservation ID to be
+         returned instead of the newly created instance information. Default
+         is <code>False</code>.
+      </para>
+   </wadl:doc>
+</param>'>  
+<!ENTITY reservation_idResponseParameter '   
+<param xmlns="http://wadl.dev.java.net/2009/02" 
+   name="reservation_id" style="plain" required="false"  
+   type="xsd:string">   
+   <wadl:doc xmlns="http://docbook.org/ns/docbook" 
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"   
+      xml:lang="EN"> 
+      <para>   
+         The reservation ID for the server.  
+      </para>  
+   </wadl:doc> 
+</param>'> 
 <!ENTITY serverNameRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
   name="name" style="plain" required="true" type="xsd:string">
@@ -586,8 +1113,8 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Name of the host as a
-      string.
+   <para>
+      Name of the host as a string.
    </para>
 </wadl:doc>
 </param>'>
@@ -598,7 +1125,9 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN" title="server">
-   <para>A <code>server</code> object.</para>
+   <para>
+      A <code>server</code> object.
+   </para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -606,7 +1135,9 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN" title="adminPass">
-   <para>The administrative password for the server.</para>
+   <para>
+      The administrative password for the server.
+   </para>
 </wadl:doc>
 </param>
 <param name="id" style="plain" type="csapi:UUID" required="true"
@@ -614,9 +1145,111 @@
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xml:lang="EN"
    xmlns:wadl="http://wadl.dev.java.net/2009/02">
-    <para>The server ID.</para>
+    <para>
+      The server ID.
+   </para>
   </wadl:doc>
 </param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="links" style="plain" required="true" type="xsd:string">
+   <wadl:doc xmlns="http://docbook.org/ns/docbook"
+     xmlns:wadl="http://wadl.dev.java.net/2009/02"
+     xml:lang="EN">
+      <para>
+         Server links.
+      </para>
+   </wadl:doc>
+</param>'>
+<!ENTITY diskConfigResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="OS-DCF:diskConfig" style="plain" required="true"
+   type="xsd:string">
+   <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+      <para>
+         Disk configuration. The value is either:
+      </para>
+      <itemizedlist>
+         <listitem>
+            <para>
+               <code>AUTO</code>. The server is built with a single partition
+               the size of the target flavor disk. The file system is automatically adjusted
+               to fit the entire partition.
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               <code>MANUAL</code>. The server is built by using the partition
+               scheme and file system that is in the source image. If the target
+               flavor disk is larger, the remaining disk space is left
+               unpartitioned.
+            </para>
+         </listitem>
+      </itemizedlist>
+   </wadl:doc>
+</param>'>
+<!ENTITY hostIdResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="hostId" style="plain" required="true"
+   type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>
+      The UUID for the host.
+   </para>
+</wadl:doc>
+</param>'>
+<!ENTITY idResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="id" style="plain" required="true"
+   type="csapi:uuid">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>
+      The UUID for the server.
+   </para>
+</wadl:doc>
+</param>'>
+<!ENTITY imageResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="image" style="plain" required="true"
+   type="csapi:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>The image ID and links for the image
+      for your server instance.
+   </para>
+</wadl:doc>
+</param>'>
+<!ENTITY flavorResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="flavor" style="plain" required="true"
+   type="csapi:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>The flavor ID and links for the flavor
+      for your server instance. A flavor is a combination of memory,
+      disk size, and CPUs.
+   </para>
+</wadl:doc>
+</param>'>
+<!ENTITY key_nameResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="key_name" style="plain"
+   type="xsd:string" required="true">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>
+      Name of associated key pair, if any.
+   </para>
+</wadl:doc>
+</param>'>
+<!ENTITY serverLinksResponseParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
   name="links" style="plain" required="true" type="xsd:string">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -625,14 +1258,216 @@
   <para>Server links.</para>
 </wadl:doc>
 </param>'>
-<!-- tenantIdRequestParameter -->
-<!ENTITY tenantIdRequestParameter '
-<param name="tenant_id" style="template" type="csapi:UUID"
+<!ENTITY serverMetadataResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ style="plain" name="metadata" required="true"
+   type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>Associated metadata key-and-value pairs.</para>
+</wadl:doc>
+</param>'>
+<!ENTITY serverNameResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="name" style="plain" required="true"
+   type="csapi:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>The server name.</para>
+</wadl:doc>
+</param>'>
+<!ENTITY diskConfigResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="OS-DCF:diskConfig" style="plain" type="csapi:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+        <para>Disk configuration, which is <code>AUTO</code> or
+           <code>MANUAL</code>.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY availability_zoneResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="OS-EXT-AZ:availability_zone" style="plain" type="csapi:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+        <para>The availability zone.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY hostResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="OS-EXT-SRV-ATTR:host" style="plain" type="csapi:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+        <para>The host name.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY hypervisor_hostnameResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="OS-EXT-SRV-ATTR:hypervisor_hostname" style="plain" type="csapi:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+        <para>The hypervisor host name.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY instance_nameResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="OS-EXT-SRV-ATTR:instance_name" style="plain"
+   type="csapi:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+        <para>The instance name.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY power_stateResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="OS-EXT-STS:power_state" style="plain"
+   type="xsd:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+        <para>The power state of the instance.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY task_stateResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="OS-EXT-STS:task_state" style="plain"
+  type="csapi:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+        <para>The task state of the instance.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY vm_stateResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="OS-EXT-STS:vm_state" style="plain"
+   type="csapi:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+        <para>The VM state.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY volumes_attachedResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="os-extended-volumes:volumes_attached" style="plain"
+   type="csapi:dict" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+        <para>Attached volumes, if any.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY launched_at-ResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="OS-SRV-USG:launched_at" style="plain" required="true"
+   type="xsd:dateTime">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+          xmlns:wadl="http://wadl.dev.java.net/2009/02"
+          xml:lang="EN">
+    <para>
+        The date and time when the server was launched.
+    </para>
+    <para>
+        The date and time stamp format is <link
+        xlink:href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</link>:
+    </para>
+    <programlisting>CCYY-MM-DDThh:mm:ss±hh:mm</programlisting>
+    <para>
+        For example, <code>2015-08-27T09:49:58-05:00</code>.
+    </para>
+    <para>
+        The <code>±hh:mm</code> value, if included, is the time zone as an offset from UTC.
+    </para>
+    <para>
+        If the <code>deleted_at</code> date and time stamp is not set, its value is
+        <code>null</code>.
+    </para>
+</wadl:doc>
+</param>'>
+<!ENTITY terminated_at-ResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="OS-SRV-USG:terminated_at" style="plain" required="true"
+   type="xsd:dateTime">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+          xmlns:wadl="http://wadl.dev.java.net/2009/02"
+          xml:lang="EN">
+    <para>
+        The date and time when the server was deleted.
+    </para>
+    <para>
+        The date and time stamp format is <link
+        xlink:href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</link>:
+    </para>
+    <programlisting>CCYY-MM-DDThh:mm:ss±hh:mm</programlisting>
+    <para>
+        For example, <code>2015-08-27T09:49:58-05:00</code>.
+    </para>
+    <para>
+        The <code>±hh:mm</code> value, if included, is the time zone as an offset from UTC.
+    </para>
+    <para>
+        If the <code>deleted_at</code> date and time stamp is not set, its value is
+        <code>null</code>.
+    </para>
+</wadl:doc>
+</param>'>
+<!ENTITY progressResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="progress" style="plain" type="xsd:int" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+        <para>A percentage value of the build progress.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY statusResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+ name="status" style="plain" type="xsd:string" required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+        <para>The server status.</para>
+    </wadl:doc>
+</param>'>
+<!ENTITY tenantIdResponseParameter '
+<param name="tenant_id" style="plain" type="csapi:UUID"
   xmlns="http://wadl.dev.java.net/2009/02">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xml:lang="EN"
    xmlns:wadl="http://wadl.dev.java.net/2009/02">
     <para>The tenant ID in a multi-tenancy cloud.</para>
+  </wadl:doc>
+</param>'>
+<!ENTITY user_idResponseParameter '
+<param name="user_id" style="plain" type="xsd:string"
+  required="true"
+  xmlns="http://wadl.dev.java.net/2009/02">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xml:lang="EN"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02">
+    <para>
+      The user ID of the user who owns the server.
+    </para>
+  </wadl:doc>
+</param>'>
+<!-- tenantIdRequestParameter -->
+<!ENTITY tenantIdRequestParameter '
+<param name="tenant_id" style="template" type="csapi:UUID"
+  xmlns="http://wadl.dev.java.net/2009/02">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"
+      xml:lang="EN">
+    <para>
+      The tenant ID in a multi-tenancy cloud.
+   </para>
   </wadl:doc>
 </param>'>
 <!-- snapshotIdRequestParameter -->
@@ -652,7 +1487,7 @@
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xml:lang="EN"
    xmlns:wadl="http://wadl.dev.java.net/2009/02">
-    <para>Filters the results by a specified server status. For example,
+    <para>Filters the results by a server status. For example,
     <code>ACTIVE</code>.</para>
   </wadl:doc>
 </param>'>
@@ -767,7 +1602,9 @@
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xml:lang="EN"
    xmlns:wadl="http://wadl.dev.java.net/2009/02">
-    <para>The network label, such as <code>public</code> or <code>private</code>.</para>
+    <para>
+      The network label, such as <code>public</code> or <code>private</code>.
+   </para>
   </wadl:doc>
 </param>'>
 <!ENTITY hostNameRequestParameter '
@@ -863,7 +1700,7 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Filters the results by a specified image name in URL format.</para>
+   <para>Filters the results by a image name in URL format.</para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -871,7 +1708,7 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Filters the results by a specified flavor name in URL format.</para>
+   <para>Filters the results by a flavor name in URL format.</para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -879,7 +1716,7 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Filters the results by a specified server name in string format.</para>
+   <para>Filters the results by a server name in string format.</para>
 </wadl:doc>
 </param>
 &limitMarkerReqParameter;
@@ -889,7 +1726,7 @@
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
-    Filters the results by a specified server status. For example,
+    Filters the results by a server status. For example,
     <code>ACTIVE</code>.
    </para>
 </wadl:doc>
@@ -899,7 +1736,7 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Filters the results by a specified host name in string format.</para>
+   <para>Filters the results by a host name in string format.</para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02" name="sort_key"
@@ -975,9 +1812,14 @@
    <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
    <para>
-      The addresses for the server. If <code>osapi_hide_server_address_states</code> is set,
-      addresses information is hidden for any server in the specified state. By default,
-      servers in <code>BUILDING</code> state hide their addresses information.
+      The addresses for the server.
+   </para>
+   <para>
+      Addresses information is hidden for any server in a state set in the
+      <code>osapi_hide_server_address_states</code> configuration option. By
+      default, servers in <code>building</code> state hide their addresses
+      information. See <link
+      xlink:href="http://docs.openstack.org/liberty/config-reference/content/list-of-compute-config-options.html">nova.conf - configuration options</link>.
    </para>
 </wadl:doc>
 </param>'>
@@ -1105,7 +1947,7 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Filters the results by a specified minimum disk space in GB.</para>
+   <para>Filters the results by a minimum disk space in GB.</para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -1113,7 +1955,7 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>Filters the results by a specified minimum RAM in MB.</para>
+   <para>Filters the results by a minimum RAM in MB.</para>
 </wadl:doc>
 </param>
 &limitMarkerReqParameter;'>
@@ -1587,48 +2429,8 @@
   </para>
 </wadl:doc>
 </param>'>
-<!-- Servers Shelve -->
-<!ENTITY shelveAction '
-<param xmlns="http://wadl.dev.java.net/2009/02"
-  name="shelve" style="plain" required="true"
-  type="xsd:string">
-<wadl:doc xmlns="http://docbook.org/ns/docbook"
-  xmlns:wadl="http://wadl.dev.java.net/2009/02"
-  xml:lang="EN">
-  <para>
-     Specify the <code>shelve</code> action in the request body.
-  </para>
-</wadl:doc>
-</param>'>
-<!ENTITY shelveOffloadAction '
-   <param xmlns="http://wadl.dev.java.net/2009/02"
-       name="shelveOffload" style="plain" required="true"
-       type="xsd:string">
-       <wadl:doc xmlns="http://docbook.org/ns/docbook"
-           xmlns:wadl="http://wadl.dev.java.net/2009/02"
-           xml:lang="EN">
-           <para>
-               Specify the <code>shelveOffload</code> 
-               action in the request body.
-           </para>
-       </wadl:doc>
-   </param>'>
-<!ENTITY unshelveAction '
-<param xmlns="http://wadl.dev.java.net/2009/02"
-      name="unshelve"
-      style="plain"
-      type="xsd:string"
-      required="true" id="os-unshelve">
-   <wadl:doc xmlns="http://docbook.org/ns/docbook"
-       xmlns:wadl="http://wadl.dev.java.net/2009/02"
-       xml:lang="EN">
-       <para>
-          Specify the <code>unshelve</code> action in the request body.
-       </para>
-  </wadl:doc>
-</param>'>
-
-<!ENTITY serverGroupParameters '
+<!-- Security group parameters -->
+<!ENTITY securityGroupParameters '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="security_groups" style="plain" type="xsd:string" required="true">
    <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1861,14 +2663,6 @@
      xml:lang="EN" title="MAC address">
      <para>The MAC address.</para>
    </wadl:doc>
-</param>
-<param xmlns:csapi="http://docs.openstack.org/compute/api/v2"
-   xmlns="http://wadl.dev.java.net/2009/02" name="net_id" style="plain" type="csapi:UUID" required="true">
-   <wadl:doc xmlns="http://docbook.org/ns/docbook"
-     xmlns:wadl="http://wadl.dev.java.net/2009/02"
-     xml:lang="EN" title="Virtual network ID">
-     <para>The ID of the virtual network.</para>
-   </wadl:doc>
 </param>'>
 <!-- Image List Parameters -->
 <!ENTITY imageListQueryParameters '
@@ -1885,7 +2679,7 @@
     Use this query parameter to check for changes since a previous request
     rather than re-downloading and re-parsing the full status at each polling
     interval. If data has changed, the call returns only the items changed
-    since the specified time. If data has not changed since the
+    since the <code>changes-since</code> time. If data has not changed since the
     <code>changes-since</code> time, the call returns an empty list.
   </para>
   <para>
@@ -2080,3 +2874,31 @@
    </para>
 </wadl:doc>
 </param>'>
+<!ENTITY serverResponseParameters '
+&serverAddressResponseParameters;
+&createdResponseParameter;
+&flavorResponseParameter;
+&hostIdResponseParameter;
+&idResponseParameter;
+&imageResponseParameter;
+&key_nameResponseParameter;
+&serverLinksResponseParameter;
+&serverMetadataResponseParameter;
+&serverNameResponseParameter;
+&diskConfigResponseParameter;
+&availability_zoneResponseParameter;
+&hostResponseParameter;
+&hypervisor_hostnameResponseParameter;
+&instance_nameResponseParameter;
+&power_stateResponseParameter;
+&task_stateResponseParameter;
+&vm_stateResponseParameter;
+&volumes_attachedResponseParameter;
+&launched_at-ResponseParameter;
+&terminated_at-ResponseParameter;
+&progressResponseParameter;
+&securityGroupParameters;
+&statusResponseParameter;
+&tenantIdResponseParameter;
+&updatedResponseParameter;
+&user_idResponseParameter;'>

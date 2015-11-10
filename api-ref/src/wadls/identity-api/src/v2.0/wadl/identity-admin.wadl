@@ -81,7 +81,8 @@
                         type="capi:UUID" required="true">
                         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                             <para>
-                                The token ID.
+                                The authentication token for which to perform
+                                the operation.
                             </para>
                         </wadl:doc>
                     </param>
@@ -89,12 +90,12 @@
                         required="false" type="xsd:string">
                         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                             <para>
-                                Validates that a token has the specified
+                                Validates that a token has a
                                 tenant in scope, for performance. Valid tokens
                                 are in the <code>/tokens/{tokenId}</code>
                                 path. If the token is not valid, this call
                                 returns the HTTP <code>itemNotFound
-                                (404)</code> status code.
+                                (404)</code> response code.
                             </para>
                         </wadl:doc>
                     </param>
@@ -102,13 +103,11 @@
                         required="false" type="xsd:string">
                         <wadl:doc xmlns="http://docbook.org/ns/docbook">
                             <para>
-                                The tenant name. Both the
-                                <code>tenantId</code> and
+                                The tenant name. The <code>tenantId</code> and
                                 <code>tenantName</code> attributes are
-                                optional, but should not be specified
-                                together. If both attributes are specified,
-                                the server responds with a <code>400</code>
-                                <code>Bad Request</code>.
+                                optional and mutually exclusive. If you
+                                specify both attributes, the call returns the
+                                <code>Bad Request (400)</code> response code.
                             </para>
                         </wadl:doc>
                     </param>
@@ -116,13 +115,11 @@
                         required="false" type="capi:UUID">
                         <wadl:doc xmlns="http://docbook.org/ns/docbook">
                             <para>
-                                The tenant ID. Both the
-                                <code>tenantId</code> and
+                                The tenant ID. The <code>tenantId</code> and
                                 <code>tenantName</code> attributes are
-                                optional, but should not be specified
-                                together. If both attributes are specified,
-                                the server responds with a <code>400</code>
-                                <code>Bad Request</code>.
+                                optional and mutually exclusive. If you
+                                specify both attributes, the call returns the
+                                <code>Bad Request (400)</code> response code.
                             </para>
                         </wadl:doc>
                     </param>
@@ -178,6 +175,7 @@
                     </param>
                     <method href="#admin-validateToken"/>
                     <method href="#admin-checkToken"/>
+                    <method href="#admin-deleteToken"/>
                     <resource id="admin-endpointsForToken" path="endpoints">
                         &limitMarkerReqParameter;
                         <method href="#admin-listEndpointsForToken"/>
@@ -275,7 +273,9 @@
     <!-- Version -->
     <method name="GET" id="admin-getVersionInfo">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Get version details">
-            <para>Gets detailed information about a specified version of the Identity API.</para>
+            <para>
+                Gets detailed information about a version of the Identity API.
+            </para>
         </wadl:doc>
         <response status="200 203">
             <representation mediaType="application/json">
@@ -323,7 +323,7 @@
         </response> &commonFaults; &getFaults; </method>
     <method name="GET" id="admin-getExtension-v2.0">
         <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook" title="Get extension details">
-            <para role="shortdesc">Gets detailed information for a specified extension.</para>
+            <para role="shortdesc">Gets detailed information for a extension.</para>
             <para>Specify the extension alias in the URI.</para>
         </wadl:doc>
         <response status="200 203">
@@ -358,11 +358,12 @@
             </para>
             <para>
                 If the authentication token has expired, this call returns the
-                HTTP <code>401</code> status code.
+                HTTP <code>unauthorized (401)</code> response code.
             </para>
             <para>
-                If the token specified in the request body has expired, this
-                call returns the HTTP <code>404</code> status code.
+                If the token has expired, this
+                call returns the <code>itemNotFound (404)</code> response
+                code.
             </para>
             <para>
                 The Identity API treats expired tokens as no longer valid
@@ -453,16 +454,23 @@
                 </param>
                 <param xmlns="http://wadl.dev.java.net/2009/02" name="serviceCatalog" style="plain"
                     required="true" type="xsd:string">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"><para>A
-                                <code>serviceCatalog</code> object.</para></wadl:doc>
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook">
+                        <para>
+                            A <code>serviceCatalog</code> object.
+                        </para>
+                    </wadl:doc>
                 </param>
                 <param xmlns="http://wadl.dev.java.net/2009/02" name="endpoints" style="plain"
                     required="true" type="xsd:string">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"><para>One or more
-                                <code>endpoints</code> objects. Each object shows the
-                                <code>adminURL</code>, <code>region</code>,
-                            <code>internalURL</code>, <code>id</code>, and <code>publicURL</code>
-                            for the endpoint.</para></wadl:doc>
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook">
+                        <para>
+                            One or more <code>endpoints</code> objects.
+                            Each object shows the <code>adminURL</code>,
+                            <code>region</code>, <code>internalURL</code>,
+                            <code>id</code>, and <code>publicURL</code> for
+                            the endpoint.
+                        </para>
+                    </wadl:doc>
                 </param>
                 <param xmlns="http://wadl.dev.java.net/2009/02" name="endpoints_links" style="plain"
                     required="true" type="xsd:string">
@@ -522,13 +530,13 @@
         </response> &commonFaults; &getFaults; </method>
     <method name="GET" id="admin-validateToken">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Validate token">
-            <para role="shortdesc">Validates a token and confirms that it belongs to a specified
+            <para role="shortdesc">Validates a token and confirms that it belongs to a
                 tenant.</para>
             <para>
                 Returns the permissions relevant to a particular client. Valid
-                tokens are in the <code>/tokens/{tokenId}</code> path. A user
-                should expect an <code>itemNotFound (404)</code> fault for an
-                token that is not valid.
+                tokens are in the <code>/tokens/{tokenId}</code> path. If the
+                token is not valid, this call returns the <code>itemNotFound
+                (404)</code> response code.
             </para>
         </wadl:doc>
         <response status="200 203">
@@ -542,14 +550,20 @@
         </response> &commonFaults; &getFaults; </method>
     <method name="HEAD" id="admin-checkToken">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Validate token (admin)">
-            <para role="shortdesc">Validates a token and confirms that it belongs to a specified
+            <para role="shortdesc">Validates a token and confirms that it belongs to a
                 tenant, for performance.</para>
         </wadl:doc>
         <response status="200 203 204"/> &commonFaults; &getFaults; </method>
+    <method name="DELETE" id="admin-deleteToken">
+        <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
+            title="Delete token">
+            <para role="shortdesc">Deletes a token.</para>
+        </wadl:doc>
+        <response status="204"/> &commonFaults; &getFaults; </method>
     <method name="GET" id="admin-listEndpointsForToken">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="List endoints for token">
-            <para role="shortdesc">Lists the endpoints associated with a specified token.</para>
+            <para role="shortdesc">Lists the endpoints associated with a token.</para>
         </wadl:doc>
         <!-- <request>
             &limitMarkerReqParameter;
@@ -739,7 +753,7 @@
                 Lists all users.
             </para>
             <para>
-                To get detailed information about a specified user by user
+                To get detailed information about a user by user
                 name, include the <code>name</code> query parameter in the
                 request.
             </para>
@@ -764,7 +778,7 @@
     <method name="GET" id="admin-getUserById">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Get user information by ID">
-            <para role="shortdesc">Gets detailed information about a specified user by user
+            <para role="shortdesc">Gets detailed information about a user by user
                 ID.</para>
         </wadl:doc>
         <response status="200 203">
@@ -776,7 +790,7 @@
         </response> &commonFaults; &getFaults; </method>
     <method name="GET" id="admin-listUserGlobalRoles">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List user global roles">
-            <para role="shortdesc">Lists global roles for a specified user. Excludes tenant
+            <para role="shortdesc">Lists global roles for a user. Excludes tenant
                 roles.</para>
         </wadl:doc>
         <request>
@@ -790,10 +804,9 @@
                     </xsdxt:sample>
                 </wadl:doc>
             </representation>
-        </response> &commonFaults; &getFaults; </method>
-
+        </response> &commonFaults; &getFaults;
+    </method>
     <!-- Tenant Operations -->
-
     <method name="GET" id="admin-listTenants">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List tenants">
             <para role="shortdesc">Lists all tenants.</para>
@@ -819,7 +832,7 @@
     <method name="GET" id="admin-getTenantByName">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Get tenant information by name">
-            <para role="shortdesc">Gets detailed information about a specified tenant by
+            <para role="shortdesc">Gets detailed information about a tenant by
                 name.</para>
         </wadl:doc>
         <request>
@@ -843,7 +856,7 @@
     <method name="GET" id="admin-getTenantById">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Get tenant information by ID">
-            <para role="shortdesc">Gets detailed information about a specified tenant by ID.</para>
+            <para role="shortdesc">Gets detailed information about a tenant by ID.</para>
         </wadl:doc>
         <response status="200 203">
             <representation mediaType="application/json" element="identity:tenant">
@@ -856,7 +869,7 @@
         </response> &commonFaults; &getFaults; </method>
     <method name="GET" id="admin-listRolesForUserOnTenant">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List roles for user">
-            <para role="shortdesc">Lists roles for a specified user on a specified tenant. Excludes
+            <para role="shortdesc">Lists roles for a user on a tenant. Excludes
                 global roles.</para>
         </wadl:doc>
         <request>

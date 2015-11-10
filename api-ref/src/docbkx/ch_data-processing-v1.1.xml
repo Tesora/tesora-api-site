@@ -110,6 +110,9 @@
                 <wadl:method href="#clusters-list"/>
                 <wadl:method href="#clusters-create"/>
             </wadl:resource>
+            <wadl:resource href="../wadls/dataprocessing-api/src/v1.1/wadl/clusters.wadl#multiple-clusters">
+                <wadl:method href="#multiple-clusters-create"/>
+            </wadl:resource>
             <wadl:resource href="../wadls/dataprocessing-api/src/v1.1/wadl/clusters.wadl#cluster_id">
                 <wadl:method href="#clusters-get"/>
                 <wadl:method href="#clusters-delete"/>
@@ -225,8 +228,8 @@
         <title>Job executions</title>
         <para>
             A job execution object represents a Hadoop job that runs on a
-            specified cluster. A job execution polls the status of a running
-            job and reports it to the user. Also a user can cancel a running job.
+            cluster. A job execution polls the status of a running job and
+            reports it to the user. Also a user can cancel a running job.
         </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/dataprocessing-api/src/v1.1/wadl/job-executions.wadl#job-executions">

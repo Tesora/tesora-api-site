@@ -14,7 +14,7 @@
     <title>Networking API v2.0 extensions (CURRENT)</title>
     <section xml:id="neutron_extensions">
         <title>Extensions</title>
-        <para>Lists available Networking API v2.0 extensions and shows details for a specified
+        <para>Lists available Networking API v2.0 extensions and shows details for an
             extension.</para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/netconn-api/src/os-networks.wadl#extensions">
@@ -63,19 +63,25 @@
             error occurs.</para>
         <para>To delete a network with multiple physical bindings, issue a normal delete network
             request.</para>
-        <para>To define multiple physical bindings for a network, include a
-                <code>segments</code> list in the request body of a <code>POST
-                /v2.0/networks</code> request. Each element in the <code>segments</code> list
-            has the same structure as the provider network attributes. These attributes are
-                <code>provider:network_type</code>,
-                <code>provider:physical_network</code>, and
-                <code>provider:segmentation_id</code>. The validation rules for these
-            attributes are the same as for the <link
-                xlink:href="http://developer.openstack.org/api-ref-networking-v2.html#network_provider-ext"
-                >Networks provider extended attributes</link>. You cannot use both extensions at the
-            same time.</para>
-        <para>The NSX and ML2 plug-ins support this extension. With the ML2 plug-in, you can specify
-            multiple VLANs for a specified network, a VXLAN tunnel ID, and a VLAN.</para>
+        <para>
+            To define multiple physical bindings for a network, include a
+            <code>segments</code> list in the request body of a <code>POST
+            /v2.0/networks</code> request. Each element in the
+            <code>segments</code> list has the same structure as the provider
+            network attributes. These attributes are
+            <code>provider:network_type</code>,
+            <code>provider:physical_network</code>, and
+            <code>provider:segmentation_id</code>. The validation rules for
+            these attributes are the same as for the <link
+            xlink:href="http://developer.openstack.org/api-ref-networking-v2.html#network_provider-ext">Networks
+            provider extended attributes</link>. You cannot use both extensions at the
+            same time.
+        </para>
+        <para>
+            The NSX and ML2 plug-ins support this extension. With the ML2
+            plug-in, you can specify multiple VLANs for a network, a VXLAN
+            tunnel ID, and a VLAN.
+        </para>
         <wadl:resources href="../wadls/netconn-api/src/os-networks-multi-provider-ext.wadl"
             xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
     </section>
@@ -180,6 +186,89 @@
         <para>Creates, modifies, and deletes OpenStack Layer3 metering labels and rules.</para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
             href="../wadls/netconn-api/src/metering-labels.wadl"/>
+    </section>
+    <section xml:id="fwaas-v2.0">
+        <title>Firewall-as-a-Service (FWaaS) 2.0 (CURRENT)</title>
+        <para>
+            The FWaaS extension enables you to deploy firewalls to protect
+            your networks.
+        </para>
+        <para>
+            The FWaaS extension enables you to:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>Apply firewall rules on traffic entering and leaving
+                    tenant networks.</para>
+            </listitem>
+            <listitem>
+                <para>Apply TCP, UDP, ICMP, or protocol-agnostic
+                rules.</para>
+            </listitem>
+            <listitem>
+                <para>Create and share firewall policies that hold an
+                    ordered collection of the firewall rules.</para>
+            </listitem>
+            <listitem>
+                <para>Audit firewall rules and policies.</para>
+            </listitem>
+        </itemizedlist>
+        <para>This extension introduces these resources:</para>
+        <itemizedlist>
+            <listitem>
+                <para><code>firewall</code>. A logical firewall
+                    resource that a tenant can instantiate and manage. A
+                    firewall is associated with one firewall policy.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <code>firewall_policy</code>. An ordered collection of
+                    firewall rules. You can share a firewall policy across
+                    tenants. You can include a firewall policy as part of an audit workflow
+                    so that an authorized relevant entity can audit the firewall policy.
+                    This entity can be different from the tenant who created
+                    or the tenants that use the firewall policy.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <code>firewall_rule</code>. A collection of
+                    attributes like ports and IP addresses that define match
+                    criteria and action, such as allow or deny, that must be taken
+                    on the matched data traffic.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource href="../wadls/netconn-api/src/os-fwaasv2.0-ext.wadl#Firewalls">
+                <wadl:method href="#listFirewalls"/>
+                <wadl:method href="#createFirewall"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/netconn-api/src/os-fwaasv2.0-ext.wadl#firewall_id">
+                <wadl:method href="#showFirewall"/>
+                <wadl:method href="#updateFirewall"/>
+                <wadl:method href="#deleteFirewall"/>
+            </wadl:resource>
+           <!--  <wadl:resource href="../wadls/netconn-api/src/os-fwaasv2.0-ext.wadl#FirewallPolicies">
+                <wadl:method href="#listFirewallPolicies"/>
+                <wadl:method href="#createFirewallPolicy"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/netconn-api/src/os-fwaasv2.0-ext.wadl#firewallpolicy_id">
+                <wadl:method href="#showFirewallPolicy"/>
+                <wadl:method href="#updateFirewallPolicy"/>
+                <wadl:method href="#deleteFirewallPolicy"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/netconn-api/src/os-fwaasv2.0-ext.wadl#FirewallRules">
+                <wadl:method href="#listFirewallRules"/>
+                <wadl:method href="#createFirewallRule"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/netconn-api/src/os-fwaasv2.0-ext.wadl#firewall_rule_id">
+                <wadl:method href="#showFirewallRule"/>
+                <wadl:method href="#updateFirewallRule"/>
+                <wadl:method href="#deleteFirewallRule"/>
+            </wadl:resource> -->
+        </wadl:resources>
     </section>
     <section xml:id="lbaas-v1.0">
         <title>Load-Balancer-as-a-Service (LBaaS) 1.0 (STABLE)</title>

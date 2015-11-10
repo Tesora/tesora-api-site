@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) 2013-2014 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2013-2015 OpenStack Foundation, All Rights Reserved -->
 <!--*******************************************************-->
 <!--         Import Common XML Entities                    -->
 <!--                                                       -->
@@ -119,7 +119,33 @@
             <para role="shortdesc">Shows details for Networking API
                 v2.0.</para>
         </wadl:doc>
-        <response status="200 203">
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="api_samples/version-v2-neutron-get-resp.json"
+                    />
+                </wadl:doc>
+            </representation>
+            <representation mediaType="application/xml">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="api_samples/version-v2-neutron-get-resp.xml"
+                    />
+                </wadl:doc>
+                <param name="location" style="plain" type="xsd:anyURI"
+                    required="true"
+                    path="/common:version/atom:link[@rel='self']/@href">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN" title="Location"><para>Full URL
+                            to a service or server.</para></wadl:doc>
+                    <link resource_type="#VersionDetails" rel="self"/>
+                </param>
+            </representation>
+        </response>
+        <response status="203">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -152,7 +178,41 @@
             title="List extensions">
             <para>Lists available Networking API extensions.</para>
         </wadl:doc>
-        <response status="200 203">
+        <response status="200">
+            <param name="next" style="plain" type="xsd:anyURI"
+                path="/capi:extensions/atom:link[@rel='next']/@href">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">Moves to the next item in the
+                    list.</wadl:doc>
+                <link resource_type="#ExtensionList" rel="next"/>
+            </param>
+            <param name="previous" style="plain" type="xsd:anyURI"
+                path="/capi:extensions/atom:link[@rel='previous']/@href">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">Moves to the previous item in the
+                    list.</wadl:doc>
+                <link resource_type="#ExtensionList" rel="previous"/>
+            </param>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook">
+                    <xsdxt:sample
+                        title="List extensions: JSON response">
+                        <xsdxt:code href="api_samples/extensions.json"
+                        />
+                    </xsdxt:sample>
+                </wadl:doc>
+            </representation>
+            <representation mediaType="application/xml">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook">
+                    <xsdxt:sample
+                        title="List extensions: XML response">
+                        <xsdxt:code href="api_samples/extensions.xml"
+                        />
+                    </xsdxt:sample>
+                </wadl:doc>
+            </representation>
+        </response>
+        <response status="203">
             <param name="next" style="plain" type="xsd:anyURI"
                 path="/capi:extensions/atom:link[@rel='next']/@href">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -188,11 +248,30 @@
         </response> &commonFaults; </method>
     <method name="GET" id="getExtension">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
-            title="Get extension details">
-            <para>Gets detailed information for a specified
+            title="Show extension details">
+            <para>Shows details for an
                 extension.</para>
         </wadl:doc>
-        <response status="200 203">
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook">
+                    <xsdxt:sample
+                        title="Get extension details: JSON response">
+                        <xsdxt:code href="api_samples/extension.json"
+                        />
+                    </xsdxt:sample>
+                </wadl:doc>
+            </representation>
+            <representation mediaType="application/xml">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook">
+                    <xsdxt:sample
+                        title="Get extension details: XML response">
+                        <xsdxt:code href="api_samples/extension.xml"/>
+                    </xsdxt:sample>
+                </wadl:doc>
+            </representation>
+        </response>
+        <response status="203">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:sample
@@ -215,7 +294,7 @@
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="List networks">
             <para role="shortdesc">Lists networks to which the
-                specified tenant has access.</para>
+             tenant has access.</para>
             <para>You can control which response parameters are returned by
                 using the fields query parameter. For information, see <link
                     xlink:href="http://specs.openstack.org/openstack/neutron-specs/specs/api/networking_general_api_information.html#filtering-and-column-selection"
@@ -476,8 +555,8 @@
         </response> &fault400; &fault401; </method>
     <method name="GET" id="showNetwork">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
-            title="Show network">
-            <para role="shortdesc">Shows information for a specified
+            title="Show network details">
+            <para role="shortdesc">Shows details for a
                 network.</para>
             <para>You can control which response parameters are returned by
                 using the fields query parameter. For information, see <link
@@ -561,7 +640,7 @@
     <method name="PUT" id="updateNetwork">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Update network">
-            <para role="shortdesc">Updates a specified network.</para>
+            <para role="shortdesc">Updates a network.</para>
         </wadl:doc>
         <request>
             &networkObject; &networkUpdateParameters;
@@ -661,7 +740,7 @@
     <method name="DELETE" id="deleteNetwork">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Delete network">
-            <para role="shortdesc">Deletes a specified network and its
+            <para role="shortdesc">Deletes a network and its
                 associated resources.</para>
         </wadl:doc>
         <response status="204"/> &fault401; &fault404;
