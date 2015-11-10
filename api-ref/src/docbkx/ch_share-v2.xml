@@ -24,12 +24,11 @@
     </para>
     <para>
         Other than the switch to the micro-versions approach, the Shared File
-        Systems API v2.0 is functionally identical to the <link
-        xlink:type="simple" xlink:href="api-ref-share-v1.html">Shared File
-        Systems API v1.0</link>.
+        Systems API v2.0 is functionally identical to the
+        <link xlink:href="api-ref-share-v1.html#share-api-v1">Shared File Systems API v1</link>.
     </para>
     <para>
-        Subsequent API v2 micro-versions, such as v2.1, differ from API v1.0.
+        Subsequent API v2 micro-versions, such as v2.1, differ from API v1.
         Look for notes that identify in which post-v2 micro-version a feature,
         method, or parameter was introduced.
     </para>
@@ -109,7 +108,7 @@
         </para>
         <para>
             You can create a share and associate it with a network, list shares,
-            and show information for, update, and delete a specified share.
+            and show information for, update, and delete a share.
         </para>
         <para>
             To create a share, specify one of these supported protocols:
@@ -319,7 +318,7 @@
         <title>Share actions</title>
         <para>
             Grants or revokes share access, lists the permissions for a
-            specified share, and explicitly updates the state of a share.
+            share, and explicitly updates the state of a share.
         </para>
         <para>
             To grant or revoke share access, specify one of these supported
@@ -360,10 +359,9 @@
             </listitem>
             <listitem>
                 <para>
-                    <code>user</code>. Authenticates by a specified user or
-                    group name. A valid value is an alphanumeric string that
-                    can contain some special characters and is from 4 to 32
-                    characters long.
+                    <code>user</code>. Authenticates by a user or group name.
+                    A valid value is an alphanumeric string that can contain some special
+                    characters and is from 4 to 32 characters long.
                 </para>
             </listitem>
         </itemizedlist>
@@ -373,7 +371,7 @@
         </para>
         <para>
             As administrator, you can reset the state of a share and
-            force-delete a specified share in any state. Use the
+            force-delete a share in any state. Use the
             <code>policy.json</code> file to grant permissions for this
             action to other roles.
         </para>
@@ -441,7 +439,7 @@
         </itemizedlist>
         <para>
             As administrator, you can also reset the state of a snapshot and
-            force-delete a specified share snapshot in any state.
+            force-delete a share snapshot in any state.
             Use the <code>policy.json</code> file to grant permissions for
             these actions to other roles.
         </para>
@@ -514,7 +512,7 @@
                 <para>
                     The network type, which is <code>vlan</code>,
                     <code>vxlan</code>, <code>gre</code>,
-                    <code>flat</code>, or <code>local</code>.
+                    or <code>flat</code>.
                 </para>
             </listitem>
             <listitem>
@@ -756,7 +754,7 @@
         <para>
             You can manage the access to the private share types for the
             different projects. You can add access, remove access, and get
-            information about access for a specified private share type.
+            information about access for a private share type.
         </para>
         <para>
             Administrators can create share types with these extra
@@ -882,7 +880,7 @@
             <code>down</code>).
         </para>
         <para>
-            Administrators can also enable or disable a specified service.
+            Administrators can also enable or disable a service.
         </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/share-api/src/v2/os-share-v2.wadl#os-services">
@@ -910,7 +908,7 @@
     <section xml:id="share-os-share-manage" xmlns="http://docbook.org/ns/docbook">
         <title>Manage share</title>
         <para>
-            Configures Shared File Systems to manage a specified share.
+            Configures Shared File Systems to manage a share.
         </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/share-api/src/v2/os-share-v2.wadl#os-share-manage">
@@ -921,7 +919,7 @@
     <section xml:id="share-os-share-unmanage" xmlns="http://docbook.org/ns/docbook">
         <title>Unmanage share</title>
         <para>
-            Configures Shared File Systems to unmanage a specified share.
+            Configures Shared File Systems to unmanage a share.
         </para>
          <para>
             The share unmanage operation is not supported for shares that are
@@ -949,18 +947,6 @@
             </wadl:resource>
             <wadl:resource href="../wadls/share-api/src/v2/os-share-v2.wadl#quota-defaults">
                 <wadl:method href="#getDefaultQuotas"/>
-            </wadl:resource>
-        </wadl:resources>
-    </section>
-    <section xml:id="share-os-quota-class-sets" xmlns="http://docbook.org/ns/docbook">
-        <title>Quota classes</title>
-        <para>
-            Provides quota classes management support.
-        </para>
-        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-            <wadl:resource href="../wadls/share-api/src/v2/os-share-v2.wadl#quota-class_name">
-                <wadl:method href="#getQuotaClassQuotas"/>
-                <wadl:method href="#updateQuotaClassQuotas"/>
             </wadl:resource>
         </wadl:resources>
     </section>

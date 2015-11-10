@@ -12,338 +12,296 @@
    version="5.0-extension RackBook-2.0"
    xml:id="compute-v2.1"
    role="api-reference">
-   <title>Compute API (CURRENT)</title>
-   <note>
+  <title>Compute API (CURRENT)</title>
+  <note>
     <para>
       Effective in the OpenStack Kilo release, XML support in requests and
       responses was removed for the Compute API.
     </para>
-   </note>
-   <para>
+  </note>
+  <para>
     This documentation supports the API v2.1 base version. If all extensions
     are enabled, the Compute API v1.1 and v2.0 requests and responses match
     the API v2.1 requests and responses.
-   </para>
-   <para>
+  </para>
+  <para>
     Each API version lists its required extensions for the full request and
     responses to be available. API v2.1 must enable all extensions all the
     time. It uses micro-version headers to expose any additional
     functionality.
   <!-- TODO - link for more details... -->
-   </para>
-   <para>
-      This page lists the Compute API operations in the following order:</para>
-      <itemizedlist role="compact">
-         <listitem>
-            <para>
-               <link
-                xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#versions-v2.1">Versions</link>
-            </para>
-         </listitem>
-         <listitem>
-            <para>
-               <link
-                xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#os-compute-v2.1">Servers</link>
-            </para>
-         </listitem>
-         <listitem>
-            <para>
-               <link
-                xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#os-flavors">Flavors</link>
-            </para>
-         </listitem>
-         <listitem>
-            <para>
-               <link
-                xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#keypairs-v2.1">Keypairs</link>
-            </para>
-         </listitem>
-         <listitem>
-            <para>
-               <link
-                xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#limits-v2.1">Limits</link>
-            </para>
-         </listitem>
-         <listitem>
-            <para>
-               <link xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#extensions-v2.1">Extensions</link> in alphabetical order by resource
-            </para>
-         </listitem>
-   </itemizedlist>
-   <section xml:id="versions-v2.1">
-      <title>API versions</title>
+  </para>
+  <para>
+    This page lists the Compute API operations in the following order:
+  </para>
+  <itemizedlist role="compact">
+    <listitem>
       <para>
-         Lists information for all API versions.
+          <link
+            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#versions-v2.1">Versions</link>
       </para>
-      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-         <wadl:resource
-            href="../wadls/compute-api/src/v2.1/wadl/versions-v2.1.wadl#versions">
-            <wadl:method href="#listVersionsv2.1"/>
-         </wadl:resource>
-      </wadl:resources>
-   </section>
-   <section xml:id="os-servers-v2.1">
-      <title>Servers</title>
-        <para>Lists, creates, gets details for, updates, and deletes servers.</para>
-        <para><emphasis role="bold">Passwords</emphasis></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link
+            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#os-compute-v2.1">Servers</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link
+            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#os-flavors">Flavors</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link
+            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#keypairs-v2.1">Keypairs</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link
+            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#limits-v2.1">Limits</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+         <link xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#extensions-v2.1">Extensions</link> in alphabetical order by resource
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="versions-v2.1">
+    <title>API versions</title>
+    <para>
+       Lists information for all API versions.
+    </para>
+    <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+      <wadl:resource
+          href="../wadls/compute-api/src/v2.1/wadl/versions-v2.1.wadl#versions">
+        <wadl:method href="#listVersionsv2.1"/>
+      </wadl:resource>
+    </wadl:resources>
+  </section>
+  <section xml:id="os-servers-v2.1">
+    <title>Servers (servers)</title>
+      <para>Lists, creates, gets details for, updates, and deletes servers.</para>
+      <para><emphasis role="bold">Passwords</emphasis></para>
+      <para>
+        When you create a server, you can specify a password through the
+        optional <property>adminPass</property> attribute. The password must
+        meet the complexity requirements set by your OpenStack Compute
+        provider. The server might enter an <code>ERROR</code> state if the
+        complexity requirements are not met. In this case, a client might
+        issue a change password action to reset the server password.
+      </para>
+      <para>
+        If you do not specify a password, the API generates and assigns a
+        random password that it returns in the response object. This
+        password is guaranteed to meet the security requirements set by the
+        compute provider. For security reasons, the password is not returned
+        in subsequent &GET; calls.
+      </para>
+      <para><emphasis role="bold">Server metadata</emphasis></para>
+      <para>
+        You can specify custom server metadata at server launch time. The
+        maximum size for each metadata key-value pair is 255 bytes. The
+        compute provider determines the maximum number of key-value pairs
+        that can be supplied for each server. You can query this value
+        through the <code>maxServerMeta</code> absolute limit.
+      </para>
+      <para><emphasis role="bold">Server networks</emphasis></para>
+      <para>
+        You can specify one or more networks to which the server connects at
+        launch time. Users can also specify a specific port on the network
+        or the fixed IP address to assign to the server interface.
+      </para>
+      <note>
         <para>
-          When you create a server, you can specify a password through the
-          optional <property>adminPass</property> attribute. The specified
-          password must meet the complexity requirements set by your OpenStack
-          Compute provider. The server might enter an <code>ERROR</code> state
-          if the complexity requirements are not met. In this case, a client
-          might issue a change password action to reset the server password.
+          You can use both IPv4 and IPv6 addresses as access addresses and
+          you can assign both addresses simultaneously. You can update
+          access addresses after you create a server.
         </para>
-        <para>
-          If you do not specify a password, the API generates and assigns a
-          random password that it returns in the response object. This
-          password is guaranteed to meet the security requirements set by the
-          compute provider. For security reasons, the password is not returned
-          in subsequent &GET; calls.
-        </para>
-        <para><emphasis role="bold">Server metadata</emphasis></para>
-        <para>
-          You can specify custom server metadata at server launch time. The
-          maximum size for each metadata key-value pair is 255 bytes. The
-          compute provider determines the maximum number of key-value pairs
-          that can be supplied for each server. You can query this value
-          through the <code>maxServerMeta</code> absolute limit.
-        </para>
-        <para><emphasis role="bold">Server networks</emphasis></para>
-        <para>
-          You can specify one or more networks to which the server connects at
-          launch time. Users can also specify a specific port on the network
-          or the fixed IP address to assign to the server interface.
-        </para>
-        <note>
+      </note>
+      <para><emphasis role="bold">Server personality</emphasis></para>
+      <para>
+        To customize the personality of a server instance, you can
+        inject data into its file system. For example, you might
+        insert ssh keys, set configuration files, or store data
+        that you want to retrieve from inside the instance. This
+        customization method provides minimal launch-time
+        personalization. If you require significant customization,
+        create a custom image.
+      </para>
+      <para>
+        Follow these guidelines when you inject files:
+      </para>
+      <itemizedlist>
+        <listitem>
           <para>
-            You can use both IPv4 and IPv6 addresses as access addresses and
-            you can assign both addresses simultaneously. You can update
-            access addresses after you create a server.
+            The maximum size of the file path data is 255 bytes.
           </para>
-        </note>
-        <para><emphasis role="bold">Server personality</emphasis></para>
-        <para>
-          To customize the personality of a server instance, you can
-          inject data into its file system. For example, you might
-          insert ssh keys, set configuration files, or store data
-          that you want to retrieve from inside the instance. This
-          customization method provides minimal launch-time
-          personalization. If you require significant customization,
-          create a custom image.
-        </para>
-        <para>
-          Follow these guidelines when you inject files:
-        </para>
-        <itemizedlist>
-          <listitem>
+        </listitem>
+        <listitem>
+          <para>
+            Encode the file contents as a Base64 string. The compute
+            provider determines the maximum size of the file contents. This
+            value can vary based on the image that is used to create the
+            server.
+          </para>
+          <note>
             <para>
-              The maximum size of the file path data is 255 bytes.
+              The maximum limit refers to the number of bytes in the
+              decoded data and not to the number of characters in
+              the encoded data.
             </para>
-          </listitem>
-          <listitem>
-            <para>
-              Encode the file contents as a Base64 string. The compute
-              provider determines the maximum size of the file contents. This
-              value can vary based on the image that is used to create the
-              server.
-            </para>
-            <note>
-              <para>
-                The maximum limit refers to the number of bytes in the
-                decoded data and not to the number of characters in
-                the encoded data.
-              </para>
-            </note>
-          </listitem>
-          <listitem>
-            <para>
-              You can inject only text files. You cannot inject
-              binary or ZIP files into a new build.
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              The <code>maxPersonality</code> absolute limit defines
-              the maximum number of file path and content pairs that
-              you can supply. The compute provider determines this
-              value.
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              The <code>maxPersonalitySize</code> absolute limit is a
-              byte limit that is guaranteed to apply to all images in
-              the deployment. Providers can set additional per-image
-              personality limits.
-            </para>
-          </listitem>
-        </itemizedlist>
-        <para>
-          The file injection might not occur until after the server
-          is built and booted.
-        </para>
-        <para>
-          During file injection, any existing files that match specified files
-          are renamed to include the BAK extension appended with a time stamp.
-          For example, if the <code>/etc/passwd</code> file exists, it is
-          backed up as <code>/etc/passwd.bak.1246036261.5785</code>.
-        </para>
-        <para>
-          After file injection, only system administrators can
-          access personality files. For example, on Linux, all files
-          have root as the owner and the root group as the group
-          owner, and allow only user and group read access (chmod
-          440).
-        </para>
-        <para><emphasis role="bold">Server access addresses</emphasis></para>
-        <para>
-          In a hybrid environment, the underlying implementation might not
-          control the IP address of a server. Instead, the access IP address
-          might be part of the dedicated hardware; for example, a router/NAT
-          device. In this case, the addresses provided by the implementation
-          cannot actually be used to access the server (from outside the local
-          LAN). Here, a separate <firstterm>access address</firstterm> might
-          be assigned at creation time to provide access to the server. This
-          address might not be directly bound to a network interface on the
-          server and might not necessarily appear when you query the server
-          addresses. Nonetheless, clients that must access the server directly
-          are encouraged to do so through an access address.
-        </para>
-        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
-          href="../wadls/compute-api/src/v2.1/wadl/os-compute-2.1.wadl"/>
-   </section>
-   <section xml:id="os-multiple-create-v2.1">
+          </note>
+        </listitem>
+        <listitem>
+          <para>
+            You can inject only text files. You cannot inject
+            binary or ZIP files into a new build.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            The <code>maxPersonality</code> absolute limit defines
+            the maximum number of file path and content pairs that
+            you can supply. The compute provider determines this
+            value.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            The <code>maxPersonalitySize</code> absolute limit is a
+            byte limit that is guaranteed to apply to all images in
+            the deployment. Providers can set additional per-image
+            personality limits.
+          </para>
+        </listitem>
+      </itemizedlist>
+      <para>
+        The file injection might not occur until after the server
+        is built and booted.
+      </para>
+      <para>
+        During file injection, any existing files that match files in the
+        request are renamed to include the BAK extension appended with a time
+        stamp. For example, if the <code>/etc/passwd</code> file exists, it is
+        backed up as <code>/etc/passwd.bak.1246036261.5785</code>.
+      </para>
+      <para>
+        After file injection, only system administrators can
+        access personality files. For example, on Linux, all files
+        have root as the owner and the root group as the group
+        owner, and allow only user and group read access (chmod
+        440).
+      </para>
+      <para><emphasis role="bold">Server access addresses</emphasis></para>
+      <para>
+        In a hybrid environment, the underlying implementation might not
+        control the IP address of a server. Instead, the access IP address
+        might be part of the dedicated hardware; for example, a router/NAT
+        device. In this case, the addresses provided by the implementation
+        cannot actually be used to access the server (from outside the local
+        LAN). Here, a separate <firstterm>access address</firstterm> might
+        be assigned at creation time to provide access to the server. This
+        address might not be directly bound to a network interface on the
+        server and might not necessarily appear when you query the server
+        addresses. Nonetheless, clients that must access the server directly
+        are encouraged to do so through an access address.
+      </para>
+      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        href="../wadls/compute-api/src/v2.1/wadl/os-compute-2.1.wadl"/>
+  </section>
+  <section xml:id="os-multiple-create-v2.1">
       <title>Servers multiple create (servers)</title>
       <para>
-         Creates one or more servers with an optional reservation ID. The
-         request and response examples show how to create multiple servers with
-         or without a reservation ID.
+         Creates one or more servers.
+      </para>
+      <para>
+          Optionally, you can set <code>"return_reservation_id": "True"</code>
+          in the request body to request that a reservation ID be returned
+          instead of the newly created instance information. With this
+          parameter, the response shows only the reservation ID.
       </para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-multiple-create-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-server-actions-v2.1">
-      <title>Servers actions (servers, action)</title>
-      <para>
-         Performs actions on a server. Specify the action in the request body.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-server-actions-add-v2.1">
-      <title>Servers action (servers, os-server-actions)</title>
-      <para>
-         Permits all users to list available server actions for a specified
-         server. Permits administrators to get details for a specified
-         server action for a specified server.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-add-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-admin-actions-v2.1">
-      <title>Servers admin actions (servers, action)</title>
-      <para>
-         Administrators only. Performs actions on a server. Specify the action
-         in the request body.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-admin-actions-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-admin-password-v2.1">
-      <title>Servers admin password (servers, action)</title>
-      <para>
-         Enables users with the administrative role or the owner of the server
-         to change the password of the administrative user.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-admin-password-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-console-output-v2.1">
-      <title>Servers console output (servers, action)</title>
-      <para>
-         Gets console output for a server instance.
-      </para>
-      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
-         href="../wadls/compute-api/src/v2.1/wadl/os-console-output-v2.1.wadl"
-         />
-   </section>
-   <section xml:id="os-multinic-v2.1">
-      <title>Servers multiple fixed IP support (servers, action)</title>
-      <para>
-         Adds or removes fixed IP addresses from an instance.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-multinic-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-remote-consoles-v2.1">
-      <title>Servers remote console (servers, action)</title>
-      <para>
-         Provides interactive console support.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-remote-consoles-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-shelve-v2.1">
-      <title>Servers shelve (servers, action)</title>
-      <para>
-         Shelves servers, restores shelved servers, and removes
-         shelved servers.
-      </para>
-      <para>
-         Shelving is useful when you have an unused instance that you would
-         like to keep for later use. For example, at the end of a work week
-         you can shelve an instance and at the start of the next week you can
-         unshelve it.
-      </para>
-      <para>
-         Your cloud provider might bill you for a shelved server.
-      </para>
-      <para>
-         Use the <code>shelve</code> action to shelve a server. All
-         associated data and resources are kept but anything still in memory
-         is not retained.
-      </para>
-      <para>
-         Use the <code>unshelve</code> action to restore a shelved instance.
-      </para>
-      <para>
-         Use the <code>shelveOffload</code> action to remove a shelved
-         instance that you no longer need.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-shelve-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-deferred-delete-v2.1">
-      <title>Servers deferred delete (servers, action)</title>
-      <para>
-         Force-deletes a server or restores a soft-deleted server.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-deferred-delete-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-evacuate-v2.1">
-      <title>Servers evacuate (servers, action)</title>
-      <para>
-         Evacuates servers.
-      </para>
-      <para>
-         Specify the <code>evacuate</code> action in the request body.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-evacuate-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="diagnostics-v2.1">
+  </section>
+  <section xml:id="os-server-actions-v2.1">
+    <title>Servers actions (servers, action)</title>
+    <para>
+       Performs actions on a server. Specify the action in the request body.
+    </para>
+    <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-multinic-v2.1.wadl#action">
+        <wadl:method href="#addFixedIp"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl#action">
+        <wadl:method href="#attach"/>
+        <wadl:method href="#confirmResize"/>
+        <wadl:method href="#createImage"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-evacuate-v2.1.wadl#action">
+        <wadl:method href="#evacuate"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-deferred-delete-v2.1.wadl#action">
+        <wadl:method href="#forceDelete"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-console-output-v2.1.wadl#action">
+        <wadl:method href="#getConsoleOutput"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-remote-consoles-v2.1.wadl#action">
+        <wadl:method href="#getRDPConsole"/>
+        <wadl:method href="#getSerialConsole"/>
+        <wadl:method href="#getSPICEConsole"/>
+        <wadl:method href="#getVNCConsole"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl#action">
+        <wadl:method href="#reboot"/>
+        <wadl:method href="#rebuild"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-multinic-v2.1.wadl#action">
+        <wadl:method href="#removeFixedIp"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl#action">
+        <wadl:method href="#rescue"/>
+        <wadl:method href="#resize"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-deferred-delete-v2.1.wadl#action">
+        <wadl:method href="#restore"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl#action">
+        <wadl:method href="#revertResize"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-shelve-v2.1.wadl#action">
+        <wadl:method href="#shelve"/>
+        <wadl:method href="#shelveOffload"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl#action">
+        <wadl:method href="#start"/>
+        <wadl:method href="#stop"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl#action">
+        <wadl:method href="#unrescue"/>
+      </wadl:resource>
+      <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-shelve-v2.1.wadl#action">
+        <wadl:method href="#unshelve"/>
+      </wadl:resource>
+    </wadl:resources>
+  </section>
+  <section xml:id="os-admin-actions-v2.1">
+    <title>Servers admin actions (servers, action)</title>
+    <para>
+       Administrators only. Performs actions on a server. Specify the action
+       in the request body.
+    </para>
+    <wadl:resources
+       href="../wadls/compute-api/src/v2.1/wadl/os-admin-actions-v2.1.wadl"
+       xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+  </section>
+  <section xml:id="diagnostics-v2.1">
       <title>Servers diagnostics (servers, diagnostics)</title>
       <para>
          Gets the usage data for a server.
@@ -351,42 +309,42 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/diagnostics-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="server-ips-v2.1">
+  </section>
+  <section xml:id="server-ips-v2.1">
       <title>Servers IPs (servers, ips)</title>
       <para>
          Lists the IP addresses assigned to an instance or shows details for
-         a specified IP address.
+         a IP address.
       </para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/server-ips-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="server-metadata-v2.1">
+  </section>
+  <section xml:id="server-metadata-v2.1">
       <title>Server metadata (servers, metadata)</title>
       <para>
          Lists metadata, creates or replaces one or more metadata
          items, and updates one or more metadata items for a server.
       </para>
       <para>
-         Shows details for, creates or replaces, and updates a specified
-         metadata item, by key, for a server.
+         Shows details for, creates or replaces, and updates a metadata item,
+         by key, for a server.
       </para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/server-metadata-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-config-drive-v2.1">
-      <title>Servers configuration drive (servers, os-config-drive)</title>
-      <para>
-         Shows server details including configuration drive information for a
-         specified server ID or user.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-config-drive-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-server-password-v2.1">
+  </section>
+  <section xml:id="os-server-actions-add-v2.1">
+    <title>Servers action (servers, os-server-actions)</title>
+    <para>
+      Permits all users to list available server actions for a server. Permits
+      administrators to get details for a server action for a server.
+    </para>
+    <wadl:resources
+       href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-add-v2.1.wadl"
+       xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+  </section>
+  <section xml:id="os-server-password-v2.1">
       <title>Servers password (servers, os-server-password)</title>
       <para>
          Gets the encrypted administrative password set through the metadata
@@ -395,38 +353,17 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-server-password-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-server-usage-v2.1">
-      <title>Servers usage (servers, os-server-usage)</title>
-      <para>
-         Lists all servers and shows server details. Includes server usage
-         information.
-      </para>
-      <para>
-         Shows <code>OS-SRV-USG:launched_at</code> and <code>OS-SRV-
-         USG:terminated_at</code> attributes in server responses.
-      </para>
-      <para>
-         To hide <code>addresses</code> information for instances in a
-         specified state, set the
-         <code>osapi_hide_server_address_states</code> configuration option.
-         Set this option to a valid VM state in the <code>nova.conf</code>
-         configuration file.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-server-usage-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-virtual-interfaces-v2.1">
+  </section>
+  <section xml:id="os-virtual-interfaces-v2.1">
       <title>Servers virtual interfaces (servers, os-virtual-interfaces)</title>
       <para>
-         Lists virtual interfaces for a specified server instance.
+         Lists virtual interfaces for a server instance.
       </para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-virtual-interfaces-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-flavors-v2.1">
+  </section>
+  <section xml:id="os-flavors-v2.1">
       <title>Flavors with extended attributes (flavors)</title>
       <para>
          Shows information about flavors.
@@ -434,8 +371,8 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-flavors-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-flavor-access-v2.1">
+  </section>
+  <section xml:id="os-flavor-access-v2.1">
       <title>Flavors access (flavors, os-flavor-access, action)</title>
       <para>
          Provides flavor access support.
@@ -456,8 +393,8 @@
                <wadl:method href="#list-flavor-accesslist-detail"/>
          </wadl:resource>
       </wadl:resources>
-   </section>
-   <section xml:id="flavor-extra-specs-v2.1">
+  </section>
+  <section xml:id="flavor-extra-specs-v2.1">
       <title>Flavors extra-specs (flavors, os-flavor-extra-specs)</title>
       <para>
          Lists, creates, deletes, and updates the extra-specs or keys for a
@@ -466,8 +403,8 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-flavor-extra-specs-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-flavor-manage-v2.1">
+  </section>
+  <section xml:id="os-flavor-manage-v2.1">
       <title>Flavors manage (flavors, os-flavor-manage)</title>
       <para>
          Creates and deletes flavors.
@@ -475,15 +412,15 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-flavor-manage-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="keypairs-v2.1">
+  </section>
+  <section xml:id="keypairs-v2.1">
       <title>Keypairs (keypairs)</title>
       <para>Generates, imports, and deletes SSH keys.</para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/keypairs-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="limits-v2.1">
+  </section>
+  <section xml:id="limits-v2.1">
       <title>Limits (limits)</title>
       <para>
          Shows all global and rate limit information.
@@ -491,8 +428,8 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/limits-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="extensions-v2.1">
+  </section>
+  <section xml:id="extensions-v2.1">
       <title>Extensions (extensions)</title>
       <para>
          Available extensions.
@@ -500,8 +437,8 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-extensions-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-    <section xml:id="compute_images-v2.1">
+  </section>
+  <section xml:id="compute_images-v2.1">
         <title>Images</title>
         <para>
             Lists, gets details for, and deletes images. Also sets, lists,
@@ -530,8 +467,8 @@
                 <wadl:method href="#deleteImage"/>
             </wadl:resource>
         </wadl:resources>
-    </section>
-    <section xml:id="compute_image_metadata-v2.1">
+  </section>
+  <section xml:id="compute_image_metadata-v2.1">
         <title>Image metadata</title>
         <para>Shows details for, sets, updates, and deletes image metadata or metadata items.</para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
@@ -547,8 +484,8 @@
                 <wadl:method href="#deleteImageMetadataItem"/>
             </wadl:resource>
         </wadl:resources>
-    </section>
-   <section xml:id="os-agents-v2.1">
+  </section>
+  <section xml:id="os-agents-v2.1">
       <title>Guest agents (os-agents)</title>
       <para>
          Creates, lists, updates, and deletes guest agent builds. Use guest
@@ -561,8 +498,8 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-agents-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-aggregates-v2.1">
+  </section>
+  <section xml:id="os-aggregates-v2.1">
       <title>Host aggregates (os-aggregates, action)</title>
       <para>
          Creates and manages host aggregates. An aggregate assigns metadata to
@@ -572,8 +509,8 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-aggregates-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-assisted-volume-snapshots-v2.1">
+  </section>
+  <section xml:id="os-assisted-volume-snapshots-v2.1">
       <title>Assisted volume snapshots (os-assisted-volume-snapshots)</title>
       <para>
          Creates and deletes snapshots through an emulator/hypervisor.
@@ -586,8 +523,8 @@
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-assisted-volume-snapshots-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-attach-interfaces-v2.1">
+  </section>
+  <section xml:id="os-attach-interfaces-v2.1">
       <title>Attach Interfaces (os-attach-interfaces)</title>
       <para>
          Creates, lists, gets details for, and deletes port interfaces.
@@ -654,7 +591,7 @@
    <section xml:id="os-fixed-ips-v2.1">
        <title>Fixed IPs (os-fixed-ips)</title>
        <para>
-           Shows data for a specified fixed IP, such as host name, CIDR, and
+           Shows data for a fixed IP, such as host name, CIDR, and
            address. Also, reserves and frees a fixed IP address.
        </para>
        <wadl:resources
@@ -704,7 +641,7 @@
    <section xml:id="v2.1os-fping">
       <title>Ping instances (os-fping)</title>
       <para>
-         Pings all or specified instances and reports which ones are alive.
+         Pings instances and reports which ones are alive.
       </para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-fping-v2.1.wadl"
@@ -854,9 +791,9 @@
         <title>Manage services (os-services)</title>
         <para>
             Lists all or only disabled Compute services for all hosts in a
-            specified tenant. Logs information for disabled services. Enables
-            or disables scheduling for, forces down, unsets the forced-down
-            state of, or deletes a specified service.
+            tenant. Logs information for disabled services. Enables or
+            disables scheduling for, forces down, unsets the forced-down state
+            of, or deletes a service.
          </para>
          <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-services-v2.1.wadl#os-services">

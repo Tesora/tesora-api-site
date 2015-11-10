@@ -28,9 +28,8 @@ associated components:
    Server 12
    <http://docs.openstack.org/liberty/install-guide-obs/>`__
 
--  `Installation Guide for Red Hat Enterprise Linux 7, CentOS 7, and
-   Fedora
-   21 <http://docs.openstack.org/liberty/install-guide-rdo/>`__
+-  `Installation Guide for Red Hat Enterprise Linux 7 and CentOS 7
+   <http://docs.openstack.org/liberty/install-guide-rdo/>`__
 
 -  `Installation Guide for Ubuntu
    14.04 <http://docs.openstack.org/liberty/install-guide-ubuntu/>`__
@@ -244,5 +243,3 @@ for OpenStack:
    https://en.opensuse.org/Portal:OpenStack
 
 -  **Ubuntu:** https://wiki.ubuntu.com/ServerTeam/CloudArchive
-
-

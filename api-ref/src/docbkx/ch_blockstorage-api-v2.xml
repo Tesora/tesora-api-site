@@ -9,8 +9,8 @@
     role="api-reference">
     <title>Block Storage API v2 (CURRENT)</title>
     <para>
-        Manages volumes and snapshots for use with the Block Storage API,
-        also known as cinder services.
+        Manages volumes and snapshots for use with the Block Storage API, also
+        known as cinder services.
     </para>
     <section xml:id="volume-api-v2-versions">
         <title>API versions</title>
@@ -33,7 +33,9 @@
     </section>
     <section xml:id="os-limits-v2">
         <title>Limits (limits)</title>
-        <para>Shows absolute limits for a tenant.</para>
+        <para>
+            Shows absolute limits for a tenant.
+        </para>
         <para>
             An absolute limit value of <code>-1</code> indicates that the
             absolute limit for the item is infinite.
@@ -53,8 +55,10 @@
             volume originates. If the volume was not created from a snapshot or
             source volume, these values are null.
         </para>
-        <para>When you create, list, update, or delete volumes, the possible status
-            values are:</para>
+        <para>
+            When you create, list, update, or delete volumes, the possible status
+            values are:
+        </para>
         <table rules="all" frame="border">
             <caption>Volume statuses</caption>
             <col width="30%"/>
@@ -158,9 +162,11 @@
     <section xml:id="volume-api-v2-volumes-actions">
         <title>Volume actions (volumes, action)</title>
         <para>
-            Performs actions for a specified volume. Extends the size, resets
-            statuses for, sets image metadata, or removes image metadata from
-            a volume.
+            Extends the size of, resets statuses for, sets image metadata for,
+            and removes image metadata from a volume. Attaches a volume to a
+            server, detaches a volume from a server, and removes a volume from
+            Block Storage management without actually removing the back-end
+            storage object associated with it.
         </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/volume-api/src/v2/volume-api-v2.wadl#volume-action">
@@ -171,6 +177,8 @@
                 <wadl:method href="#attachVolume"/>
                 <wadl:method href="#unmanageVolume"/>
                 <wadl:method href="#forcedetachVolume"/>
+                <wadl:method href="#promotereplicaVolume"/>
+                <wadl:method href="#reenablereplicaVolume"/>
             </wadl:resource>
         </wadl:resources>
     </section>
@@ -185,8 +193,10 @@
             operations can only be carried out on volumes that are in an
             unattached and available state.
         </para>
-        <para>When you create, list, or delete backups, these status
-            values are possible:</para>
+        <para>
+            When you create, list, or delete backups, these status values are
+            possible:
+        </para>
         <table rules="all" frame="border">
           <caption>Backup statuses</caption>
             <col width="30%"/>
@@ -200,44 +210,84 @@
             <tbody>
                 <tr>
                     <td>
-                        <para>creating</para></td>
-                    <td><para>The backup is being created.</para></td>
+                        <para>
+                            creating
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            The backup is being created.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>available</para></td>
-                    <td><para>The backup is ready to be restored to a
-                        volume.</para></td>
+                        <para>
+                            available
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            The backup is ready to be restored to a volume.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>deleting</para></td>
-                    <td><para>The backup is being deleted.</para></td>
+                        <para>
+                            deleting
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            The backup is being deleted.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>error</para></td>
-                    <td><para>An error has occurred with the
-                        backup.</para></td>
+                        <para>
+                            error
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            An error has occurred with the backup.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>restoring</para></td>
-                    <td><para>The backup is being restored to a
-                        volume.</para></td>
+                        <para>
+                            restoring
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            The backup is being restored to a volume.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>error_restoring</para></td>
-                    <td><para>An error occurred during backup restoration to a
-                        volume.</para></td>
+                        <para>
+                            error_restoring
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            An error occurred during backup restoration to a
+                            volume.
+                        </para>
+                    </td>
                 </tr>
             </tbody>
         </table>
         <para></para>
-        <para>In the event of an error, more information about the error
-            can be found in the <literal>fail_reason</literal> field for
-            the backup.</para>
+        <para>
+            If an error occurs, you can find more information about the error
+            in the <code>fail_reason</code> field for the backup.
+        </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/volume-api/src/v2/volume-backups-api-v2.wadl#backups">
                 <wadl:method href="#createBackup"/>
@@ -279,7 +329,8 @@
     </section>
     <section xml:id="os-quota-sets-v2">
         <title>Quota sets extension (os-quota-sets)</title>
-        <para>Administrators only, depending on policy settings.
+        <para>
+            Administrators only, depending on policy settings.
         </para>
         <para>
             Shows, updates, and deletes quotas for a tenant.
@@ -305,10 +356,13 @@
     </section>
     <section xml:id="os-qos-v2-qos-specs">
         <title>Quality of service (QoS) specifications (qos-specs)</title>
-        <para>Administrators only, depending on policy settings.</para>
         <para>
-            Creates, lists, shows details for, associates, disassociates, sets keys,
-            unsets keys, and deletes quality of service (QoS) specifications.
+            Administrators only, depending on policy settings.
+        </para>
+        <para>
+            Creates, lists, shows details for, associates, disassociates, sets
+            keys, unsets keys, and deletes quality of service (QoS)
+            specifications.
         </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/volume-api/src/v2/os-qos-v2.wadl#qos-specs">
@@ -351,10 +405,14 @@
     </section>
     <section xml:id="volume-api-v2-snapshots">
         <title>Volume snapshots (snapshots)</title>
-        <para>A snapshot is a point-in-time copy of the data that a
-            volume contains.</para>
-        <para>When you create, list, or delete snapshots, these status
-            values are possible:</para>
+        <para>
+            A snapshot is a point-in-time copy of the data that a volume
+            contains.
+        </para>
+        <para>
+            When you create, list, or delete snapshots, these status values
+            are possible:
+        </para>
         <table rules="all" frame="border">
           <caption>Snapshot statuses</caption>
             <col width="30%"/>
@@ -368,30 +426,63 @@
             <tbody>
                 <tr>
                     <td>
-                        <para>creating</para></td>
-                    <td><para>The snapshot is being created.</para></td>
+                        <para>
+                            creating
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            The snapshot is being created.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>available</para></td>
-                    <td><para>The snapshot is ready to be used.</para></td>
+                        <para>
+                            available
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            The snapshot is ready to be used.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>deleting</para></td>
-                    <td><para>The snapshot is being deleted.</para></td>
+                        <para>
+                            deleting
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            The snapshot is being deleted.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>error</para></td>
-                    <td><para>An error occurred during snapshot
-                        creation.</para></td>
+                        <para>
+                            error
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            An error occurred during snapshot creation.
+                        </para>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <para>error_deleting</para></td>
-                    <td><para>An error occurred during snapshot
-                        deletion.</para></td>
+                        <para>
+                            error_deleting
+                        </para>
+                    </td>
+                    <td>
+                        <para>
+                            An error occurred during snapshot deletion.
+                        </para>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -426,8 +517,39 @@
     <section xml:id="os-vol-image-meta-v2">
         <title>Volume image metadata extension (os-vol-image-meta)</title>
         <para>
-            Shows image metadata that is associated with a specified volume.
+            Shows image metadata that is associated with a volume.
         </para>
         <wadl:resources href="../wadls/volume-api/src/v2/os-vol-image-meta-v2.wadl"/>
+    </section>
+    <section xml:id="os-vol-pool-v2">
+        <title>Back-end storage pools</title>
+        <para>
+            Administrator only. Lists all back-end storage pools that are
+            known to the scheduler service.
+        </para>
+        <wadl:resources href="../wadls/volume-api/src/v2/os-vol-pool-v2.wadl"/>
+    </section>
+    <section xml:id="os-vol-transfer-v2">
+        <title>Volume transfer</title>
+        <para>
+            Transfers a volume from one user to another user.
+        </para>
+        <wadl:resources href="../wadls/volume-api/src/v2/os-volume-transfer-api-v2.wadl"/>
+    </section>
+    <section xml:id="consistencygroups-v2">
+        <title>Consistency groups</title>
+        <para>
+            Consistency groups enable you to create snapshots at the exact
+            same point in time from multiple volumes. For example, a database
+            might place its tables, logs, and configuration on separate
+            volumes. To restore this database from a previous point in time,
+            it makes sense to restore the logs, tables, and configuration
+            together from the exact same point in time.
+        </para>
+        <para>
+            Use the <code>policy.json</code> file to grant permissions
+            for these actions to limit roles.
+        </para>
+        <wadl:resources href="../wadls/volume-api/src/v2/consistencygroups-v2.wadl"/>
     </section>
 </chapter>
