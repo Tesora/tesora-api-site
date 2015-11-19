@@ -70,6 +70,8 @@
                 <wadl:method href="#resizeInstance"/>
                 <wadl:method href="#resizeVolume"/>
                 <wadl:method href="#restartInstance"/>
+                <wadl:method href="#promoteToReplicaSource"/>
+                <wadl:method href="#ejectReplicaSource"/>
             </wadl:resource>
         </wadl:resources>
     </section>
