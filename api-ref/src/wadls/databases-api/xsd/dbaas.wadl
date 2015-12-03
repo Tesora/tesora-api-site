@@ -93,6 +93,9 @@
                         <resource id="configuration" path="configuration">
                             <method href="#listConfigDefaults"/>
                         </resource>
+                        <resource id="instance_backups" path="backups">
+                            <method href="#listInstanceBackups"/>
+                        </resource>
                         <resource id="instanceAction" path="action">
                             <method href="#resizeInstance"/>
                             <method href="#resizeVolume"/>
@@ -210,10 +213,28 @@
                             </wadl:doc>
                         </param>
                         <method href="#deleteConfigGroup"/>
-                        <method href="#listConfigInstances"/>
                         <method href="#patchConfigGroup"/>
                         <method href="#listConfigDetails"/>
                         <method href="#updateConfigGroup"/>
+                        <resource id="config_instances" path="instances">
+                            <method href="#listConfigInstances"/>
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="backups" path="backups">
+                    <method href="#createBackup"/>
+                    <method href="#listBackups"/>
+                    <resource id="backupId" path="{backupId}">
+                        <param name="backupId" style="template"
+                            type="xsd:string">
+                            <wadl:doc
+                                xmlns="http://docbook.org/ns/docbook"
+                                xml:lang="EN"><para>The ID of
+                                    the backup.</para>
+                            </wadl:doc>
+                        </param>
+                        <method href="#showBackupDetails"/>
+                        <method href="#deleteBackup"/>
                     </resource>
                 </resource>
            </resource>
@@ -2417,5 +2438,223 @@
                 </wadl:doc>
             </representation>
         </response> &commonFaults; &getFaults;
+    </method>
+    <method name="POST" id="createBackup">
+        <wadl:doc xml:lang="EN" title="Create backup"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Creates a backup of an instance.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-create-backup-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-create-backup-request.json"/>
+                </wadl:doc>
+                <param name="instance" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name or ID of the instance you want to back up.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="name" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name of the backup you are creating.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="description" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Optional description of the backup.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="parent" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Optional ID of the parent backup to perform
+                            an incremental backup from.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-create-backup-response-json-http.txt"
+                    />
+                    <xsdxt:code
+                        href="samples/db-create-backup-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="listBackups">
+        <wadl:doc xml:lang="EN" title="List backups"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Lists all available backups.
+            </para>
+            <para>
+                For each backup, this operation lists the backup's
+                name, size, status, datasatore, parent (if any), and ID
+                of the instance it is backing up..
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-backups-request-json-http.txt"/>
+                </wadl:doc>
+                <param name="limit" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Return up to N number of the most recent backups.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="marker" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Begin displaying the results for IDs greater than the specified
+                            marker. When used with <code>limit</code>, set this to the last
+                            ID displayed in the previous run.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="datastore" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name or ID of the datastore to list backups for.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-backups-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-list-backups-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="showBackupDetails">
+        <wadl:doc xml:lang="EN" title="Show backup details"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Shows details about a database instance backup.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-backup-detail-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json"
+                element="dbaas:DatabaseInstance">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-backup-detail-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-backup-detail-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="listInstanceBackups">
+        <wadl:doc xml:lang="EN" title="List available backups"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Lists the available backups for a
+                specified instance.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-instance-backups-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-instance-backups-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-list-instance-backups-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="DELETE" id="deleteBackup">
+        <wadl:doc xml:lang="EN" title="Delete backup"
+            xmlns="http://docbook.org/ns/docbook"><para
+                role="shortdesc">Deletes a backup.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-backup-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="202"/> &commonFaults; <response status="422"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-backup-response-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </response> &getFaults;
     </method>
 </application>

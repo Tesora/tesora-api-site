@@ -1,0 +1,19 @@
+{
+    "backup": {
+        "status": "NEW",
+        "updated": "2015-11-24T15:03:23",
+        "description": null,
+        "datastore": {
+            "version": "5.6",
+            "type": "mysql",
+            "version_id": "b9f97132-467b-4f8e-b12d-947cfc223ac3"
+        },
+        "id": "d5f50ce1-a5f6-4a59-92b2-2ab8b1675072",
+        "size": null,
+        "name": "backup_1",
+        "created": "2015-11-24T15:03:23",
+        "instance_id": "7fd2d1d6-a2ef-4a76-8c03-e233db4d86da",
+        "parent_id": null,
+        "locationRef": null
+    }
+}
