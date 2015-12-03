@@ -13,12 +13,6 @@
    xml:id="compute-v2.1"
    role="api-reference">
   <title>Compute API (CURRENT)</title>
-  <note>
-    <para>
-      Effective in the OpenStack Kilo release, XML support in requests and
-      responses was removed for the Compute API.
-    </para>
-  </note>
   <para>
     This documentation supports the API v2.1 base version. If all extensions
     are enabled, the Compute API v1.1 and v2.0 requests and responses match
@@ -29,48 +23,18 @@
     responses to be available. API v2.1 must enable all extensions all the
     time. It uses micro-version headers to expose any additional
     functionality.
-  <!-- TODO - link for more details... -->
   </para>
+  <note>
+    <para>
+      Effective in the OpenStack Kilo release, XML support in requests and
+      responses was removed for the Compute API.
+    </para>
+  </note>
   <para>
-    This page lists the Compute API operations in the following order:
+    For details about the Compute API, see the <link
+    xlink:href="http://developer.openstack.org/api-guide/compute/">Compute
+    API</link>.
   </para>
-  <itemizedlist role="compact">
-    <listitem>
-      <para>
-          <link
-            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#versions-v2.1">Versions</link>
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-        <link
-            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#os-compute-v2.1">Servers</link>
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-        <link
-            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#os-flavors">Flavors</link>
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-        <link
-            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#keypairs-v2.1">Keypairs</link>
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-        <link
-            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#limits-v2.1">Limits</link>
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-         <link xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#extensions-v2.1">Extensions</link> in alphabetical order by resource
-      </para>
-    </listitem>
-  </itemizedlist>
   <section xml:id="versions-v2.1">
     <title>API versions</title>
     <para>
@@ -239,6 +203,7 @@
         <wadl:method href="#addFixedIp"/>
       </wadl:resource>
       <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl#action">
+        <wadl:method href="#addFloatingIp"/>
         <wadl:method href="#attach"/>
         <wadl:method href="#confirmResize"/>
         <wadl:method href="#createImage"/>
@@ -266,6 +231,7 @@
         <wadl:method href="#removeFixedIp"/>
       </wadl:resource>
       <wadl:resource href="../wadls/compute-api/src/v2.1/wadl/os-server-actions-v2.1.wadl#action">
+        <wadl:method href="removeFloatingIp"/>
         <wadl:method href="#rescue"/>
         <wadl:method href="#resize"/>
       </wadl:resource>
@@ -344,11 +310,23 @@
        href="../wadls/compute-api/src/v2.1/wadl/os-instance-actions-v2.1.wadl"
        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
   </section>
+  <section xml:id="os-interface-v2.1">
+      <title>Port interfaces (servers, os-interface)</title>
+      <para>
+         Creates a port interface and uses it to attach a port to a server and
+         detaches a port interface from a server. Also, lists all port
+         interfaces and shows details for a port interface.
+      </para>
+      <wadl:resources
+         href="../wadls/compute-api/src/v2.1/wadl/os-interface-v2.1.wadl"
+         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+   </section>
   <section xml:id="os-server-password-v2.1">
       <title>Servers password (servers, os-server-password)</title>
       <para>
-         Gets the encrypted administrative password set through the metadata
-         service.
+         Gets the encrypted administrative password. Also, clears the
+         encrypted administrative password for a server, which removes it from
+         the metadata server.
       </para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-server-password-v2.1.wadl"
@@ -432,10 +410,11 @@
   <section xml:id="extensions-v2.1">
       <title>Extensions (extensions)</title>
       <para>
-         Available extensions.
+         Lists the available extensions and shows details for an extension, by
+         alias.
       </para>
       <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-extensions-v2.1.wadl"
+         href="../wadls/compute-api/src/v2.1/wadl/extensions-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
   </section>
   <section xml:id="compute_images-v2.1">
@@ -524,16 +503,7 @@
          href="../wadls/compute-api/src/v2.1/wadl/os-assisted-volume-snapshots-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
   </section>
-  <section xml:id="os-attach-interfaces-v2.1">
-      <title>Attach Interfaces (os-attach-interfaces)</title>
-      <para>
-         Creates, lists, gets details for, and deletes port interfaces.
-      </para>
-      <wadl:resources
-         href="../wadls/compute-api/src/v2.1/wadl/os-attach-interfaces-v2.1.wadl"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
-   </section>
-   <section xml:id="os-availability-zone-v2.1">
+  <section xml:id="os-availability-zone-v2.1">
       <title>Availability zones (os-availability-zone)</title>
       <para>
          Gets availability zone information.
@@ -621,9 +591,40 @@
    <section xml:id="os-floating-ips-v2.1">
       <title>Floating IPs (os-floating-ips)</title>
       <para>
-         Assigns and allocates floating IP addresses to instances
-         that run in an OpenStack cloud.
+        Lists floating IP addresses that are associated with a project. Also,
+        creates (allocates) a floating IP address for a project, shows
+        floating IP address details, and deletes (deallocates) a floating IP
+        address from a project.
       </para>
+      <para>
+        A pool of floating IP addresses, configured by the cloud
+        administrator, is available in OpenStack Compute. The project quota
+        defines the maximum number of floating IP addresses that you can
+        allocate to the project. After you <link
+        xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#createFloatingIP">allocate a floating IP address</link>
+        for a project, you can:
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <link xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#addFloatingIp">Add (associate) the floating
+            IP address</link> with an instance in the project. Only one
+            floating IP address can be associated with an instance at a time.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#removeFloatingIp">Remove
+            (disassociate) the floating IP address</link> from an instance in the project.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Delete, or deallocate, a floating IP from the project, which
+            automatically deletes any associations for that IP address.
+          </para>
+        </listitem>
+      </itemizedlist>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-floating-ips-v2.1.wadl"
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
@@ -631,8 +632,12 @@
    <section xml:id="os-floating-ips-bulk-v2.1">
       <title>Floating IPs bulk (os-floating-ips-bulk)</title>
       <para>
-         Bulk-creates, deletes, and lists floating IPs. Default pool name is
-         <code>nova</code>. To view available pools, use the <code>os-floating-ip-pools</code> extension.
+        (nova-network only) Bulk-creates, deletes, and lists floating IPs.
+        Default pool name is <code>nova</code>.
+      </para>
+      <para>
+        To view available pools, use the <code>os-floating-ip-pools</code>
+        extension.
       </para>
       <wadl:resources
          href="../wadls/compute-api/src/v2.1/wadl/os-floating-ips-bulk-v2.1.wadl"
@@ -750,13 +755,14 @@
          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
    </section>
    <section xml:id="os-server-external-events-v2.1">
-        <title>Execute external events (os-server-external-events)</title>
+        <title>Create external events (os-server-external-events)</title>
         <para>
-            Executes external events.
-         </para>
-         <wadl:resources
-            href="../wadls/compute-api/src/v2.1/wadl/os-server-external-events-v2.1.wadl"
-            xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+          Creates one or more external events. Each event is dispatched to a
+          server instance.
+        </para>
+        <wadl:resources
+          href="../wadls/compute-api/src/v2.1/wadl/os-server-external-events-v2.1.wadl"
+          xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
    </section>
    <section xml:id="os-server-groups-v2.1">
      <title>Server groups (os-server-groups)</title>

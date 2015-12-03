@@ -37,7 +37,7 @@ associated components:
 The following books explain how to configure and run an OpenStack cloud:
 
 -  `Architecture Design
-   Guide <http://docs.openstack.org/arch-design/content/>`__
+   Guide <http://docs.openstack.org/arch-design/>`__
 
 -  `Cloud Administrator
    Guide <http://docs.openstack.org/admin-guide-cloud/>`__
@@ -55,7 +55,7 @@ The following books explain how to configure and run an OpenStack cloud:
 -  `Security Guide <http://docs.openstack.org/sec/>`__
 
 -  `Virtual Machine Image
-   Guide <http://docs.openstack.org/image-guide/content/>`__
+   Guide <http://docs.openstack.org/image-guide/>`__
 
 The following books explain how to use the OpenStack dashboard and
 command-line clients:
@@ -181,7 +181,11 @@ The following Launchpad Bugs areas are available:
 
 -  `Bugs: Key Manager Service (barbican) <https://bugs.launchpad.net/barbican>`__
 
+-  `Bugs: Monitoring (monasca) <https://bugs.launchpad.net/monasca>`__
+
 -  `Bugs: Orchestration (heat) <https://bugs.launchpad.net/heat>`__
+
+-  `Bugs: Rating (cloudkitty) <https://bugs.launchpad.net/cloudkitty>`__
 
 -  `Bugs: Shared file systems (manila) <https://bugs.launchpad.net/manila>`__
 
