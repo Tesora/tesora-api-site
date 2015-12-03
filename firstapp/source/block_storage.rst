@@ -5,35 +5,38 @@ Block Storage
 .. todo:: (For nick: Restructure the introduction to this chapter to
           provide context of what we're actually going to do.)
 
-By default, data in OpenStack instances is stored on 'ephemeral' disks. These
-disks stay with the instance throughout its lifetime, but when the instance is
-terminated, that storage and all the data stored on it disappears. Ephemeral
-storage is allocated to a single instance and cannot be moved to another
-instance.
+By default, data in OpenStack instances is stored on 'ephemeral'
+disks. These disks remain with the instance throughout its lifetime.
+When you terminate the instance, that storage and all the data stored
+on it disappears. Ephemeral storage is allocated to a single instance
+and cannot be moved to another instance.
 
-This section introduces block storage, also known as volume storage, which
-provides access to persistent storage devices. You interact with block storage
-by attaching volumes to running instances just as you might attach a USB drive
-to a physical server. You can detach volumes from one instance and reattach
-them to another instance and the data remains intact. The OpenStack Block
-Storage (cinder) project implements block storage.
+This section introduces block storage, also known as volume storage,
+which provides access to persistent storage devices. You interact with
+block storage by attaching volumes to running instances just as you
+might attach a USB drive to a physical server. You can detach volumes
+from one instance and reattach them to another instance and the data
+remains intact. The OpenStack Block Storage (cinder) project
+implements block storage.
 
-Though you might have configured Object Storage to store images, the Fractal
-application needs a database to track the location of and parameters that were
-used to create images in Object Storage. This database server cannot fail.
+Though you might have configured Object Storage to store images, the
+Fractal application needs a database to track the location of, and
+parameters that were used to create, images in Object Storage. This
+database server cannot fail.
 
-If you are an advanced user, consider how you might remove the database from
-the architecture and replace it with Object Storage metadata (then contribute
-these steps to :doc:`craziness`). Other users can continue reading to learn
-how to work with block storage and move the Fractal application database
-server to use it.
+If you are an advanced user, think about how you might remove the
+database from the architecture and replace it with Object Storage
+metadata, and then contribute these steps to :doc:`craziness`.
+
+Otherwise, continue reading to learn how to work with, and move the
+Fractal application database server to use, block storage.
 
 Basics
 ~~~~~~
 
-Later on, we'll use a Block Storage volume to provide persistent storage for
-the database server for the Fractal application. But first, learn how to
-create and attach a Block Storage device.
+Later on, you will use a Block Storage volume to provide persistent
+storage for the database server for the Fractal application. But
+first, learn how to create and attach a Block Storage device.
 
 .. only:: dotnet
 
@@ -61,28 +64,14 @@ create and attach a Block Storage device.
                  PHP-OpenCloud SDK.
 
 
-As always, connect to the API endpoint:
+Connect to the API endpoint:
 
 .. only:: libcloud
 
-    .. code-block:: python
-
-      from libcloud.compute.types import Provider
-      from libcloud.compute.providers import get_driver
-
-        auth_username = 'your_auth_username'
-        auth_password = 'your_auth_password'
-        auth_url = 'http://controller:5000'
-        project_name = 'your_project_name_or_id'
-        region_name = 'your_region_name'
-
-        provider = get_driver(Provider.OPENSTACK)
-        connection = provider(auth_username,
-                              auth_password,
-                              ex_force_auth_url=auth_url,
-                              ex_force_auth_version='2.0_password',
-                              ex_tenant_name=project_name,
-                              ex_force_service_region=region_name)
+    .. literalinclude:: ../samples/libcloud/block_storage.py
+        :language: python
+        :start-after: step-1
+        :end-before: step-2
 
 .. only:: shade
 
@@ -95,10 +84,10 @@ To try it out, make a 1GB volume called :test'.
 
 .. only:: libcloud
 
-    .. code-block:: python
-
-        volume = connection.create_volume(1, 'test')
-        print(volume)
+    .. literalinclude:: ../samples/libcloud/block_storage.py
+        :language: python
+        :start-after: step-2
+        :end-before: step-3
 
     ::
 
@@ -113,14 +102,14 @@ To try it out, make a 1GB volume called :test'.
 
 .. note:: The parameter :code:`size` is in gigabytes.
 
-List all volumes to see if it was successful:
+To see if the volume creation was successful, list all volumes:
 
 .. only:: libcloud
 
-    .. code-block:: python
-
-        volumes = connection.list_volumes()
-        print(volumes)
+     .. literalinclude:: ../samples/libcloud/block_storage.py
+        :language: python
+        :start-after: step-3
+        :end-before: step-4
 
     ::
 
@@ -147,15 +136,10 @@ MySQL, port 3306) from the network:
 
 .. only:: libcloud
 
-    .. code-block:: python
-
-       db_group = connection.ex_create_security_group('database', 'for database service')
-       connection.ex_create_security_group_rule(db_group, 'TCP', 3306, 3306)
-       instance = connection.create_node(name='app-database',
-                                         image=image,
-                                         size=flavor,
-                                         ex_keyname=keypair_name,
-                                         ex_security_groups=[db_group])
+    .. literalinclude:: ../samples/libcloud/block_storage.py
+        :language: python
+        :start-after: step-4
+        :end-before: step-5
 
 .. only:: shade
 
@@ -164,16 +148,16 @@ MySQL, port 3306) from the network:
         :start-after: step-4
         :end-before: step-5
 
-Create a volume object by using the unique identifier (UUID) for the volume.
-Then, use the server object from the previous code snippet to attach the
-volume to it at :code:`/dev/vdb`:
+Create a volume object by using the unique identifier (UUID) for the
+volume. Then, use the server object from the previous code snippet to
+attach the volume to it at :code:`/dev/vdb`:
 
 .. only:: libcloud
 
-    .. code-block:: python
-
-        volume = connection.ex_get_volume('755ab026-b5f2-4f53-b34a-6d082fb36689')
-        connection.attach_volume(instance, volume, '/dev/vdb')
+    .. literalinclude:: ../samples/libcloud/block_storage.py
+        :language: python
+        :start-after: step-5
+        :end-before: step-6
 
 .. only:: shade
 
@@ -240,17 +224,13 @@ To detach and delete a volume:
 
 .. only:: libcloud
 
-    .. code-block:: python
-
-        connection.detach_volume(volume)
+    .. literalinclude:: ../samples/libcloud/block_storage.py
+        :start-after: step-6
+        :end-before: step-7
 
     ::
 
         True
-
-    .. code-block:: python
-
-        connection.destroy_volume(volume)
 
     .. note:: :code:`detach_volume` and :code:`destroy_volume` take a
               volume object, not a name.
@@ -266,17 +246,16 @@ To detach and delete a volume:
 
     Other features, such as creating volume snapshots, are useful for backups:
 
-    .. code-block:: python
-
-        snapshot_name = 'test_backup_1'
-        connection.create_volume_snapshot('test', name=snapshot_name)
+    .. literalinclude:: ../samples/libcloud/block_storage.py
+        :language: python
+        :start-after: step-7
+        :end-before: step-8
 
     .. todo:: Do we need a note here to mention that 'test' is the
               volume name and not the volume object?
 
     For information about these and other calls, see
-    `libcloud documentation
-    <http://ci.apache.org/projects/libcloud/docs/compute/drivers/openstack.html>`_.
+    `libcloud documentation <http://ci.apache.org/projects/libcloud/docs/compute/drivers/openstack.html>`_.
 
 Work with the OpenStack Database service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -292,12 +271,12 @@ component provides Database as a Service (DBaaS).
 SDKs do not generally support the service yet, but you can use the
 'trove' command-line client to work with it instead.
 
-Install the trove command-line client by following this guide:
-http://docs.openstack.org/cli-reference/content/install_clients.html
+To install the 'trove' command-line client, see
+`Install the OpenStack command-line clients <http://docs.openstack.org/cli-reference/content/install_clients.html>`_.
 
-Then, set up necessary variables for your cloud in an :file:`openrc.sh` file
-by using this guide:
-http://docs.openstack.org/cli-reference/content/cli_openrc.html
+To set up environment variables for your cloud in an :file:`openrc.sh`
+file, see
+`Set environment variables using the OpenStack RC file <http://docs.openstack.org/cli-reference/content/cli_openrc.html>`_.
 
 Ensure you have an :file:`openrc.sh` file, source it, and validate that
 your trove client works: ::
@@ -314,17 +293,17 @@ your trove client works: ::
     $ trove --version
     1.0.9
 
-For information about supported features and how to work with an existing
-database service installation, see these
-`slides <http://www.slideshare.net/hastexo/hands-on-trove-database-as-a-service-in-openstack-33588994>`_.
+For information about supported features and how to work with an
+existing database service installation, see
+`Database as a Service in OpenStack <http://www.slideshare.net/hastexo/hands-on-trove-database-as-a-service-in-openstack-33588994>`_.
 
 Next steps
 ~~~~~~~~~~
 
-You should now be fairly confident working with Block Storage volumes. For
-information about other calls, see the volume documentation for your SDK or
-try one of these tutorial steps:
+You should now be fairly confident working with Block Storage volumes.
+For information about other calls, see the volume documentation for
+your SDK. Or, try one of these tutorial steps:
 
-* :doc:`/orchestration`: to automatically orchestrate the application
-* :doc:`/networking`: to learn about more complex networking
-* :doc:`/advice`: for advice for developers new to operations
+* :doc:`/orchestration`: Automatically orchestrate your application.
+* :doc:`/networking`: Learn about complex networking.
+* :doc:`/advice`: Get advice about operations.
