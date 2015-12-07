@@ -1,0 +1,11 @@
+{
+    "user": {
+        "host": "%",
+        "name": "userA",
+        "databases": [
+            {
+        "name": "myDB"
+            }
+        ]
+    }
+}

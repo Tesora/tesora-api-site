@@ -104,6 +104,17 @@
             <wadl:resource
             href="../wadls/databases-api/xsd/dbaas.wadl#name">
                 <wadl:method href="#deleteUser"/>
+                <wadl:method href="#getUserDetails"/>
+                <wadl:method href="#updateUserAttributes"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#user_databases">
+                <wadl:method href="#grantUserAccess"/>
+                <wadl:method href="#showUserAccess"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#dbName">
+                <wadl:method href="#revokeUserAccess"/>
             </wadl:resource>
         </wadl:resources>
     </section>
