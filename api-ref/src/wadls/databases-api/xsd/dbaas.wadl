@@ -127,11 +127,26 @@
                                    type="xsd:string">
                                    <wadl:doc
                                    xmlns="http://docbook.org/ns/docbook"
-                                   xml:lang="EN"><para>The name for
-                                   the
-                                   user.</para></wadl:doc>
+                                   xml:lang="EN"><para>The name of
+                                   the user.</para></wadl:doc>
                                 </param>
                                 <method href="#deleteUser"/>
+                                <method href="#updateUserAttributes"/>
+                                <method href="#getUserDetails"/>
+                                <resource id="user_databases" path="databases">
+                                    <method href="#grantUserAccess"/>
+                                    <method href="#showUserAccess"/>
+                                    <resource id="dbName" path="{dbName}">                                    
+                                        <param name="dbName" style="template"
+                                        type="xsd:string">
+                                        <wadl:doc
+                                            xmlns="http://docbook.org/ns/docbook"
+                                            xml:lang="EN"><para>The name of
+                                                the database.</para></wadl:doc>
+                                        </param>
+                                        <method href="#revokeUserAccess"/>                                        
+                                    </resource>
+                                </resource>
                             </resource>
                         </resource>
                         <resource id="root" path="root">
@@ -2653,6 +2668,232 @@
                     xml:lang="EN">
                     <xsdxt:code
                         href="samples/db-delete-backup-response-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </response> &getFaults;
+    </method>
+    <method name="GET" id="getUserDetails">
+        <wadl:doc xml:lang="EN" title="Show user details"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Shows details about the user, including name,
+                database(s), and optionally host.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-show-user-details-request-json-http.txt"/>
+                </wadl:doc>
+                <param name="host" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Host of the user.
+                        </para>
+                    </wadl:doc>
+                </param>               
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-show-user-details-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-show-user-details-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="PUT" id="updateUserAttributes">
+        <wadl:doc xml:lang="EN" title="Update user attributes"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Updates user attributes, including name, password,
+                and/or host.
+            </para>
+            <para>
+                You must specify at least one of the optional
+                parameters.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-update-user-attributes-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-update-user-attributes-request.json"/>
+                </wadl:doc>
+                <param name="host" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Host of the user.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="new_name" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            New name of the user.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="new_password" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            New password of the user.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="new_host" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            New host of the user.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-update-user-attributes-response-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="PUT" id="grantUserAccess">
+        <wadl:doc xml:lang="EN" title="Grant user access"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Grants a user access to one or more databases,
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-grant-user-access-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-grant-user-access-request.json"/>
+                </wadl:doc>
+                <param name="databases" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            List of databases to give the user access to.
+                        </para>
+                    </wadl:doc>
+                </param>                
+                <param name="host" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Host of the user.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-grant-user-access-response-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="showUserAccess">
+        <wadl:doc xml:lang="EN" title="Show user access"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Lists the databases the specified user has access to.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-show-user-access-request-json-http.txt"/>
+                </wadl:doc>
+                <param name="host" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Host of the user.
+                        </para>
+                    </wadl:doc>
+                </param>               
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-show-user-access-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-show-user-access-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="DELETE" id="revokeUserAccess">
+        <wadl:doc xml:lang="EN" title="Revoke user access"
+            xmlns="http://docbook.org/ns/docbook"><para
+                role="shortdesc">Revokes user access to a specified database.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-revoke-user-access-request-json-http.txt"/>
+                </wadl:doc>
+                <param name="host" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Host of the user.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202"/> &commonFaults; <response status="422"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-revoke-user-access-response-json-http.txt"/>
                 </wadl:doc>
             </representation>
         </response> &getFaults;
