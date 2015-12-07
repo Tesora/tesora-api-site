@@ -19,15 +19,15 @@
                     <resource id="os-flavor-manage" path="os-flavor-manage">
                         <method href="#create-flavors"/>
                         <resource path="{flavor_id}" id="flavor_id">
-                             &flavorIdRequestParameter;
-                            <method href="#delete-flavors"/>
+                             &flavor_idTemplateParameter;
+                            <method href="#deleteFlavor"/>
                         </resource>
                     </resource>
                 </resource>
             </resource>
         </resource>
     </resources>
-    <method name="POST" id="create-flavors">
+    <method name="POST" id="createFlavor">
         <wadl:doc xml:lang="EN" title="Create flavor"
             xmlns="http://docbook.org/ns/docbook">
             <para role="shortdesc">Creates a flavor.</para>
@@ -36,35 +36,26 @@
             <representation mediaType="application/json">
                 <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/flavor-manage/flavor-create-post-req.json"
+                        href="../api_samples/os-flavor-manage/flavor-create-post-req.json"
                     />
                 </wadl:doc>
             </representation>
         </request>
-        <response status="201">
+        <response status="200">
             <representation mediaType="application/json">
                 <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/flavor-manage/flavor-create-post-resp.json"
+                        href="../api_samples/os-flavor-manage/flavor-create-post-resp.json"
                     />
                 </wadl:doc>
             </representation>
         </response>
     </method>
-    <method name="DELETE" id="delete-flavors">
+    <method name="DELETE" id="deleteFlavor">
         <wadl:doc xml:lang="EN" title="Delete flavor"
             xmlns="http://docbook.org/ns/docbook">
             <para role="shortdesc">Deletes a flavor.</para>
         </wadl:doc>
-        <request>
-            <representation mediaType="application/json">
-                <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook">
-                    <xsdxt:code
-                        href="../api_samples/flavor-manage/flavor-create-post-req.json"
-                    />
-                </wadl:doc>
-            </representation>
-        </request>
-        <response status="204"/>
+        <response status="202"/>
     </method>
 </application>

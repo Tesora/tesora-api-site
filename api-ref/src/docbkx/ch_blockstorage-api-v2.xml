@@ -76,7 +76,7 @@
                 </tr>
                 <tr>
                     <td><para>available</para></td>
-                    <td><para>The volume is ready to be attached to an
+                    <td><para>The volume is ready to attach to an
                         instance.</para></td>
                 </tr>
                 <tr>
@@ -137,6 +137,10 @@
                 <wadl:method href="#getVolume"/>
                 <wadl:method href="#updateVolume"/>
                 <wadl:method href="#deleteVolume"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/volume-api/src/v2/volume-api-v2.wadl#volume-metadata">
+                <wadl:method href="#showVolumeMetadata"/>
+                <wadl:method href="#updateVolumeMetadata"/>
             </wadl:resource>
         </wadl:resources>
     </section>
@@ -228,7 +232,7 @@
                     </td>
                     <td>
                         <para>
-                            The backup is ready to be restored to a volume.
+                            The backup is ready to restore to a volume.
                         </para>
                     </td>
                 </tr>
@@ -444,7 +448,7 @@
                     </td>
                     <td>
                         <para>
-                            The snapshot is ready to be used.
+                            The snapshot is ready to use.
                         </para>
                     </td>
                 </tr>
@@ -490,13 +494,13 @@
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource href="../wadls/volume-api/src/v2/volume-api-v2.wadl#snapshots">
                 <wadl:method href="#createSnapshot"/>
-                <wadl:method href="#getSnapshotsSimple"/>
+                <wadl:method href="#listSnapshots"/>
             </wadl:resource>
             <wadl:resource href="../wadls/volume-api/src/v2/volume-api-v2.wadl#detail-snapshot">
-                <wadl:method href="#getSnapshotsDetail"/>
+                <wadl:method href="#listSnapshotsDetail"/>
             </wadl:resource>
             <wadl:resource href="../wadls/volume-api/src/v2/volume-api-v2.wadl#snapshot_id">
-                <wadl:method href="#getSnapshot"/>
+                <wadl:method href="#showSnapshot"/>
                 <wadl:method href="#updateSnapshot"/>
                 <wadl:method href="#deleteSnapshot"/>
             </wadl:resource>
