@@ -252,6 +252,22 @@
                         <method href="#deleteBackup"/>
                     </resource>
                 </resource>
+                <resource id="clusters" path="clusters">
+                    <method href="#createCluster"/>
+                    <method href="#listClusters"/>
+                    <resource id="clusterId" path="{clusterId}">
+                        <param name="clusterId" style="template"
+                            type="xsd:string">
+                            <wadl:doc
+                                xmlns="http://docbook.org/ns/docbook"
+                                xml:lang="EN"><para>The ID or name of
+                                    the cluster.</para>
+                            </wadl:doc>
+                        </param>
+                        <method href="#showClusterDetails"/>
+                        <method href="#deleteCluster"/>                        
+                    </resource>                    
+                </resource>
            </resource>
         </resource>
     </resources>
@@ -2531,7 +2547,7 @@
             </para>
             <para>
                 For each backup, this operation lists the backup's
-                name, size, status, datasatore, parent (if any), and ID
+                name, ID, size, status, datasatore, parent (if any), and ID
                 of the instance it is backing up..
             </para>
         </wadl:doc>
@@ -2555,6 +2571,9 @@
                     required="false">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
+                        <para>
+                            Set marker to an ID of a backup.
+                        </para>
                         <para>
                             Begin displaying the results for IDs greater than the specified
                             marker. When used with <code>limit</code>, set this to the last
@@ -2894,6 +2913,206 @@
                     xml:lang="EN">
                     <xsdxt:code
                         href="samples/db-revoke-user-access-response-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </response> &getFaults;
+    </method>
+    <method name="POST" id="createCluster">
+        <wadl:doc xml:lang="EN" title="Create cluster"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Creates a cluster.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-create-cluster-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-create-cluster-request.json"/>
+                </wadl:doc>
+                <param name="name" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name of the cluster.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="datastore" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name or ID of the datastore to use for the cluster.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="datastore_version" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Name or ID of the datastore verrsion to use for the cluster.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="instance" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            An <code>instance</code> to include in the replication set you are creating.
+                            Specify this parameter multiple times to create multiple instances.
+                        </para>
+                        <para>
+                            This parameter takes the following option/value pairs:
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para><code>flavor</code> Flavor name or ID.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>volume</code> Disk size in GB.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>nic</code> Network ID.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>v4-fixed-ip</code> IPv4r fixed address.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>port-id</code> Port ID.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>availability_zone</code> AZ hint for Nova.</para>
+                            </listitem>                            
+                        </itemizedlist>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-create-cluster-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-create-cluster-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="listClusters">
+        <wadl:doc xml:lang="EN" title="List clusters"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Lists all clusters.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-clusters-request-json-http.txt"/>
+                </wadl:doc>
+                <param name="limit" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Return up to N number of clusters.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="marker" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            Set marker to an ID of a cluster.
+                        </para>
+                        <para>
+                            Begin displaying the results for IDs greater than the specified
+                            marker. When used with <code>limit</code>, set this to the last
+                            ID displayed in the previous run.
+                        </para>
+                    </wadl:doc>
+                </param>                
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-clusters-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-list-clusters-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="showClusterDetails">
+        <wadl:doc xml:lang="EN" title="Show cluster details"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Shows details about a cluster.
+            </para>
+            <para>
+                This includes information about the instances in the cluster.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-cluster-detail-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json"
+                element="dbaas:DatabaseInstance">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-cluster-detail-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-cluster-detail-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="DELETE" id="deleteCluster">
+        <wadl:doc xml:lang="EN" title="Delete cluster"
+            xmlns="http://docbook.org/ns/docbook"><para
+                role="shortdesc">Deletes a cluster.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-cluster-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="202"/> &commonFaults; <response status="422"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-cluster-response-json-http.txt"/>
                 </wadl:doc>
             </representation>
         </response> &getFaults;

@@ -183,4 +183,19 @@
             </wadl:resource>
         </wadl:resources>
     </section>
+    <section xml:id="clusters">
+        <title>Clusters (clusters)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#clusters">
+                <wadl:method href="#createCluster"/>
+                <wadl:method href="#listClusters"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#clusterId">
+                <wadl:method href="#showClusterDetails"/>
+                <wadl:method href="#deleteCluster"/>                
+            </wadl:resource>            
+        </wadl:resources>
+    </section>
 </chapter>
