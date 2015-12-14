@@ -1,0 +1,128 @@
+{
+    "cluster": {
+        "instances": [
+            {
+                "status": "BUILD",
+                "name": "cluster1-rs1-2",
+                "links": [
+                    {
+                        "href": "https://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/instances/2f10209a-ed6d-4150-b4e6-74aab6c2f6e7",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "https://dbaas-controller:8779/instances/2f10209a-ed6d-4150-b4e6-74aab6c2f6e7",
+                        "rel": "bookmark"
+                    }
+                ],
+                "volume": {
+                    "size": 5
+                },
+                "shard_id": "0bb4688b-e1ca-4191-a604-0661d50be7f9",
+                "flavor": {
+                    "id": "6",
+                    "links": [
+                        {
+                            "href": "https://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/flavors/6",
+                            "rel": "self"
+                        },
+                        {
+                            "href": "https://dbaas-controller:8779/flavors/6",
+                            "rel": "bookmark"
+                        }
+                    ]
+                },
+                "type": "member",
+                "id": "2f10209a-ed6d-4150-b4e6-74aab6c2f6e7"
+            },
+            {
+                "status": "BUILD",
+                "name": "cluster1-rs1-3",
+                "links": [
+                    {
+                        "href": "https://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/instances/309ec076-119c-4abb-a267-037f7578517e",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "https://dbaas-controller:8779/instances/309ec076-119c-4abb-a267-037f7578517e",
+                        "rel": "bookmark"
+                    }
+                ],
+                "volume": {
+                    "size": 5
+                },
+                "shard_id": "0bb4688b-e1ca-4191-a604-0661d50be7f9",
+                "flavor": {
+                    "id": "6",
+                    "links": [
+                        {
+                            "href": "https://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/flavors/6",
+                            "rel": "self"
+                        },
+                        {
+                            "href": "https://dbaas-controller:8779/flavors/6",
+                            "rel": "bookmark"
+                        }
+                    ]
+                },
+                "type": "member",
+                "id": "309ec076-119c-4abb-a267-037f7578517e"
+            },
+            {
+                "status": "BUILD",
+                "name": "cluster1-rs1-1",
+                "links": [
+                    {
+                        "href": "https://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/instances/58cb74fe-c404-41c2-904c-e1ac2ee39f3d",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "https://dbaas-controller:8779/instances/58cb74fe-c404-41c2-904c-e1ac2ee39f3d",
+                        "rel": "bookmark"
+                    }
+                ],
+                "volume": {
+                    "size": 5
+                },
+                "shard_id": "0bb4688b-e1ca-4191-a604-0661d50be7f9",
+                "flavor": {
+                    "id": "6",
+                    "links": [
+                        {
+                            "href": "https://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/flavors/6",
+                            "rel": "self"
+                        },
+                        {
+                            "href": "https://dbaas-controller:8779/flavors/6",
+                            "rel": "bookmark"
+                        }
+                    ]
+                },
+                "type": "member",
+                "id": "58cb74fe-c404-41c2-904c-e1ac2ee39f3d"
+            }
+        ],
+        "updated": "2015-12-08T20:43:21",
+        "task": {
+            "description": "Building the initial cluster.",
+            "id": 2,
+            "name": "BUILDING"
+        },
+        "name": "cluster1",
+        "links": [
+            {
+                "href": "https://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/clusters/9ca6f614-9ad1-41e8-8988-508e0e31d6fa",
+                "rel": "self"
+            },
+            {
+                "href": "https://dbaas-controller:8779/clusters/9ca6f614-9ad1-41e8-8988-508e0e31d6fa",
+                "rel": "bookmark"
+            }
+        ],
+        "created": "2015-12-08T20:43:21",
+        "datastore": {
+            "version": "3.0",
+            "type": "mongodb"
+        },
+        "id": "9ca6f614-9ad1-41e8-8988-508e0e31d6fa"
+    }
+}

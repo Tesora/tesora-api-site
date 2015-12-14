@@ -1,0 +1,29 @@
+{
+    "cluster": {
+        "instances": [
+            {
+                "volume": {
+                    "size": "5"
+                },
+                "flavorRef": "6"
+            },
+            {
+                "volume": {
+                    "size": "5"
+                },
+                "flavorRef": "6"
+            },
+            {
+                "volume": {
+                    "size": "5"
+                },
+                "flavorRef": "6"
+            }
+        ],
+        "datastore": {
+            "version": "3.0",
+            "type": "mongodb"
+        },
+        "name": "cluster1"
+    }
+}
