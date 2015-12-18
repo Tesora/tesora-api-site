@@ -198,4 +198,30 @@
             </wadl:resource>
         </wadl:resources>
     </section>
+    <section xml:id="security-groups">
+        <title>Security groups (security-groups)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#security-groups">
+                <wadl:method href="#listSecurityGroups"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#secGroupId">
+                <wadl:method href="#showSecGroupDetails"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <section xml:id="security-group-rules">
+        <title>Security group rules (security-group-rules)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#security-group-rules">
+                <wadl:method href="#addSecGroupRule"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#ruleId">
+                <wadl:method href="#deleteSecGroupRule"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
 </chapter>

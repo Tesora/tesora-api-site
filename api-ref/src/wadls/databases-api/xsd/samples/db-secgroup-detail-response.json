@@ -1,0 +1,39 @@
+{
+    "security_group": {
+        "instance_id": "71b2d486-8701-4ad0-9bc0-8136cfd910ca",
+        "updated": "2015-12-16T18:09:28",
+        "name": "SecGroup_71b2d486-8701-4ad0-9bc0-8136cfd910ca",
+        "links": [
+            {
+                "href": "http://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/security-groups/10",
+                "rel": "self"
+            }
+        ],
+        "created": "2015-12-10T15:40:48",
+        "rules": [
+            {
+                "to_port": 27017,
+                "cidr": "0.0.0.0/0",
+                "from_port": 27017,
+                "protocol": "tcp",
+                "id": "24"
+            },
+            {
+                "to_port": 22,
+                "cidr": "0.0.0.0/0",
+                "from_port": 22,
+                "protocol": "tcp",
+                "id": "25"
+            },
+            {
+                "to_port": 2500,
+                "cidr": "0.0.0.0/0",
+                "from_port": 2500,
+                "protocol": "tcp",
+                "id": "29"
+            }
+        ],
+        "id": "10",
+        "description": "Security Group for 71b2d486-8701-4ad0-9bc0-8136cfd910ca"
+    }
+}
