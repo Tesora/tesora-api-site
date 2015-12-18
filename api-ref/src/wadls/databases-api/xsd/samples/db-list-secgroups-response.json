@@ -1,0 +1,189 @@
+{
+    "security_groups": [
+        {
+            "instance_id": "71b2d486-8701-4ad0-9bc0-8136cfd910ca",
+            "updated": "2015-12-16T18:09:28",
+            "name": "SecGroup_71b2d486-8701-4ad0-9bc0-8136cfd910ca",
+            "links": [
+                {
+                    "href": "http://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/security-groups/10",
+                    "rel": "self"
+                }
+            ],
+            "created": "2015-12-10T15:40:48",
+            "rules": [
+                {
+                    "to_port": 27017,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 27017,
+                    "protocol": "tcp",
+                    "id": "24"
+                },
+                {
+                    "to_port": 22,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 22,
+                    "protocol": "tcp",
+                    "id": "25"
+                },
+                {
+                    "to_port": 2500,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 2500,
+                    "protocol": "tcp",
+                    "id": "29"
+                }
+            ],
+            "id": "10",
+            "description": "Security Group for 71b2d486-8701-4ad0-9bc0-8136cfd910ca"
+        },
+        {
+            "instance_id": "5a9b3781-6ac9-40e4-afcf-a05e192d779a",
+            "updated": "2015-12-10T15:40:48",
+            "name": "SecGroup_5a9b3781-6ac9-40e4-afcf-a05e192d779a",
+            "links": [
+                {
+                    "href": "http://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/security-groups/11",
+                    "rel": "self"
+                }
+            ],
+            "created": "2015-12-10T15:40:48",
+            "rules": [
+                {
+                    "to_port": 27017,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 27017,
+                    "protocol": "tcp",
+                    "id": "26"
+                },
+                {
+                    "to_port": 22,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 22,
+                    "protocol": "tcp",
+                    "id": "27"
+                },
+                {
+                    "to_port": 2500,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 2500,
+                    "protocol": "tcp",
+                    "id": "31"
+                }
+            ],
+            "id": "11",
+            "description": "Security Group for 5a9b3781-6ac9-40e4-afcf-a05e192d779a"
+        },
+        {
+            "instance_id": "6b0dfa90-6381-4ed8-a3f7-0435fc18af1f",
+            "updated": "2015-12-10T15:40:48",
+            "name": "SecGroup_6b0dfa90-6381-4ed8-a3f7-0435fc18af1f",
+            "links": [
+                {
+                    "href": "http://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/security-groups/12",
+                    "rel": "self"
+                }
+            ],
+            "created": "2015-12-10T15:40:48",
+            "rules": [
+                {
+                    "to_port": 27017,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 27017,
+                    "protocol": "tcp",
+                    "id": "28"
+                },
+                {
+                    "to_port": 22,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 22,
+                    "protocol": "tcp",
+                    "id": "30"
+                },
+                {
+                    "to_port": 2500,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 2500,
+                    "protocol": "tcp",
+                    "id": "33"
+                }
+            ],
+            "id": "12",
+            "description": "Security Group for 6b0dfa90-6381-4ed8-a3f7-0435fc18af1f"
+        },
+        {
+            "instance_id": "f3cc2fbf-d8b5-4188-9e20-b061f3c4aaeb",
+            "updated": "2015-12-10T15:40:48",
+            "name": "SecGroup_f3cc2fbf-d8b5-4188-9e20-b061f3c4aaeb",
+            "links": [
+                {
+                    "href": "http://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/security-groups/13",
+                    "rel": "self"
+                }
+            ],
+            "created": "2015-12-10T15:40:48",
+            "rules": [
+                {
+                    "to_port": 27017,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 27017,
+                    "protocol": "tcp",
+                    "id": "32"
+                },
+                {
+                    "to_port": 22,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 22,
+                    "protocol": "tcp",
+                    "id": "34"
+                },
+                {
+                    "to_port": 2500,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 2500,
+                    "protocol": "tcp",
+                    "id": "38"
+                }
+            ],
+            "id": "13",
+            "description": "Security Group for f3cc2fbf-d8b5-4188-9e20-b061f3c4aaeb"
+        },
+        {
+            "instance_id": "8cfcf84d-887a-4494-8002-18f287e57a8b",
+            "updated": "2015-12-10T15:40:49",
+            "name": "SecGroup_8cfcf84d-887a-4494-8002-18f287e57a8b",
+            "links": [
+                {
+                    "href": "http://dbaas-controller:8779/v1.0/e745e9fa0ddc47cab507200f0a784db1/security-groups/14",
+                    "rel": "self"
+                }
+            ],
+            "created": "2015-12-10T15:40:49",
+            "rules": [
+                {
+                    "to_port": 27017,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 27017,
+                    "protocol": "tcp",
+                    "id": "35"
+                },
+                {
+                    "to_port": 22,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 22,
+                    "protocol": "tcp",
+                    "id": "36"
+                },
+                {
+                    "to_port": 2500,
+                    "cidr": "0.0.0.0/0",
+                    "from_port": 2500,
+                    "protocol": "tcp",
+                    "id": "37"
+                }
+            ],
+            "id": "14",
+            "description": "Security Group for 8cfcf84d-887a-4494-8002-18f287e57a8b"
+        }
+    ]
+}

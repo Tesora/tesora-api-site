@@ -268,6 +268,35 @@
                         <method href="#deleteCluster"/>
                     </resource>
                 </resource>
+                <resource id="security-groups" path="security-groups">
+                    <method href="#listSecurityGroups"/>
+                    <resource id="secGroupId" path="{secGroupId}">
+                        <param name="secGroupId" style="template"
+                            type="xsd:string">
+                            <wadl:doc
+                                xmlns="http://docbook.org/ns/docbook"
+                                xml:lang="EN"><para>The ID of
+                                    the security group.</para>
+                            </wadl:doc>
+                        </param>
+                        <method href="#showSecGroupDetails"/>                   
+                    </resource>
+                </resource>
+                <resource id="security-group-rules" path="security-group-rules">
+                    <method href="#addSecGroupRule"/>
+                    <resource id="ruleId" path="{ruleId}">
+                        <param name="ruleId" style="template"
+                            type="xsd:string">
+                            <wadl:doc
+                                xmlns="http://docbook.org/ns/docbook"
+                                xml:lang="EN"><para>The ID of
+                                    the rule. You can get this ID by using
+                                    show security group details operation.</para>
+                            </wadl:doc>
+                        </param>
+                        <method href="#deleteSecGroupRule"/>                   
+                    </resource>
+                </resource>
            </resource>
         </resource>
     </resources>
@@ -3113,6 +3142,141 @@
                     xml:lang="EN">
                     <xsdxt:code
                         href="samples/db-delete-cluster-response-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </response> &getFaults;
+    </method>
+    <method name="GET" id="listSecurityGroups">
+        <wadl:doc xml:lang="EN" title="List security groups"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Lists all security groups.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-secgroups-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-secgroups-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-list-secgroups-response.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="showSecGroupDetails">
+        <wadl:doc xml:lang="EN" title="Show security group details"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Shows details about a security group.
+            </para>
+            <para>
+                This includes its rules and the instance it applies to.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-secgroup-detail-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json"
+                element="dbaas:DatabaseInstance">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-secgroup-detail-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-secgroup-detail-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="POST" id="addSecGroupRule">
+        <wadl:doc xml:lang="EN" title="Add rule to security group"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Adds a rule to a security group.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-add-secgroup-rule-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-add-secgroup-rule-request.json"/>
+                </wadl:doc>
+                <param name="security_group" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            ID of the security group.
+                        </para>
+                    </wadl:doc>
+                </param>                
+                <param name="cidr" style="plain" type="xsd:string"
+                    required="true">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            CIDR address of the rule.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="201">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-add-secgroup-rule-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-add-secgroup-rule-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="DELETE" id="deleteSecGroupRule">
+        <wadl:doc xml:lang="EN" title="Delete security group rule"
+            xmlns="http://docbook.org/ns/docbook"><para
+                role="shortdesc">Deletes a security group rule.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-secgroup-rule-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="204"/> &commonFaults; <response status="422"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-secgroup-rule-response-json-http.txt"/>
                 </wadl:doc>
             </representation>
         </response> &getFaults;
