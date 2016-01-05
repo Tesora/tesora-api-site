@@ -68,6 +68,7 @@
                         <method href="#detachConfigGroup"/>
                         <method href="#deleteInstance"/>
                         <method href="#detachReplica"/>
+                        <method href="#update"/>
                         <resource id="log" path="log">
                             <method href="#listLogs"/>
                             <method href="#publishLog"/>
@@ -171,17 +172,18 @@
                     </resource>
                 </resource>
                 <resource id="datastores" path="datastores">
+                    <method href="#listDatastores"/>
                     <resource id="datastore_name" path="{datastore_name}">
                         <param name="datastore_name" style="template"
                             type="xsd:uuid">
                             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                                 xml:lang="EN">
                                 <para>
-                                    The name of the data store whose versions
-                                    you want to list.
+                                    The name of a data store.
                                 </para>
                             </wadl:doc>
                         </param>
+                        <method href="#showDatastoreDetails"/>
                         <resource id="datastore_versions" path="versions">
                             <method href="#listDatastoreVersions"/>
                         </resource>
@@ -197,6 +199,7 @@
                                    </para>
                                </wadl:doc>
                             </param>
+                            <method href="#showVersionDetails"/>
                             <resource id="parameters" path="parameters">
                                 <method href="#listParameters"/>
                                 <resource id="parameter_name" path="{parameter_name}">
@@ -297,7 +300,10 @@
                         <method href="#deleteSecGroupRule"/>
                     </resource>
                 </resource>
-           </resource>
+                <resource id="limits" path="limits">
+                    <method href="#listLimits"/>
+                </resource>
+            </resource>
         </resource>
     </resources>
     <!--<resource_type id="ExtensionList">
@@ -3280,5 +3286,219 @@
                 </wadl:doc>
             </representation>
         </response> &getFaults;
+    </method>
+    <method name="PATCH" id="update">
+        <wadl:doc xml:lang="EN" title="Update instance"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Updates various characteristics of an instance
+                including its name, configuration group, and
+                whether or not it is replicating from a replication
+                source.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-patch-instance-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-patch-instance-request.json"/>
+                </wadl:doc>
+                <param name="name" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            New name you want to give the instance.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="configuration" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            To attach a configuration group to this instance,
+                            set <code>configuration</code> to the ID of the
+                            configuration group.
+                        </para>
+                        <para>
+                            To remove a configuration group from this instance,
+                            set <code>configuration</code> to null.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="replica_of" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            To detach this instance from its replication source,
+                            set both <code>replica_of</code> and <code>slave_of</code>
+                            to null.
+                        </para>
+                    </wadl:doc>
+                </param>
+                <param name="slave_of" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            To detach this instance from its replication source,
+                            set both <code>replica_of</code> and <code>slave_of</code>
+                            to null.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-patch-instance-response-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="listDatastores">
+        <wadl:doc xml:lang="EN" title="List datastores"
+            xmlns="http://docbook.org/ns/docbook"><para
+                role="shortdesc">Lists information for all available
+                datastores.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-datastores-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-datastores-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-datastores-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="showDatastoreDetails">
+        <wadl:doc xml:lang="EN" title="Show datastore details"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Shows details about a datastore.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-datastore-detail-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json"
+                element="dbaas:DatabaseInstance">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-datastore-detail-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-datastore-detail-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="showVersionDetails">
+        <wadl:doc xml:lang="EN" title="Show datastore version details"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Displays details for a data store version.
+            </para>
+            <para>
+                This operation accepts either the version name or
+                the version ID. If you use the version name, you
+                also need to specify the name of the datastore.
+                If you use the version ID, you do not need to
+                specify the name of the datastore.
+            </para>
+            <para>
+                Sample endpoint where datastore is mysql and version name is 5.6:
+            </para>
+            <para>
+                <code>/v1.0/1234/datastores/mysql/versions/5.6</code>
+            </para>
+            <para>
+                Sample endpoint where datastore is mysql and version ID is 5678:
+            </para>
+            <para>
+                <code>/v1.0/1234/datastores/versions/5678</code>
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-show-version-details-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-show-version-details-response-json-http.txt"
+                    />
+                    <xsdxt:code
+                        href="samples/db-show-version-details.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="listLimits">
+        <wadl:doc xml:lang="EN" title="List limits"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Lists the limits for a tenant.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-limits-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-limits-response-json-http.txt"
+                    />
+                    <xsdxt:code
+                        href="samples/db-list-limits.json"
+                    />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
     </method>
 </application>
