@@ -1,0 +1,36 @@
+{
+    "datastore": {
+        "default_version": "1bbc327f-db60-4f14-bcc8-24b70489cad5",
+        "versions": [
+            {
+                "name": "5.6",
+                "links": [
+                    {
+                        "href": "https://dbaas-controller:8779/v1.0/fc69767a33194f60afd8a2a6bed20a50/datastores/versions/1bbc327f-db60-4f14-bcc8-24b70489cad5",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "https://dbaas-controller:8779/datastores/versions/1bbc327f-db60-4f14-bcc8-24b70489cad5",
+                        "rel": "bookmark"
+                    }
+                ],
+                "image": "ddbe6a89-aa39-4217-8f15-f78e69bf58af",
+                "active": 1,
+                "packages": "",
+                "id": "1bbc327f-db60-4f14-bcc8-24b70489cad5"
+            }
+        ],
+        "id": "deb5a0ff-6284-4c86-abf4-ca34ec19dd1c",
+        "links": [
+            {
+                "href": "https://dbaas-controller:8779/v1.0/fc69767a33194f60afd8a2a6bed20a50/datastores/deb5a0ff-6284-4c86-abf4-ca34ec19dd1c",
+                "rel": "self"
+            },
+            {
+                "href": "https://dbaas-controller:8779/datastores/deb5a0ff-6284-4c86-abf4-ca34ec19dd1c",
+                "rel": "bookmark"
+            }
+        ],
+        "name": "mysql"
+    }
+}

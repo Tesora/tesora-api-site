@@ -37,6 +37,7 @@
                 <wadl:method href="#attachConfigGroup"/>
                 <wadl:method href="#detachConfigGroup"/>
                 <wadl:method href="#detachReplica"/>
+                <wadl:method href="#update"/>
             </wadl:resource>
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#log">
@@ -134,8 +135,19 @@
     <section xml:id="datastores">
         <title>Datastores (datastores)</title>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#datastores">
+                <wadl:method href="#listDatastores"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#datastore_name">
+                <wadl:method href="#showDatastoreDetails"/>
+            </wadl:resource>          
             <wadl:resource href="../wadls/databases-api/xsd/dbaas.wadl#datastore_versions">
                 <wadl:method href="#listDatastoreVersions"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/databases-api/xsd/dbaas.wadl#datastore_version_id">
+                <wadl:method href="#showVersionDetails"/>
             </wadl:resource>
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#parameters">
@@ -221,6 +233,15 @@
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#ruleId">
                 <wadl:method href="#deleteSecGroupRule"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <section xml:id="limits">
+        <title>Limits (limits)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#limits">
+                <wadl:method href="#listLimits"/>
             </wadl:resource>
         </wadl:resources>
     </section>
