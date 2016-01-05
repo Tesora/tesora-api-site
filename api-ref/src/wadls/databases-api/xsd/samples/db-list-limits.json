@@ -1,0 +1,55 @@
+{
+    "limits": [
+        {
+            "max_backups": 50,
+            "verb": "ABSOLUTE",
+            "max_volumes": 1000,
+            "max_instances": 50
+        },
+        {
+            "regex": ".*",
+            "nextAvailable": "2015-12-23T16:31:48Z",
+            "uri": "*",
+            "value": 200,
+            "verb": "POST",
+            "remaining": 199,
+            "unit": "MINUTE"
+        },
+        {
+            "regex": ".*",
+            "nextAvailable": "2015-12-28T17:28:11Z",
+            "uri": "*",
+            "value": 200,
+            "verb": "PUT",
+            "remaining": 200,
+            "unit": "MINUTE"
+        },
+        {
+            "regex": ".*",
+            "nextAvailable": "2015-12-28T17:28:11Z",
+            "uri": "*",
+            "value": 200,
+            "verb": "DELETE",
+            "remaining": 200,
+            "unit": "MINUTE"
+        },
+        {
+            "regex": ".*",
+            "nextAvailable": "2015-12-28T17:28:11Z",
+            "uri": "*",
+            "value": 200,
+            "verb": "GET",
+            "remaining": 199,
+            "unit": "MINUTE"
+        },
+        {
+            "regex": "^/mgmt",
+            "nextAvailable": "2015-12-28T17:28:11Z",
+            "uri": "*/mgmt",
+            "value": 200,
+            "verb": "POST",
+            "remaining": 200,
+            "unit": "MINUTE"
+        }
+    ]
+}
