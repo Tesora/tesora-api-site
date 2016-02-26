@@ -177,7 +177,7 @@ To interact with the cloud, you must also have
 
 .. only:: shade
 
-     `a recent version of shade library installed <https://pypi.python.org/pypi/shade/0.11.0>`_.
+     `a recent version of shade library installed <http://docs.openstack.org/infra/shade/installation.html>`_.
 
      .. note:: Before proceeding, install the latest version of shade.
 
@@ -1435,7 +1435,7 @@ information, the flavor ID, and image ID.
 
 .. only:: shade
 
-    .. literalinclude:: ../samples/libcloud/getting_started.py
+    .. literalinclude:: ../samples/shade/getting_started.py
        :language: python
 
 .. only:: openstacksdk

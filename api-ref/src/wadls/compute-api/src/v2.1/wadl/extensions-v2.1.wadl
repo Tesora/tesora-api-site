@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) 2012-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2012-2016 OpenStack Foundation, All Rights Reserved -->
 <!--*******************************************************-->
 <!--         Import Common XML Entities                    -->
 <!--                                                       -->
@@ -25,22 +25,11 @@
         <!--*******************************************************-->
         <resource id="version" type="#VersionDetails" path="//v2.1">
             <resource id="tenant_id" path="{tenant_id}">
-                &tenantIdRequestParameter;
+                &tenant_idTemplateParameter;
                 <resource id="extensions" type="#ExtensionList"
                     path="extensions">
                     <resource id="extension" path="{alias}">
-                        <param xmlns="http://wadl.dev.java.net/2009/02"
-                            name="alias" style="template"
-                            type="xsd:string">
-                            <wadl:doc
-                                xmlns="http://docbook.org/ns/docbook"
-                                xml:lang="EN">
-                                <para>
-                                    An alias for the extension name. For example,
-                                    <code>os-server-external-events</code>.
-                                </para>
-                            </wadl:doc>
-                        </param>
+                        &aliasTemplateParameter;
                         <method href="#showExtension"/>
                     </resource>
                 </resource>
@@ -102,9 +91,9 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code
-                        href="../api_samples/extensions/extensions-list-resp.json"
+                        href="../samples/extensions/extensions-list-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
         <response status="203"/>
@@ -120,9 +109,9 @@
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
-                    <xsdxt:code href="../api_samples/extensions/extensions-get-resp.json"
+                    <xsdxt:code href="../samples/extensions/extension-show-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
         <response status="203"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) 2014-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2014-2016 OpenStack Foundation, All Rights Reserved -->
 <!DOCTYPE application [
     <!ENTITY % common  SYSTEM "../common.ent">
     %common;
@@ -14,12 +14,12 @@
     <resources base="https://servers.api.openstack.com" xml:id="os-certificates-v2.1">
         <resource id="v2.1" path="//v2.1">
             <resource id="tenant_id" path="{tenant_id}">
-                &tenantIdRequestParameter;
+                &tenant_idTemplateParameter;
                 <resource id="os-certificates" path="os-certificates">
-                    <method href="#createcertificate"/>
+                    <method href="#createCertificate"/>
                     <resource id="certificate_id" path="{certificate_id}">
-                        &certificateIdRequestParameter;
-                        <method href="#returncertificate"/>
+                        &certificate_idTemplateParameter;
+                        <method href="#showCertificate"/>
                     </resource>
                 </resource>
             </resource>
@@ -28,7 +28,7 @@
     <!-- *******************************************************-->
     <!--             OS Certificate                 -->
     <!--*******************************************************-->
-    <method name="POST" id="createcertificate">
+    <method name="POST" id="createCertificate">
         <wadl:doc xml:lang="EN" title="Create certificate"
             xmlns="http://docbook.org/ns/docbook">
             <para role="shortdesc">Creates a certificate.</para>
@@ -37,13 +37,13 @@
             <representation mediaType="application/json">
                 <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-certificates/certificate-create-resp.json"
+                        href="../samples/os-certificates/certificate-create-response.json"
                     />
                 </wadl:doc>
             </representation>
         </response>
     </method>
-    <method name="GET" id="returncertificate">
+    <method name="GET" id="showCertificate">
         <wadl:doc xml:lang="EN" title="Show certificate details"
             xmlns="http://docbook.org/ns/docbook">
             <para role="shortdesc">Shows details for a certificate.</para>
@@ -52,9 +52,9 @@
             <representation mediaType="application/json">
                 <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-certificates/certificate-get-root-resp.json"
+                        href="../samples/os-certificates/certificate-show-root-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
     </method>

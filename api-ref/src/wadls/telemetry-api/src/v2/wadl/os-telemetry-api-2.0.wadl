@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) 2012-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2012-2016 OpenStack Foundation, All Rights Reserved -->
 <!--*******************************************************-->
 <!--         Import Common XML Entities                    -->
 <!--                                                       -->
@@ -547,7 +547,7 @@
                     xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code href="../samples/samples-list-response.json"/>
                 </wadl:doc>
-                &meterSamplesParameters; &userIdParameter;
+                &meterSamplesParameters;
             </representation>
             <representation mediaType="application/xml">
                 <wadl:doc xml:lang="EN"
@@ -570,7 +570,7 @@
                     xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code href="../samples/sample-show-response.json"/>
                 </wadl:doc>
-                &meterSamplesParameters; &userIdParameter;
+                &meterSamplesParameters;
             </representation>
             <representation mediaType="application/xml">
                 <wadl:doc xml:lang="EN"

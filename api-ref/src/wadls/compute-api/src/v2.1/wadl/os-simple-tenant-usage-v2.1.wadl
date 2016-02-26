@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) 2014-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2014-2016 OpenStack Foundation, All Rights Reserved -->
 <!DOCTYPE application [
     <!ENTITY % common  SYSTEM "../common.ent">
     %common;
@@ -18,19 +18,19 @@
                 &tenantIdRequestParameter;
                 <resource id="os-simple-tenant-usage"
                     path="os-simple-tenant-usage">
-                    <method href="#retrievetenantusage"/>
+                    <method href="#listUsageInformation"/>
                     <resource id="tenant_id2" path="{tenant_id}">
                         &tenantIdRequestParameter;
-                        <method href="#retrievetenantall"/>
+                        <method href="#listUsageSpecific"/>
                     </resource>
                 </resource>
             </resource>
         </resource>
     </resources>
-    <!-- *******************************************************-->
-    <!--      OS Simple tenant usage            -->
+    <!-- ******************************************************-->
+    <!--      OS Simple tenant usage                           -->
     <!--*******************************************************-->
-    <method name="GET" id="retrievetenantusage">
+    <method name="GET" id="listUsageInformation">
         <wadl:doc xml:lang="EN"
             title="List tenant usage for all tenants"
             xmlns="http://docbook.org/ns/docbook">
@@ -42,13 +42,13 @@
             <representation mediaType="application/json">
                 <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-simple-tenant-usage/simple-tenant-usage-get.json"
+                        href="../samples/os-simple-tenant-usage/simple-tenant-usage-show-general-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
     </method>
-    <method name="GET" id="retrievetenantall">
+    <method name="GET" id="listUsageSpecific">
         <wadl:doc xml:lang="EN" title="Show usage details for tenant"
             xmlns="http://docbook.org/ns/docbook">
             <para role="shortdesc">Shows usage details for a
@@ -59,9 +59,9 @@
             <representation mediaType="application/json">
                 <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-simple-tenant-usage/simple-tenant-usage-get-specific.json"
+                        href="../samples/os-simple-tenant-usage/simple-tenant-usage-show-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
     </method>

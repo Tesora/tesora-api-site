@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) 2012-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2012-2016 OpenStack Foundation, All Rights Reserved -->
 <!DOCTYPE application [
-    <!ENTITY % common  SYSTEM "../common.ent">
+    <!ENTITY % common  SYSTEM "../../common.ent">
     %common;
     <!ENTITY % common_project  SYSTEM "../../../../common_project.ent">
     %common_project;
@@ -13,7 +13,7 @@
     xmlns:json="http://json-schema.org/schema#"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xmlns:xlink="http://www.w3.org/1999/xlink">
-    <resources base="https://volume.example.com/" xml:id="volume-v2">
+    <resources base="https://volume.example.com/" xml:id="volumes-v2">
         <resource id="versions" path="//">
             <method href="#listVersions"/>
         </resource>
@@ -29,7 +29,7 @@
                 </resource>
                 <resource id="volumes" path="volumes">
                     <method href="#createVolume"/>
-                    <method href="#listVolumesSimple"/>
+                    <method href="#listVolumes"/>
                     <method href="#createVolumeTypeAccessExt"/>
                     <resource path="detail" id="detail">
                         <method href="#listVolumesDetail"/>
@@ -41,6 +41,7 @@
                         <method href="#deleteVolume"/>
                         <resource path="metadata"
                             id="volume-metadata">
+                            <method href="#createVolumeMetadata"/>
                             <method href="#showVolumeMetadata"/>
                             <method href="#updateVolumeMetadata"/>
                         </resource>
@@ -62,7 +63,7 @@
                     <method href="#createVolumeType"/>
                     <resource path="{volume_type_id}"
                         id="volume_type_id">
-                        &vol_type_idTemplateParameter;
+                        &volume_type_idTemplateParameter;
                         <method href="#updateVolumeType"/>
                         <method href="#updateVolumeTypeExtraSpecs"/>
                         <method href="#showVolumeType"/>
@@ -141,7 +142,7 @@
                 Shows details for Block Storage API v2.
             </para>
         </wadl:doc>
-        <response status="200">
+        <response status="200 203">
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
@@ -156,22 +157,17 @@
                         href="../samples/volumes/version-show-response.xml"/>
                 </wadl:doc>
                 <param name="location" style="plain" type="xsd:anyURI"
-                    required="true"
+                    required="true" xmlns="http://wadl.dev.java.net/2009/02"
                     path="/common:version/atom:link[@rel='self']/@href">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN" title="Location"><para>Full URL
-                            to a service or server.</para></wadl:doc>
+                        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+                        xml:lang="EN" title="Location">
+                        <para>
+                            Full URL to a service or server.
+                        </para>
+                    </wadl:doc>
                     <link resource_type="#VersionDetails" rel="self"/>
                 </param>
-            </representation>
-        </response>
-        <response status="203">
-            <representation mediaType="application/json">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN">
-                    <xsdxt:code
-                        href="../samples/volumes/version-v2-show-response.json"/>
-                </wadl:doc>
             </representation>
         </response>
     </method>
@@ -277,7 +273,8 @@
                     <xsdxt:code
                         href="../samples/volumes/volume-create-request.xml"/>
                 </wadl:doc>
-                &createVolumeParameters;
+                &volumeObjectParameter;
+                &createVolumeRequestParameters;
             </representation>
         </request>
         <response status="202">
@@ -296,11 +293,12 @@
                         href="../samples/volumes/volume-create-response.xml"
                     />
                 </wadl:doc>
-                &volumeDetailResponseParameters;
+                &volumeObjectParameter;
+                &volumeResponseParameters;
             </representation>
         </response>
     </method>
-    <method name="GET" id="listVolumesSimple">
+    <method name="GET" id="listVolumes">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="List volumes">
             <para role="shortdesc">
@@ -310,7 +308,7 @@
         </wadl:doc>
         <request>
             <representation mediaType="application/xml">
-                &volumeListQueryParameters;
+                &sortQueryParameter;
                 &limitMarkerReqParameter;
             </representation>
         </request>
@@ -330,6 +328,7 @@
                         href="../samples/volumes/volumes-list-response.json"
                     />
                 </wadl:doc>
+                &volumesObjectParameter;
                 &volumeSimpleResponseParameters;
             </representation>
         </response>
@@ -344,7 +343,7 @@
         </wadl:doc>
         <request>
             <representation mediaType="application/xml">
-                &volumeListQueryParameters;
+                &sortQueryParameter;
                 &limitMarkerReqParameter;
             </representation>
         </request>
@@ -364,6 +363,7 @@
                         href="../samples/volumes/volumes-list-detailed-response.json"
                     />
                 </wadl:doc>
+                &volumesObjectParameter;
                 &volumeDetailResponseParameters;
             </representation>
         </response>
@@ -397,6 +397,7 @@
                     <xsdxt:code
                         href="../samples/volumes/volume-show-response.json"/>
                 </wadl:doc>
+                &volumeObjectParameter;
                 &volumeDetailResponseParameters;
             </representation>
         </response>
@@ -415,6 +416,8 @@
                     <xsdxt:code
                         href="../samples/volumes/volume-update-request.xml"/>
                 </wadl:doc>
+                &volumeObjectParameter;
+                &updateVolumeRequestParameters;
             </representation>
             <representation mediaType="application/json"
                 json:ref="http://docs.openstack.org/api/openstack-block-storage/v2/volumes#put/volume">
@@ -442,7 +445,8 @@
                         href="../samples/volumes/volume-update-response.json"
                     />
                 </wadl:doc>
-                &volumeDetailResponseParameters;
+                &volumeObjectParameter;
+                &volumeResponseParameters;
             </representation>
         </response>
     </method>
@@ -479,14 +483,49 @@
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem><para>If volume status remains in <code>deleting</code> or
-                becomes <code>error_deleting</code> the request failed. Ensure you meet
-                the preconditions then investigate the storage back end.</para></listitem>
+                <listitem>
+                    <para>
+                        If volume status remains in <code>deleting</code> or
+                        becomes <code>error_deleting</code> the request
+                        failed. Ensure you meet the preconditions then
+                        investigate the storage back end.
+                    </para>
+                </listitem>
                 <listitem><para>The volume managed by OpenStack Block Storage
                           is not deleted from the storage system.</para></listitem>
             </itemizedlist>
         </wadl:doc>
         <response status="202"/>
+    </method>
+    <method name="POST" id="createVolumeMetadata">
+        <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
+            title="Create volume metadata">
+            <para role="shortdesc">
+                Creates metadata for a volume.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/volumes/volume-metadata-create-request.json"
+                    />
+                </wadl:doc>
+                &metadataObjectParameter;
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/volumes/volume-metadata-create-response.json"
+                    />
+                </wadl:doc>
+                &metadataObjectParameter;
+            </representation>
+        </response>
     </method>
     <method name="GET" id="showVolumeMetadata">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -511,6 +550,7 @@
                         href="../samples/volumes/volume-metadata-show-response.json"
                     />
                 </wadl:doc>
+                &metadataObjectParameter;
             </representation>
         </response>
     </method>
@@ -519,6 +559,10 @@
             title="Update volume metadata">
             <para role="shortdesc">
                 Updates metadata for a volume.
+            </para>
+            <para>
+                Replaces metadata items that match keys. Does not modify
+                items that are not in the request.
             </para>
         </wadl:doc>
         <request>
@@ -537,6 +581,7 @@
                         href="../samples/volumes/volume-metadata-update-request.json"
                     />
                 </wadl:doc>
+                &metadataObjectParameter;
             </representation>
         </request>
         <response status="200">
@@ -555,6 +600,7 @@
                         href="../samples/volumes/volume-metadata-update-response.json"
                     />
                 </wadl:doc>
+                &metadataObjectParameter;
             </representation>
         </response>
     </method>
@@ -733,8 +779,8 @@
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Attach volume to server">
             <para role="shortdesc">
-                Attaches a volume to a server. Specify the <code>os-
-                attach</code> action in the request body.
+                Attaches a volume to a server. Specify the <code>os-attach</code> action in the
+                request body.
             </para>
             <para>Preconditions</para>
             <itemizedlist>
@@ -789,7 +835,7 @@
                         href="../samples/volumes/volume-unmanage-request.json"
                     />
                 </wadl:doc>
-                &unmanageVolumeReqParameters;
+                &os-unmanageRequestParameter;
             </representation>
         </request>
         <response status="202"/>
@@ -814,7 +860,7 @@
                         href="../samples/volumes/volume-force-detach-request.json"
                     />
                 </wadl:doc>
-                &forcedetachVolumeReqParameters;
+                &os-force_detachRequestParameter;
             </representation>
         </request>
         <response status="202"/>
@@ -836,7 +882,7 @@
                         href="../samples/volumes/volume-replica-promote-request.json"
                     />
                 </wadl:doc>
-                &promotereplicaVolumeReqParameters;
+                &os-promote-replicaRequestParameter;
             </representation>
         </request>
         <response status="202"/>
@@ -846,7 +892,7 @@
             title="Reenable volume replication">
             <para role="shortdesc">
                 Re-enables replication of a volume. Specify the
-                <code>volume-replica-reenable-</code> action in the request body.
+                <code>volume-replica-reenable</code> action in the request body.
             </para>
         </wadl:doc>
         <request>
@@ -857,7 +903,7 @@
                         href="../samples/volumes/volume-replica-reenable-request.json"
                     />
                 </wadl:doc>
-                &reenablereplicaVolumeReqParameters;
+                &os-reenable-replicaRequestParameter;
             </representation>
         </request>
         <response status="202"/>
@@ -869,6 +915,13 @@
                 Lists volume types.
             </para>
         </wadl:doc>
+        <request>
+            <representation mediaType="application/xml">
+                &sort_keyQueryParameter;
+                &sort_dirQueryParameter;
+                &limitMarkerReqParameter;
+            </representation>
+        </request>
         <response status="200">
             <representation mediaType="application/xml">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -885,8 +938,8 @@
                         href="../samples/volumes/volume-types-list-response.json"
                     />
                 </wadl:doc>
-                &VolTypeResponseParameters;
-                &VolTypesParameter;
+                &volume_typesObjectParameter;
+                &volume_typeResponseParameters;
             </representation>
         </response>
     </method>
@@ -926,6 +979,7 @@
                     <xsdxt:code href="../samples/volumes/volume-type-create-request.json"
                     />
                 </wadl:doc>
+                &volume_typeObjectParameter;
             </representation>
         </request>
         <response status="200">
@@ -940,7 +994,8 @@
                     xml:lang="EN">
                     <xsdxt:code href="../samples/volumes/volume-type-show-response.json"/>
                 </wadl:doc>
-                &VolTypeResponseParameters;
+                &volume_typeObjectParameter;
+                &volume_typeResponseParameters;
             </representation>
         </response>
     </method>
@@ -952,13 +1007,13 @@
             </para>
             <para>
                 To create an environment with multiple-storage back ends, you
-                must specify a volume type. Block Storage volume back ends are
-                spawned as children to <code>cinder-volume</code>, and they
-                are keyed from a unique queue. They are named
+                must specify a volume type. The API spawns Block Storage volume
+                back ends as children to <code>cinder-volume</code>, and keys
+                them from a unique queue. The API names the back ends
                 <code>cinder-volume.HOST.BACKEND</code>. For example,
-                <code>cinder-volume.ubuntu.lvmdriver</code>. When a volume is created, the
-                scheduler chooses an appropriate back end to handle the
-                request based on the volume type.
+                <code>cinder-volume.ubuntu.lvmdriver</code>. When you create a
+                volume, the scheduler chooses an appropriate back end for the
+                volume type to handle the request.
             </para>
             <para>
                 For information about how to use volume types to create
@@ -995,7 +1050,7 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="../samples/volumes/volume-type-show-response.json"/>
                 </wadl:doc>
-                &VolTypeResponseParameters;
+                &volume_typeResponseParameters;
             </representation>
         </response>
     </method>
@@ -1047,7 +1102,7 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="../samples/volumes/volume-type-show-response.json"/>
                 </wadl:doc>
-                &VolTypeResponseParameters;
+                &volume_typeResponseParameters;
             </representation>
         </response>
     </method>
@@ -1074,7 +1129,7 @@
                         href="../samples/volumes/volume-type-show-response.xml"
                     />
                 </wadl:doc>
-                &VolTypeResponseParameters;
+                &volume_typeResponseParameters;
             </representation>
         </response>
     </method>
@@ -1133,17 +1188,8 @@
                         </para>
                     </wadl:doc>
                 </param>
-                <param name="new_size" style="plain"
-                    type="xsd:int" required="false">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            The size for the volume, in gibibytes (GiB).
-                        </para>
-                    </wadl:doc>
-                </param>
                 <param name="volume_id" style="plain" type="csapi:UUID"
-                    required="false">
+                    required="true">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
                         <para>
@@ -1189,7 +1235,7 @@
                         href="../samples/volumes/snapshot-create-response.json"
                     />
                 </wadl:doc>
-                &snapshotResponseParameter;
+                &snapshotObjectParameter;
                 &snapshotResponseParameters;
             </representation>
         </response>
@@ -1204,7 +1250,8 @@
         </wadl:doc>
         <request>
             <representation mediaType="application/xml">
-                &sortReqParameter;
+                &sort_keyQueryParameter;
+                &sort_dirQueryParameter;
                 &limitMarkerReqParameter;
             </representation>
         </request>
@@ -1224,7 +1271,6 @@
                         href="../samples/volumes/snapshots-list-response.json"
                     />
                 </wadl:doc>
-                &snapshotsResponseParameter;
                 &snapshotResponseParameters;
             </representation>
         </response>
@@ -1253,9 +1299,8 @@
                         href="../samples/volumes/snapshots-list-detailed-response.json"
                     />
                 </wadl:doc>
-                &snapshotsResponseParameter;
                 &snapshotResponseParameters;
-                <param name="os-extended-snapshot-attributes:progress" style="plain" type="int"
+                <param name="os-extended-snapshot-attributes:progress" style="plain" type="xsd:int"
                     required="true">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
@@ -1299,9 +1344,9 @@
                         href="../samples/volumes/snapshot-show-response.json"
                     />
                 </wadl:doc>
-                &snapshotResponseParameter;
+                &snapshotObjectParameter;
                 &snapshotResponseParameters;
-                <param name="os-extended-snapshot-attributes:progress" style="plain" type="int"
+                <param name="os-extended-snapshot-attributes:progress" style="plain" type="xsd:int"
                     required="true">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
@@ -1376,15 +1421,6 @@
                         </para>
                     </wadl:doc>
                 </param>
-                <param name="new_size" style="plain"
-                    type="xsd:int" required="false">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            The size for the volume, in gibibytes (GiB).
-                        </para>
-                    </wadl:doc>
-                </param>
             </representation>
         </request>
         <response status="200">
@@ -1403,7 +1439,7 @@
                         href="../samples/volumes/snapshot-update-response.json"
                     />
                 </wadl:doc>
-                &snapshotResponseParameter;
+                &snapshotObjectParameter;
                 &snapshotResponseParameters;
             </representation>
         </response>
@@ -1440,9 +1476,9 @@
                         href="../samples/volumes/snapshot-metadata-show-response.json"
                     />
                 </wadl:doc>
-                &snapshotResponseParameter;
+                &snapshotObjectParameter;
                 &snapshotResponseParameters;
-                <param name="os-extended-snapshot-attributes:progress" style="plain" type="int"
+                <param name="os-extended-snapshot-attributes:progress" style="plain" type="xsd:int"
                     required="true">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
@@ -1469,6 +1505,10 @@
             <para role="shortdesc">
                 Updates metadata for a snapshot.
             </para>
+            <para>
+                Replaces metadata items that match keys. Does not modify
+                items that are not in the request.
+            </para>
         </wadl:doc>
         <request>
             <representation mediaType="application/xml">
@@ -1487,16 +1527,7 @@
                         href="../samples/volumes/snapshot-metadata-update-request.json"
                     />
                 </wadl:doc>
-                <param xmlns="http://wadl.dev.java.net/2009/02" name="metadata" style="plain" type="dict"
-                  required="true">
-                  <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xmlns:wadl="http://wadl.dev.java.net/2009/02"
-                    xml:lang="EN">
-                    <para>
-                      One or more metadata key and value pairs for the snapshot.
-                    </para>
-                  </wadl:doc>
-                </param>
+                &snapshot-metadataRequestParameter;
             </representation>
         </request>
         <response status="200">
@@ -1540,8 +1571,9 @@
                     <xsdxt:code
                         href="../samples/volumes/volume-create-request.xml"/>
                 </wadl:doc>
-                &createVolumeParameters;
-                &isPublicParameterReq;
+                &volumeObjectParameter;
+                &createVolumeRequestParameters;
+                &is_publicRequestParameter;
             </representation>
         </request>
         <response status="202">
@@ -1560,8 +1592,9 @@
                         href="../samples/volumes/volume-create-response.xml"
                     />
                 </wadl:doc>
-                &createVolumeResponseParameters;
-                &isPublicParameterResp;
+                &volumeObjectParameter;
+                &volumeResponseParameters;
+                &is_publicResponseParameter;
             </representation>
         </response>
     </method>
