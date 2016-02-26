@@ -5,7 +5,7 @@
     <!ENTITY % common_project  SYSTEM "../../../../common_project.ent">
     %common_project;
 ]>
-<!-- (C) 2013-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2013-2016 OpenStack Foundation, All Rights Reserved -->
 <application xmlns="http://wadl.dev.java.net/2009/02"
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -15,12 +15,12 @@
         xml:id="os-agents-v2.1">
         <resource id="version" type="#VersionDetails" path="//v2.1">
             <resource id="tenant_id" path="{tenant_id}">
-                &tenantIdRequestParameter;
+                &tenant_idTemplateParameter;
                 <resource id="os-agents" path="os-agents">
                     <method href="#agentbuild"/>
                     <method href="#listbuilds"/>
-                    <resource path="{id}" id="agent_id">
-                        &agentBuildIdRequestParameter;
+                    <resource path="{agent_build_id}" id="agent_id">
+                        &agent-build_idTemplateParameter;
                         <method href="#updatebuild"/>
                     </resource>
                     <method href="#deleteBuild"/>
@@ -40,7 +40,7 @@
                 <wadl:doc xml:lang="EN"
                     xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-agents/agent-post-req.json"
+                        href="../samples/os-agents/agent-create-request.json"
                     />
                 </wadl:doc>
             </representation>
@@ -50,7 +50,7 @@
                 <wadl:doc xml:lang="EN"
                     xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-agents/agent-post-resp.json"
+                        href="../samples/os-agents/agent-create-response.json"
                     />
                 </wadl:doc>
             </representation>
@@ -66,9 +66,9 @@
                 <wadl:doc xml:lang="EN"
                     xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-agents/agents-get-resp.json"
+                        href="../samples/os-agents/agents-list-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
     </method>
@@ -82,7 +82,7 @@
                 <wadl:doc xml:lang="EN"
                     xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-agents/agent-update-put-req.json"
+                        href="../samples/os-agents/agent-update-request.json"
                     />
                 </wadl:doc>
                 <param name="url" style="plain"
@@ -112,7 +112,7 @@
                 <wadl:doc xml:lang="EN"
                     xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:code
-                        href="../api_samples/os-agents/agent-update-put-resp.json"
+                        href="../samples/os-agents/agent-update-response.json"
                     />
                 </wadl:doc>
                 <param name="agent_id" style="plain"

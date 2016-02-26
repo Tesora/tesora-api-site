@@ -5,7 +5,7 @@
    <!ENTITY % common_project  SYSTEM "../../../../common_project.ent">
    %common_project;
 ]>
-<!-- (C) 2013-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2013-2016 OpenStack Foundation, All Rights Reserved -->
 <application xmlns="http://wadl.dev.java.net/2009/02"
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -15,13 +15,13 @@
    <resources base="https://servers.api.openstack.com" xml:id="os-compute-v2.1">
       <resource id="v2.1" path="//v2.1">
          <resource id="tenant_id" path="{tenant_id}">
-            &tenantIdRequestParameter;
+            &tenant_idTemplateParameter;
             <resource id="Servers" type="#ServerList" path="servers">
                <method href="#createServer"/>
                <resource id="server_detail" path="detail" type="#DetailServerList"/>
                   <resource id="server_id" path="{server_id}">
-                     &serverIdRequestParameter;
-                     <method href="#getServer"/>
+                     &server_idTemplateParameter;
+                     <method href="#showServer"/>
                      <method href="#updateServer"/>
                      <method href="#deleteServer"/>
                   </resource>
@@ -37,7 +37,7 @@
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Detail server list">
          <para>A detailed server list.</para>
       </wadl:doc>
-      <method href="#listDetailServers"/>
+      <method href="#listServersDetailed"/>
    </resource_type>
    <resource_type id="ServerList">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Server list">
@@ -86,7 +86,7 @@
             Include the <code>key_name</code> parameter in the create request
             body to add a keypair to the server when you create it.
             To create a keypair, make a <link
-            xlink:href="http://developer.openstack.org/api-ref-compute-v2-ext.html#createKeypair">
+            xlink:href="http://developer.openstack.org/api-ref-compute-v2.1.html#createKeypair">
             create keypair</link> request.
          </para>
          <para>Preconditions</para>
@@ -152,7 +152,7 @@
       <request>
          <representation element="csapi:server" mediaType="application/json">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-               <xsdxt:code href="../api_samples/servers/server-post-req.json"/>
+               <xsdxt:code href="../samples/servers/server-create-request.json"/>
             </wadl:doc>
             &serverCreateParameters; &diskConfigRequestParameter;
          </representation>
@@ -160,18 +160,13 @@
       <response status="202">
          <representation mediaType="application/json" element="csapi:server">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-               <xsdxt:code href="../api_samples/servers/server-post-resp.json"/>
+               <xsdxt:code href="../samples/servers/server-create-response.json"/>
             </wadl:doc>
-           <!--  &serverCreateResponseParameters; -->
+            &serverCreateResponseParameters;
          </representation>
-      </response>
-      <response status="422">
-         <representation mediaType="application/json"/>
-         <representation mediaType="application/xml" element="csapi:UnprocessableEntity"/>
       </response>
       <!-- All other common faults except build in progress -->
       &commonFaults; &getFaults;
-      &postPutFaults; &buildFaults;
    </method>
    <method name="GET" id="listServers">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List servers">
@@ -306,20 +301,20 @@
             &limitMarkerReqParameter;
          </representation>
       </request>
-      <response status="200 203">
+      <response status="200">
          <representation mediaType="application/json">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-               <xsdxt:code href="../api_samples/servers/servers-list-resp.json"/>
+               <xsdxt:code href="../samples/servers/servers-list-response.json"/>
             </wadl:doc>
-            &x-compute-request-idHeader;
+            &x-openstack-request-idHeader;
          </representation>
       </response>
       <!-- Common Faults and Header --> &commonFaults;
    </method>
-   <method name="GET" id="listDetailServers">
+   <method name="GET" id="listServersDetailed">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
          title="List details for servers">
-         <para role="shortdesc">Lists details for all servers.</para>
+         <para role="shortdesc">Lists all servers with details.</para>
          <para>
             The compute provisioning algorithm has an anti-affinity property
             that attempts to spread customer VMs across hosts. Under certain
@@ -344,7 +339,7 @@
          </para>
          <para>
             To hide <code>addresses</code> information for instances in a
-            specified state, set the
+            certain state, set the
             <code>osapi_hide_server_address_states</code> configuration
             option. Set this option to a valid VM state in the
             <code>nova.conf</code> configuration file.
@@ -362,10 +357,10 @@
             &limitMarkerReqParameter;
          </representation>
       </request>
-      <response status="200 203">
+      <response status="200">
          <representation mediaType="application/json">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-               <xsdxt:code href="../api_samples/servers/servers-details-resp.json"/>
+               <xsdxt:code href="../samples/servers/servers-list-details-response.json"/>
             </wadl:doc>
             &serversObjectParameter;
             &serverResponseParameters;
@@ -374,8 +369,8 @@
       <!-- Common Faults -->
       &commonFaults;
    </method>
-   <method name="GET" id="getServer">
-      <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Get server details">
+   <method name="GET" id="showServer">
+      <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Show server details">
          <para role="shortdesc">
             Shows details for a server.
          </para>
@@ -395,7 +390,7 @@
          </para>
          <para>
             To hide <code>addresses</code> information for instances in a
-            specified state, set the
+            certain state, set the
             <code>osapi_hide_server_address_states</code> configuration
             option. Set this option to a valid VM state in the
             <code>nova.conf</code> configuration file.
@@ -413,12 +408,12 @@
             </listitem>
          </itemizedlist>
       </wadl:doc>
-      <response status="200 203">
+      <response status="200">
          <representation mediaType="application/json">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-               <xsdxt:code href="../api_samples/servers/server-get-resp.json"/>
+               <xsdxt:code href="../samples/servers/server-show-response.json"/>
             </wadl:doc>
-            &x-compute-request-idHeader;
+            &x-openstack-request-idHeader;
             &serverObjectParameter;
             &serverResponseParameters;
          </representation>
@@ -433,44 +428,48 @@
             <listitem>
                <para>The server must exist.</para>
             </listitem>
+            <listitem>
+               <para>
+                 You can edit the <code>accessIPv4</code>, <code>accessIPv6</code>,
+                 <code>diskConfig</code> and <code>name</code> attributes.
+               </para>
+            </listitem>
          </itemizedlist>
       </wadl:doc>
       <request>
          <representation mediaType="application/json" element="csapi:server">
             <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
                title="Update server name: JSON request">
-               <xsdxt:code href="../api_samples/servers/server-put-req.json"/>
+               <xsdxt:code href="../samples/servers/server-update-request.json"/>
             </wadl:doc>
          </representation>
          <representation mediaType="application/json">
             <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
                title="Update server IP addresses: JSON request">
-               <xsdxt:code href="../api_samples/servers/server-put-req-ad.json"/>
+               <xsdxt:code href="../samples/servers/server-update-address-request.json"/>
             </wadl:doc>
          </representation>
          <representation mediaType="application/json">
             <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
                title="Update server OS-DCF:diskConfig parameter: JSON request">
-               <xsdxt:code href="../api_samples/all_extensions/server-put-req-diskconfig.json"/>
+               <xsdxt:code href="../samples/servers/server-update-diskconfig-request.json"/>
             </wadl:doc>
+            &serverCreateParameters;
+            &diskConfigRequestParameter;
          </representation>
       </request>
       <response status="200">
          <representation mediaType="application/json" element="csapi:server">
             <wadl:doc xml:lang="EN" title="Update server name: JSON response"
                xmlns="http://docbook.org/ns/docbook">
-               <xsdxt:code href="../api_samples/servers/server-put-resp.json"/>
+               <xsdxt:code href="../samples/servers/server-update-response.json"/>
             </wadl:doc>
-         </representation>
-         <representation mediaType="application/json">
-            <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
-               title="Update server IP addresses: JSON response">
-               <xsdxt:code href="../api_samples/servers/server-put-resp-ad.json"/>
-            </wadl:doc>
+            &serverObjectParameter;
+            &serverResponseParameters;
          </representation>
       </response>
-      <!-- Common, GET, POST/PUT, inProgress Faults-->
-      &commonFaults; &getFaults; &postPutFaults;
+      <!-- Common, GET, inProgress Faults-->
+      &commonFaults; &getFaults;
       &inProgressFault;
    </method>
    <method name="DELETE" id="deleteServer">

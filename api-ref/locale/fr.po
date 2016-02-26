@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-12-10 14:24+0000\n"
+"POT-Creation-Date: 2016-02-09 11:14+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,9 +21,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Zanata 3.7.3\n"
 "Language-Team: French\n"
-
-msgid "2010-2015"
-msgstr "2010-2015"
 
 msgid "2015"
 msgstr "2015"
@@ -42,13 +39,6 @@ msgstr ""
 msgid "<code>token</code>. The authentication token for Object Storage."
 msgstr ""
 "<code>token</code>. Le jeton d'authentification pour le Stockage d'Objet."
-
-msgid ""
-"<emphasis role=\"bold\">floatingip</emphasis>. An external IP address that "
-"is mapped to a port that is attached to an internal network."
-msgstr ""
-"<emphasis role=\"bold\">floatingip</emphasis>. Une addresse IP externe qui "
-"est mappée sur un port, lui-même attaché à un réseau interne."
 
 msgid ""
 "<emphasis role=\"bold\">router</emphasis>. A logical entity for forwarding "
@@ -80,48 +70,8 @@ msgstr ""
 "élimine la nécessité d'effectuer des contrôles d'accès post-authentification "
 "et politiques des recherches sur le côté récepteur."
 
-msgid ""
-"A trust is an OpenStack Identity extension that enables delegation and, "
-"optionally, impersonation through <code>keystone</code>. A trust extension "
-"defines a relationship between a trustor and trustee. A trustor is the user "
-"who delegates a limited set of their own rights to another user. A trustee "
-"is the user whose trust is being delegated to, for a limited time."
-msgstr ""
-"Une fiducie est une extension d'Identité OpenStack qui permet la délégation "
-"et, éventuellement, l'usurpation d'identité par <code> Keystone </ code>. "
-"Une extension de la fiducie définit une relation entre un fiduciant et "
-"fiduciaire. Un fiduciant c'est l'utilisateur qui délégue un ensemble limité "
-"de leurs propres droits à un autre utilisateur. Un fiduciaire est "
-"l'utilisateur à qui la fiducie est déléguée, pour un temps limité."
-
 msgid "A user creates a consumer."
 msgstr "Un utilisateur crée un consommateur. "
-
-msgid ""
-"A user is an Identity API user who delegates its roles and who authorizes "
-"request tokens. A consumer is a third-party application that uses OAuth to "
-"access a protected resource. An OAuth-derived token enables admin users to "
-"act on behalf of the authorizing user. A request token is a token that the "
-"consumer uses to get authorization from the user and exchanges with an OAuth "
-"verifier for an access token. The OAuth verifier is a required string that "
-"is provided with the corresponding request token in exchange for an access "
-"token. An access token is a token that the consumer uses to request Identity "
-"API tokens on behalf of the authorizing user instead of using the "
-"credentials for the user."
-msgstr ""
-"Un utilisateur est un utilisateur de l'API de Gestion des Identités qui "
-"délègue ses rôles et qui authorise les jetons de requête. un consommateur "
-"est une application tierce-partie qui utilise OAuth pour accéder à une "
-"ressource protégée. Un jeton dérivé OAuth permet aux utilisateurs "
-"administrateurs de se faire passer pour un utilisateur l'ayant autorisé. Un "
-"jeton de requête est un jeton que le consommateur utilise pour obtenir une "
-"autorisation de l'utilisateur et les échanges avec un vérificateur OAuth "
-"pour un jeton d'accès. Le vérificateur OAuth est une chaine de caractères "
-"requise qui est fournie avec le jeton de requête correspondant en échange "
-"d'un jeton d'accès. un jeton d'accès est un jeton que le consommateur "
-"utilise pour demander des jetons de l'API de Gestion des Identités de la "
-"part d'un utilisateur l'ayant autorisé au lieu d'utiliser les informations "
-"d'authentification pour l'utilisateur."
 
 msgid ""
 "A volume is a detachable block storage device similar to a USB hard drive. "
@@ -142,13 +92,6 @@ msgstr "Versions de l'API"
 msgid "Accounts"
 msgstr "Comptes"
 
-msgid ""
-"Administrators only. Performs actions on a server. Specify the action in the "
-"request body."
-msgstr ""
-"Administrateurs uniquement. Effectue des actions sur un serveur. Spécifie "
-"l'action dans le corps de la demande."
-
 msgid "Alarms"
 msgstr "Alarmes"
 
@@ -158,25 +101,6 @@ msgid ""
 msgstr ""
 "Une valeur limite absolue de <code> -1 </code> indique que la limite absolue "
 "pour l'article est infinie."
-
-msgid "An error has occurred with the backup."
-msgstr "Une erreur est survenue avec la sauvegarde."
-
-msgid "An error occurred during backup restoration to a volume."
-msgstr ""
-"Une erreur est survenue durant la sauvegarde de restauration d'un volume."
-
-msgid "An error occurred during snapshot creation."
-msgstr "Une erreur est survenue durant la création d'un instantané."
-
-msgid "An error occurred during snapshot deletion."
-msgstr "Une erreur est survenue durant la suppression d'un instantané."
-
-msgid "An error occurred during volume creation."
-msgstr "Une erreur est survenue durant la création du volume."
-
-msgid "An error occurred during volume deletion."
-msgstr "Une erreur est survenue durant la suppression du volume."
 
 msgid ""
 "An individual. The payload is encrypted with the long-term shared key that "
@@ -273,9 +197,6 @@ msgstr "Instances de base de données (instances)"
 msgid "Databases (databases)"
 msgstr "Bases de données (databases)"
 
-msgid "Datastores (datastores)"
-msgstr "Banques de données (banques de données)"
-
 msgid "Delegated authentication through OAuth occurs as follows:"
 msgstr ""
 "La délégation de l'authentification à travers OAuth est réalisée comme suit:"
@@ -288,12 +209,6 @@ msgstr "Domaines"
 
 msgid "ERROR"
 msgstr "ERROR"
-
-msgid "ERROR. An error has occurred with the volume."
-msgstr "Erreur. Une erreur est survenue avec le volume."
-
-msgid "ERROR_DELETING. There was an error deleting the volume."
-msgstr "SUPPRESSION_ERREUR. Il y a eu erreur supprimant le volume."
 
 msgid ""
 "Enables administrative users to define multiple physical bindings for an "
@@ -364,12 +279,6 @@ msgid "Gets an authentication token that permits access to the Compute API."
 msgstr ""
 "Obtient un jeton d'authentification qui permet l'accès à l'API Compute."
 
-msgid "Gets availability zone information."
-msgstr "Obtient des informations sur la zone de disponibilité."
-
-msgid "Gets the usage data for a server."
-msgstr "Obtient les données d'utilisation pour un serveur."
-
 msgid "Groups"
 msgstr "Groupes"
 
@@ -397,20 +306,11 @@ msgstr "Extensions API v3 Identité (courant)"
 msgid "Identity Admin API v2.0 (SUPPORTED)"
 msgstr "Identité Administrateur API v2.0 (prise en charge)"
 
-msgid "Image data"
-msgstr "Données d'image"
-
 msgid "Image metadata"
 msgstr "Métadonnées d'image"
 
-msgid "Image schemas"
-msgstr "Schémas d'images"
-
 msgid "Image service API v2 (CURRENT)"
 msgstr "API du service image v2 (COURANT)"
-
-msgid "Image tags"
-msgstr "Etiquettes d'image"
 
 msgid "Images"
 msgstr "Images"
@@ -431,9 +331,6 @@ msgstr "Tâches"
 msgid "Key Distribution Server (KDS) extension (OS-KDS)"
 msgstr "Extension Serveur Distribution Clé (CDC) (OS-CDC)"
 
-msgid "Layer-3 networking"
-msgstr "Gestion de réseau: couche 3 du modèle OSI"
-
 msgid "Limits"
 msgstr "Limites"
 
@@ -449,18 +346,8 @@ msgstr ""
 "Liste, crée, supprime, et modifie les spécifications additionnelles ou clés "
 "pour un type d'instance."
 
-msgid "Lists, creates, gets details for, updates, and deletes servers."
-msgstr ""
-"Liste, crée, obtient les détails pour, met à jour, et supprime les serveurs."
-
 msgid "Load balancer statuses"
 msgstr "Etats des load-balancers"
-
-msgid "Load-Balancer-as-a-Service (LBaaS) 1.0 (STABLE)"
-msgstr "Load-Balancer-as-a-Service (LBaaS) 1.0 (STABLE)"
-
-msgid "Manages physical hosts."
-msgstr "Gère les hôtes physiques."
 
 msgid ""
 "Manages the accounts, containers, and objects in the Object Storage system."
@@ -476,12 +363,6 @@ msgstr ""
 
 msgid "Members"
 msgstr "Membres"
-
-msgid "Metadata definition schemas"
-msgstr " Schémas de définition de métadonnées"
-
-msgid "Metering labels and rules"
-msgstr "Libellés et règles de comptage"
 
 msgid "Meters"
 msgstr "Mètres"
@@ -573,11 +454,6 @@ msgstr "PENDING_UPDATE"
 msgid "Passwords"
 msgstr "Mots de passe"
 
-msgid "Performs actions on a server. Specify the action in the request body."
-msgstr ""
-"Effectue des actions sur un serveur. Spécifiez l'action dans le corps de la "
-"demande."
-
 msgid ""
 "Performs non-lifecycle operations on the stack. Specify the action in the "
 "request body."
@@ -615,20 +491,8 @@ msgstr "Extension de jeux de quotas (os-quota-sets)"
 msgid "Quotas extension (quotas)"
 msgstr "Extension de gestion des Quotas (quotas)"
 
-msgid "Resource is being created."
-msgstr "La ressource est en train d'être créée. "
-
-msgid "Resource is being updated."
-msgstr "La ressource est en train d'être mise à jour."
-
-msgid "Resource is ready and active."
-msgstr "La ressource est prête et active. "
-
 msgid "Resources"
 msgstr "Ressources"
-
-msgid "Roles"
-msgstr "Rôles"
 
 msgid "Root certificates (os-certificates)"
 msgstr "Certificats racines (os-certificates)"
@@ -658,9 +522,6 @@ msgstr "Personnalité du serveur."
 
 msgid "Servers IPs (servers, ips)"
 msgstr "Serveurs IPs (serveurs, ips)"
-
-msgid "Servers admin actions (servers, action)"
-msgstr "Actions Serveurs d'administration (serveurs, action)"
 
 msgid "Servers diagnostics (servers, diagnostics)"
 msgstr "Diagnostic serveurs (serveurs, diagnostics)"
@@ -761,16 +622,6 @@ msgstr ""
 "une autre partie."
 
 msgid ""
-"The OS-INHERIT extension was extended in API v3.4 to allow inheritance from "
-"projects in addition to inheritance from domains. To access project "
-"inheritance, the Identity service server must run at least API v3.4."
-msgstr ""
-"L'extension OS-INHERIT a été étendu en API v3.4 pour permettre l'héritage "
-"des projets, en plus de l'héritage des domaines. Pour accéder à l'héritage "
-"du projet, le serveur de service d'identité doit fonctionner au moins API "
-"v3.4."
-
-msgid ""
 "The authorizing user receives the request token key from the consumer out-of-"
 "band."
 msgstr ""
@@ -805,13 +656,6 @@ msgid "The consumer uses the access token to request an Identity API token."
 msgstr ""
 "Le consommateur utilise le jeton d'accès pour demander un jeton de l'API de "
 "Gestion des Identités."
-
-msgid ""
-"The file injection might not occur until after the server is built and "
-"booted."
-msgstr ""
-"L'injection de fichier ne devrait pas pouvoir survenir avant que le serveur "
-"n'est été construit et n'ait booté."
 
 msgid ""
 "The maximum limit refers to the number of bytes in the decoded data and not "
@@ -908,15 +752,6 @@ msgstr ""
 "serveur, créer des images, assigner des métadonnées aux instances et images, "
 "créer des conteneurs et des objets, et mener à bien d'autres actions dans "
 "votre cloud OpenStack."
-
-msgid ""
-"Use this extension to create and manage virtual IP addresses (VIPs), pools, "
-"members of a pool, health monitors associated with a pool, and view status "
-"of a resource."
-msgstr ""
-"Utiliser cette extension pour créer et gérer des adresses IP virtuelles "
-"(VIPs), pools, membres de pool, moniteurs de suivi associés à un pool et "
-"voir le status d'une ressource. "
 
 msgid "Users"
 msgstr "Utilisateurs"

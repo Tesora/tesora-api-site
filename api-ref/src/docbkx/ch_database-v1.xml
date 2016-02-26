@@ -40,7 +40,7 @@
                 <wadl:method href="#listInstances"/>
             </wadl:resource>
             <wadl:resource
-            href="../wadls/databases-api/xsd/dbaas.wadl#instanceId">
+                href="../wadls/databases-api/xsd/dbaas.wadl#instanceId">
                 <wadl:method href="#showInstanceById"/>
                 <wadl:method href="#attachConfigGroup"/>
                 <wadl:method href="#detachConfigGroup"/>
@@ -131,10 +131,17 @@
             <wadl:resource href="../wadls/databases-api/xsd/dbaas.wadl#dbName">
                 <wadl:method href="#revokeUserAccess"/>
             </wadl:resource>
+            <wadl:resource href="../wadls/databases-api/xsd/dbaas.wadl#root-dbaas">
+                <wadl:method href="#createRoot"/>
+                <wadl:method href="#isRootEnabled"/>
+            </wadl:resource>
         </wadl:resources>
     </section>
     <section xml:id="flavors">
         <title>Flavors (flavors)</title>
+        <para>
+            Lists all flavors and shows details for a flavor, by ID.
+        </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#flavors">
@@ -176,9 +183,12 @@
                 <wadl:method href="#showParameterDetails"/>
             </wadl:resource>
        </wadl:resources>
-   </section>
+    </section>
     <section xml:id="configurations">
         <title>Configuration groups (configurations)</title>
+        <para>
+            Creates and lists all configuration groups.
+        </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#configurations">

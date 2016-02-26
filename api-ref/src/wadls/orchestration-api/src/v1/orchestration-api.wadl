@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) 2012-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2012-2016 OpenStack Foundation, All Rights Reserved -->
 <!-- Useful for describing APIs -->
 <!DOCTYPE application[
    <!ENTITY % common  SYSTEM "common.ent">
@@ -926,7 +926,7 @@
             </param>
          </representation>
       </request>
-      <response status="201"/>
+      <response status="200"/>
    </method>
    <method name="POST" id="stack_action_resume">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -952,7 +952,7 @@
             </param>
          </representation>
       </request>
-      <response status="201"/>
+      <response status="200"/>
    </method>
    <method name="POST" id="stack_action_cancel_update">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1481,6 +1481,15 @@
             Lists all available template versions.
          </para>
       </wadl:doc>
+      <response status="200">
+         <representation mediaType="application/json">
+            <wadl:doc xmlns="http://docbook.org/ns/docbook"
+               xmlns:wadl="http://wadl.dev.java.net/2009/02"
+               xml:lang="EN">
+               <xsdxt:code href="samples/template-versions-response.json"/>
+            </wadl:doc>
+         </representation>
+      </response>
       &commonFaults;
       &notFound;
       &intServerErr;
@@ -1514,7 +1523,7 @@
                   xml:lang="EN">
                   <para>
                      Filters the response by resource types by heat version.
-                     For example, <code>2015.1</code> or <code>5.0.0</code>.
+                     For example, <code>2016.1</code> or <code>5.0.0</code>.
                      Use this filter multiple times to filter by multiple
                      versions.
                   </para>
@@ -1896,16 +1905,20 @@
       &notFound;
    </method>
    <method name="GET" id="event_show">
-      <wadl:doc xmlns="http://docbook.org/ns/docbook"
-         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN"
+      <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
          title="Show event details">
          <para role="shortdesc">
             Shows details for an event.
          </para>
-         <xsdxt:code href="samples/event-show-response.json"/>
       </wadl:doc>
       <response status="200">
-         <representation mediaType="application/json"/>
+         <representation mediaType="application/json">
+            <wadl:doc xmlns="http://docbook.org/ns/docbook"
+               xmlns:wadl="http://wadl.dev.java.net/2009/02"
+               xml:lang="EN">
+               <xsdxt:code href="samples/event-show-response.json"/>
+            </wadl:doc>
+         </representation>
       </response>
    </method>
    <method name="GET" id="build_info_show">

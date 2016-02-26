@@ -31,6 +31,21 @@
 <!ENTITY limitMarkerReqParameter '
 &limitReqParameter;
 &markerReqParameter;'>
+<!ENTITY x-openstack-request-idHeader '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="x-openstack-request-id" style="header" required="false"
+   type="xsd:string">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+  <para>
+    A unique ID for tracking the request. The request ID associated with the
+    request appears in the log lines for that request. By default, the
+    middleware configuration ensures that the request ID appears in the log
+    files.
+  </para>
+</wadl:doc>
+</param>'>
 <!-- Timestamp entities           -->
 <!-- ISO 8601 request parameters  -->
 <!ENTITY before_timestamp-QueryParameter '
@@ -41,7 +56,7 @@
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
         <para>
-            The date and time before which to list usage audits.
+            Filters the response by the date and time before which to list usage audits.
         </para>
         <para>
             The date and time stamp format is <link
@@ -67,7 +82,7 @@
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
         <para>
-            The date and time when the image or server last changed status.
+            Filters the response by the date and time when the image or server last changed status.
         </para>
         <para>
             Use this query parameter to check for changes since a previous
@@ -114,7 +129,7 @@
               xmlns:wadl="http://wadl.dev.java.net/2009/02"
               xml:lang="EN">
         <para>
-            The date and time when the image or server was created.
+            Filters the response by the date and time when the resource was created.
         </para>
         <para>
             The date and time stamp format is <link
@@ -133,6 +148,34 @@
             is <code>null</code>.
         </para>
     </wadl:doc>
+</param>'>
+<!ENTITY sortQueryParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="sort"
+    style="query" required="false" type="xsd:string">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+        <para>
+            Sorts the response by one or more attribute and optional sort
+            direction combinations. A valid direction is <code>asc</code>
+            (ascending) or <code>desc</code> (descending). Default direction
+            is <code>asc</code> (ascending).
+        </para>
+        <para>
+            Specify the list as &lt;key&gt;[:&lt;direction&gt;].
+        </para>
+        <para>
+            For example, the following query parameters in the URI sort the
+            objects in the response by <code>name</code> in ascending order
+            and then by <code>status</code> in descending order:
+        </para>
+<programlisting language="json">GET /v2/images?sort=name:asc,status:desc</programlisting>
+        <para>
+            The following query parameters in the URI sort the objects in the
+            response by <code>name</code> in descending order and then by
+            <code>status</code> in ascending order.
+        </para>
+<programlisting language="json">GET /v2/images?sort=name:desc,status</programlisting>
+   </wadl:doc>
 </param>'>
 <!ENTITY deleted_at-RequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="deleted_at" style="plain" required="false"
@@ -200,6 +243,36 @@
             For information, see <link
             xlink:href="http://oauth.net/core/1.0a/#nonce">Nonce and
             Timestamp</link>.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY updated_at-QueryParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="updated_at" style="query"
+    required="false" type="xsd:string">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Filters the response by the date and time when the resource was updated.
+        </para>
+        <para>
+            The date and time stamp format is <link
+            xlink:href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</link>:
+        </para>
+        <programlisting>CCYY-MM-DDThh:mm:ss±hh:mm</programlisting>
+        <para>
+            The <code>±hh:mm</code> value, if included, is the time zone as an
+            offset from UTC.
+        </para>
+        <para>
+            For example, <code>2015-08-27T09:49:58-05:00</code>.
+        </para>
+        <para>
+            If you omit the time zone, the UTC time zone is assumed.
+        </para>
+        <para>
+            If you omit the <code>updated_at</code> date and time stamp, its value
+            is <code>null</code>.
         </para>
     </wadl:doc>
 </param>'>
@@ -600,7 +673,7 @@
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
-            The expiration date and time in <link
+            Filters the response by the expiration date and time in <link
             xlink:href="https://en.wikipedia.org/wiki/Unix_time">UNIX Epoch time
             stamp format</link>.
         </para>
@@ -716,6 +789,20 @@
             Wed, 26 Aug 2015 19:57:28 GMT</code>.
         </para>
     </wadl:doc>
+</param>'>
+<!-- x-openstack-request-id  -->
+<!ENTITY x-openstack-request-idResponseHeader '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="x-openstack-request-id" style="header" required="false"
+   type="xsd:string">
+   <wadl:doc xmlns="http://docbook.org/ns/docbook"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
+      <para>
+         A unique request ID that provides tracking for the request. Provider
+         must configure middleware to return a request ID header in a
+         response.
+      </para>
+   </wadl:doc>
 </param>'>
 <!-- Useful for describing APIs -->
 <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>

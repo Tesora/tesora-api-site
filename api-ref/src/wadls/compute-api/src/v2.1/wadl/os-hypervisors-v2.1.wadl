@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) 2014-2015 OpenStack Foundation, All Rights Reserved -->
+<!-- (C) 2014-2016 OpenStack Foundation, All Rights Reserved -->
 <!DOCTYPE application [
     <!ENTITY % common  SYSTEM "../common.ent">
     %common;
@@ -15,22 +15,23 @@
         xml:id="os-hypervisors-v2.1">
         <resource id="v2.1" path="//v2.1">
             <resource id="tenant_id" path="{tenant_id}">
-                &tenantIdRequestParameter;
+                &tenant_idTemplateParameter;
                 <resource id="os-hypervisors" path="os-hypervisors">
                     <method href="#listHypervisors"/>
                     <resource id="statistics" path="statistics">
                         <method href="#showHypervisorStatistics"/>
                     </resource>
                     <resource id="hypervisor_id" path="{hypervisor_id}">
+                        &hypervisor_idTemplateParameter;
                         <method href="#showHypervisor"/>
                         <resource id="uptime" path="uptime">
                                 <method href="#showHypervisorUptime"/>
-                            </resource>
                         </resource>
                     </resource>
                 </resource>
             </resource>
-        </resources>
+        </resource>
+    </resources>
     <!-- *******************************************************-->
     <!--        OS Hypervisors                        -->
     <!--*******************************************************-->
@@ -44,9 +45,9 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code
-                        href="../api_samples/os-hypervisors/hypervisors-list-resp.json"
+                        href="../samples/os-hypervisors/hypervisors-list-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
     </method>
@@ -61,9 +62,9 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code
-                        href="../api_samples/os-hypervisors/hypervisor-show-resp.json"
+                        href="../samples/os-hypervisors/hypervisor-show-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
     </method>
@@ -80,9 +81,9 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code
-                        href="../api_samples/os-hypervisors/hypervisors-statistics-resp.json"
+                        href="../samples/os-hypervisors/hypervisor-statistics-show-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
     </method>
@@ -97,9 +98,9 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code
-                        href="../api_samples/os-hypervisors/hypervisors-uptime-resp.json"
+                        href="../samples/os-hypervisors/hypervisor-uptime-show-response.json"
                     />
-                </wadl:doc> &x-openstack-request-idHeader;
+                </wadl:doc> &x-openstack-request-idResponseHeader;
             </representation>
         </response>
     </method>
