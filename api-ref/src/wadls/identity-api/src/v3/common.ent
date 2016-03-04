@@ -723,7 +723,7 @@
     </wadl:doc>
 </param>'>
 <!ENTITY credential-blobRequestParameter '
-<param name="blob" style="plain" type="xsd:dict"
+<param name="blob" style="plain" type="xsd:string"
     xmlns="http://wadl.dev.java.net/2009/02" required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xmlns="http://docbook.org/ns/docbook"
@@ -817,7 +817,7 @@
 <!-- CREDENTIALS RESPONSE PARAMETERS      -->
 <!-- ************************************ -->
 <!ENTITY credential-blobResponseParameter '
-<param name="blob" style="plain" type="xsd:dict"
+<param name="blob" style="plain" type="xsd:string"
     xmlns="http://wadl.dev.java.net/2009/02" required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xmlns="http://docbook.org/ns/docbook"
@@ -1186,7 +1186,7 @@
 <!-- ************************************ -->
 <!ENTITY endpointObjectParameter '
 <param name="endpoint" style="plain" required="true"
- type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+ type="xsd:dict" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -1196,7 +1196,7 @@
 </param>'>
 <!ENTITY endpointsObjectParameter '
 <param name="endpoints" style="plain" required="true"
- type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+ type="xsd:list" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -1562,7 +1562,7 @@
     </wadl:doc>
 </param>'>
 <!ENTITY groupsObjectParameter '
-<param name="groups" style="plain" type="xsd:string"
+<param name="groups" style="plain" type="xsd:list"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1707,7 +1707,7 @@
 <!ENTITY groups-linksResponseParameter '
 <param name="links" style="plain"
     xmlns="http://wadl.dev.java.net/2009/02"
-    type="xsd:string" required="false">
+    type="xsd:dict" required="false">
     <wadl:doc
         xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02">
@@ -1958,7 +1958,7 @@
 <!-- PROJECT REQUEST PARAMETERS           -->
 <!-- ************************************ -->
 <!ENTITY projectObjectParameter '
-<param name="project" style="plain" type="xsd:string"
+<param name="project" style="plain" type="xsd:dict"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1970,7 +1970,7 @@
     </wadl:doc>
 </param>'>
 <!ENTITY projectsObjectParameter '
-<param name="projects" style="plain" type="xsd:dict"
+<param name="projects" style="plain" type="xsd:list"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -2254,7 +2254,7 @@
 <!-- REGION REQUEST PARAMETERS            -->
 <!-- ************************************ -->
 <!ENTITY regionObjectParameter '
-<param name="region" style="plain" type="xsd:string"
+<param name="region" style="plain" type="xsd:dict"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -2266,7 +2266,7 @@
     </wadl:doc>
 </param>'>
 <!ENTITY regionsObjectParameter '
-<param name="regions" style="plain" type="xsd:string"
+<param name="regions" style="plain" type="xsd:list"
         xmlns="http://wadl.dev.java.net/2009/02"
         required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -2479,7 +2479,7 @@
 <!-- ************************************ -->
 <!ENTITY serviceObjectParameter '
 <param name="service" style="plain" required="true"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+    type="xsd:dict" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -2489,7 +2489,7 @@
 </param>'>
 <!ENTITY servicesObjectParameter '
 <param name="services" style="plain" required="true"
- type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+ type="xsd:list" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -3266,8 +3266,8 @@
     </wadl:doc>
 </param>'>
 <!ENTITY usersObjectParameter '
-<param name="users" style="plain" required="false"
- type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+<param name="users" style="plain" required="true"
+ type="xsd:list" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
