@@ -82,7 +82,7 @@
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
-    <para>    
+    <para>
       The ID of the consistency group.
     </para>
   </wadl:doc>
@@ -184,7 +184,7 @@
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
-    <para>  
+    <para>
       The user ID. Specify in the URI as <code>user_id={user_id}</code>.
     </para>
   </wadl:doc>
@@ -294,7 +294,7 @@
 <!ENTITY limitsObjectParameter '
 <param name="limits" style="plain"
   xmlns="http://wadl.dev.java.net/2009/02"
-  required="true" type="xsd:list">
+  required="true" type="xsd:dict">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
@@ -404,6 +404,30 @@
     xml:lang="EN">
     <para>
       A list of <code>volume_type</code> objects.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY volume_backupObjectParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="backup" style="plain" required="true"
+  type="xsd:dict">
+   <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      A <code>backup</code> object.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY volume_backupsObjectParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="backups" style="plain" required="true"
+  type="xsd:list">
+   <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      A list of <code>backup</code> objects.
     </para>
   </wadl:doc>
 </param>'>
@@ -1188,6 +1212,122 @@
     </para>
   </wadl:doc>
 </param>'>
+<!ENTITY os-extendRequestParameter '
+<param name="os-extend" style="plain" required="true"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:dict">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The <code>os-extend</code> action.
+    </para>
+  </wadl:doc>
+</param>
+<param name="new_size" style="plain"  required="true"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:int">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The new size of the volume, in gibibytes (GiB).
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-reset_statusRequestParameter '
+<param name="os-reset_status" style="plain" required="true"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:dict">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The <code>os-reset_status</code> action.
+    </para>
+  </wadl:doc>
+</param>
+<param name="status" style="plain" required="false"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The volume status.
+    </para>
+  </wadl:doc>
+</param>
+<param name="attach_status" style="plain" required="false"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The volume attach status.
+    </para>
+  </wadl:doc>
+</param>
+<param name="migration_status" style="plain" required="false"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The volume migration status.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-set_image_metadataRequestParameter '
+<param name="os-set_image_metadata" style="plain" required="true"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:dict">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The <code>os-set_image_metadata</code> action.
+    </para>
+  </wadl:doc>
+</param>
+<param name="metadata" style="plain" required="true"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:dict">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The image metadata to add to the volume as a set
+      of metadata key and value pairs.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY os-unset_image_metadataRequestParameter '
+<param name="os-unset_image_metadata" style="plain" required="true"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:dict" >
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The <code>os-unset_image_metadata</code> action.
+      This action removes the key-value pairs from the image metadata.
+    </para>
+  </wadl:doc>
+</param>
+<param name="key" style="plain" required="true"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The metadata key name for the metadata that you want to remove.
+    </para>
+  </wadl:doc>
+</param>'>
 <!ENTITY os-unmanageRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="os-unmanage" style="plain"
   type="xsd:dict" required="true">
@@ -1195,7 +1335,8 @@
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
     <para>
-      The action.
+      The <code>os-unmanage</code> action.
+      This action removes the specified volume from Cinder management.
     </para>
   </wadl:doc>
 </param>'>
@@ -1206,7 +1347,7 @@
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
     <para>
-      The action.
+      The <code>os-force_detach</code> action.
     </para>
   </wadl:doc>
 </param>
@@ -1220,7 +1361,7 @@
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
     <para>
-      The action.
+      The <code>os-attach</code> action.
     </para>
   </wadl:doc>
 </param>
@@ -1262,7 +1403,7 @@
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
     <para>
-      The action.
+      The <code>os-promote-replica</code> action.
     </para>
   </wadl:doc>
 </param>'>
@@ -1274,7 +1415,7 @@
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
     <para>
-      The action.
+      The <code>os-reenable-replica</code> action.
     </para>
   </wadl:doc>
 </param>
@@ -2785,6 +2926,119 @@
     <para>
       The volume type access. If set to <code>true</code>, access is public.
       If set to <code>false</code>, access is private.
+    </para>
+  </wadl:doc>
+</param>'>
+<!-- **************************************** -->
+<!-- VOLUME BACKUP                            -->
+<!-- **************************************** -->
+<!-- VOLUME BACKUP REQUEST PARAMETERS         -->
+<!-- **************************************** -->
+<!ENTITY volume_backupCreateRequestParameters '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="container" style="plain" required="true"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The container name or null.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="name" style="plain" required="true"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The backup name.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="description" style="plain" required="true"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The backup description or null.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="volume_id" style="plain" required="true"
+  type="csapi:UUID">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The UUID of the volume that you want to back up.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="incremental" style="plain" required="false"
+  type="xsd:boolean">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The backup mode. A valid value is
+      <code>True</code> for incremental backup mode or
+      <code>False</code> for full backup mode.
+      Default is <code>False</code>.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="force" style="plain" required="false"
+  type="xsd:boolean">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      Indicates whether to backup, even if the volume is attached.
+      Default is <code>False</code>.
+    </para>
+  </wadl:doc>
+</param>'>
+<!-- **************************************** -->
+<!-- VOLUME BACKUP RESPONSE PARAMETERS        -->
+<!-- **************************************** -->
+<!ENTITY volume_backupCreateResponseParameters '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="id" style="plain" required="true"
+  type="csapi:UUID">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The UUID of the backup.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="links" style="plain" required="true"
+  type="xsd:dict">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      Links for the backup.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="name" style="plain" required="true"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      The backup name.
     </para>
   </wadl:doc>
 </param>'>
