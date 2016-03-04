@@ -119,11 +119,6 @@
                 <wadl:method href="#getUserDetails"/>
                 <wadl:method href="#updateUserAttributes"/>
             </wadl:resource>
-            <wadl:resource href="../wadls/databases-api/xsd/dbaas.wadl#root-dbaas">
-                <wadl:method href="#createRoot"/>
-                <wadl:method href="#isRootEnabled"/>
-                <wadl:method href="#disableRoot"/>
-            </wadl:resource>
             <wadl:resource href="../wadls/databases-api/xsd/dbaas.wadl#user_databases">
                 <wadl:method href="#grantUserAccess"/>
                 <wadl:method href="#showUserAccess"/>
@@ -134,6 +129,7 @@
             <wadl:resource href="../wadls/databases-api/xsd/dbaas.wadl#root-dbaas">
                 <wadl:method href="#createRoot"/>
                 <wadl:method href="#isRootEnabled"/>
+                <wadl:method href="#disableRoot"/>
             </wadl:resource>
         </wadl:resources>
     </section>
