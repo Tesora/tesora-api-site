@@ -901,7 +901,7 @@
 <!-- DOMAIN REQUEST PARAMETERS            -->
 <!-- ************************************ -->
 <!ENTITY domainObjectParameter '
-<param name="domain" style="plain" type="xsd:string"
+<param name="domain" style="plain" type="xsd:dict"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1065,7 +1065,7 @@
 <!-- DOMAIN CONFIG REQUEST PARAMETERS     -->
 <!-- ************************************ -->
 <!ENTITY domain-configObjectParameter '
-<param name="config" style="plain" type="xsd:string"
+<param name="config" style="plain" type="xsd:dict"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1732,7 +1732,7 @@
 <!-- POLICY REQUEST PARAMETERS            -->
 <!-- ************************************ -->
 <!ENTITY policyObjectParameter '
-<param name="policy" style="plain" type="xsd:string"
+<param name="policy" style="plain" type="xsd:dict"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1744,7 +1744,7 @@
     </wadl:doc>
 </param>'>
 <!ENTITY policiesObjectParameter '
-<param name="policies" style="plain" type="xsd:string"
+<param name="policies" style="plain" type="xsd:list"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1762,6 +1762,17 @@
         xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
         <para>
             The policy rule set itself, as a serialized blob.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY policy-rule-blobRequestParameter '
+<param name="blob" style="plain" type="xsd:dict"
+    xmlns="http://wadl.dev.java.net/2009/02" required="true">
+    <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xmlns="http://docbook.org/ns/docbook"
+        xml:lang="EN">
+        <para>
+            The policy rule itself, as a serialized blob.
         </para>
     </wadl:doc>
 </param>'>
@@ -1905,7 +1916,7 @@
     </wadl:doc>
 </param>'>
 <!ENTITY policy-rule-blobResponseParameter '
-<param name="blob" style="plain" type="xsd:string"
+<param name="blob" style="plain" type="xsd:dict"
     xmlns="http://wadl.dev.java.net/2009/02" required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xmlns="http://docbook.org/ns/docbook"
@@ -2386,7 +2397,7 @@
 <!-- ROLE REQUEST PARAMETERS              -->
 <!-- ************************************ -->
 <!ENTITY roleObjectParameter '
-<param name="role" style="plain" type="xsd:string"
+<param name="role" style="plain" type="xsd:dict"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -2398,7 +2409,7 @@
     </wadl:doc>
 </param>'>
 <!ENTITY rolesObjectParameter '
-<param name="roles" style="plain" type="xsd:string"
+<param name="roles" style="plain" type="xsd:list"
     xmlns="http://wadl.dev.java.net/2009/02"
     required="true">
     <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -2731,7 +2742,7 @@
 </param>'>
 <!ENTITY auth-methods-tokenRequestParameter '
 <param name="methods" style="plain" required="true"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+    type="xsd:list" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -2742,7 +2753,7 @@
 </param>'>
 <!ENTITY auth-methods-passwordRequestParameter '
 <param name="methods" style="plain" required="true"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+    type="xsd:list" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -2753,7 +2764,7 @@
 </param>'>
 <!ENTITY auth-scopeRequestParameter '
 <param name="scope" style="plain" required="false"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+    type="xsd:dict" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
@@ -2882,7 +2893,7 @@
 </param>'>
 <!ENTITY tokenObjectParameter '
 <param name="token" style="plain" required="true"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+    type="xsd:dict" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -2942,7 +2953,7 @@
 </param>'>
 <!ENTITY password-auth-domainRequestParameter '
 <param name="domain" style="plain" required="false"
- type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+ type="xsd:dict" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -2995,7 +3006,7 @@
 <!-- ************************************ -->
 <!ENTITY auth-domainResponseParameter '
 <param name="domain" style="plain" required="false"
- type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+ type="xsd:dict" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -3036,7 +3047,7 @@
 </param>'>
 <!ENTITY auth-methodsResponseParameter '
 <param name="methods" style="plain" required="true"
- type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+ type="xsd:list" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -3063,7 +3074,7 @@
 </param>'>
 <!ENTITY catalogObjectParameter '
 <param name="catalog" style="plain" required="true"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+    type="xsd:list" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -3073,7 +3084,7 @@
 </param>'>
 <!ENTITY rolesResponseParameter '
 <param name="roles" style="plain" required="true"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+    type="xsd:list" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -3143,16 +3154,6 @@
         </para>
     </wadl:doc>
 </param>'>
-<!ENTITY tokenObjectParameter '
-<param name="token" style="plain" required="true"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
-    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
-        <para>
-            A <code>token</code> object.
-        </para>
-    </wadl:doc>
-</param>'>
 <!ENTITY extrasResponseParameter '
 <param name="extras" style="plain" required="true"
     type="xsd:dict" xmlns="http://wadl.dev.java.net/2009/02">
@@ -3190,7 +3191,7 @@
 </param>'>
 <!ENTITY password-auth-userResponseParameter '
 <param name="user" style="plain" required="true"
-    type="xsd:string" xmlns="http://wadl.dev.java.net/2009/02">
+    type="xsd:dict" xmlns="http://wadl.dev.java.net/2009/02">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>

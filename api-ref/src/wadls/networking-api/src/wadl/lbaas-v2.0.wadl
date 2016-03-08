@@ -322,10 +322,18 @@
                 from the subnet of the load balancer VIP.
             </para>
             <para>
+                An optional <code>flavor</code> attribute can be passed to
+                enable dynamic selection of an appropriate provider if
+                configured by the operator.  The basic selection algorithm
+                chooses the provider in the first service profile currently
+                associated with flavor.
+            </para>
+            <para>
                 You can also specify the <code>provider</code> attribute when
                 you create a load balancer. You can set this attribute to any
                 service provider with a <code>LOADBALANCER</code> service
-                type.
+                type.  Setting both a flavor and a provider will
+                result in a conflict error.
             </para>
             <para>Example: Create a load balancer</para>
         </wadl:doc>
@@ -610,6 +618,7 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="../samples/lbaas/listener-create-response.json"/>
                 </wadl:doc>
+                &listener_createResponseParameters;
             </representation>
         </response> &fault401; &fault404; &fault409; &fault413; &fault500; &fault503; </method>
     <method name="GET" id="listListenersv2">
@@ -782,6 +791,7 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="../samples/lbaas/listener-show-response.json"/>
                 </wadl:doc>
+                &listener_showResponseParameters;
             </representation>
         </response> &fault401; &fault403; &fault404; &fault409; &fault413; &fault500; &fault503;</method>
     <method name="PUT" id="updateListenerv2">
@@ -853,10 +863,12 @@
                 &listenerRequestParameters;
             </representation>
         </request>
-        <response status="200"><representation mediaType="application/json">
+        <response status="200">
+            <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
                     <xsdxt:code href="../samples/lbaas/listener-update-response.json"/>
                 </wadl:doc>
+                &listener_updateResponseParameters;
             </representation>
         </response> &fault500; &fault503; &fault401; &fault400;&fault413;</method>
     <method name="DELETE" id="deleteListenerv2">
@@ -1625,7 +1637,7 @@
                     <xsdxt:code href="../samples/lbaas/healthmonitor-create-response.json"/>
                 </wadl:doc> &health_monitorObject; &hmResponseParameters; </representation>
         </response> &fault401; &fault404; &fault409; &fault413; &fault500; &fault503; </method>
-    <method name="GET" id="listHealthMonitors">
+    <method name="GET" id="listHealthMonitorsv2">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="List health monitors">
             <para role="shortdesc">Lists health monitors.</para>
             <para>

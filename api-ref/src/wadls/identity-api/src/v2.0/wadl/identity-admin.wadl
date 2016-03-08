@@ -734,6 +734,7 @@
                     <xsdxt:code href="../samples/admin/users-list-response.json"/>
                     <xsdxt:code href="../samples/admin/user-show-response.json"/>
                 </wadl:doc>
+                &usersResponseParameters;
             </representation>
         </response>
         <response status="203"/>
@@ -796,7 +797,7 @@
         <request>
             &limitMarkerReqParameter;
         </request>
-        <response status="200 203">
+        <response status="200">
             <representation mediaType="application/json" element="identity:roles">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:sample title="List user global roles: JSON response">
@@ -805,6 +806,7 @@
                 </wadl:doc>
             </representation>
         </response>
+        <response status="203" />
         &getFaults;
     </method>
     <!-- Tenant Operations -->
@@ -894,7 +896,7 @@
         <request>
             &limitMarkerReqParameter;
         </request>
-        <response status="200 203">
+        <response status="200">
             <representation mediaType="application/json" element="identity:roles">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook">
                     <xsdxt:sample title="List roles for user: JSON response">
@@ -903,6 +905,7 @@
                 </wadl:doc>
             </representation>
         </response>
+        <response status="203" />
         &getFaults;
     </method>
 </application>
