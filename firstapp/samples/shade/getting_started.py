@@ -20,7 +20,7 @@ image = conn.get_image(image_id)
 print(image)
 
 #step-5
-flavor_id = 'subsonic'
+flavor_id = '100'
 flavor = conn.get_flavor(flavor_id)
 print(flavor)
 
@@ -38,7 +38,7 @@ for instance in instances:
     print(instance)
 
 #step-8
-conn.delete_server(name=instance_name)
+conn.delete_server(name_or_id=instance_name)
 
 #step-9
 print('Checking for existing SSH keypair...')
