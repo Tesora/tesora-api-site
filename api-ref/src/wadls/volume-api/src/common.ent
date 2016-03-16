@@ -437,6 +437,18 @@
 <!ENTITY limitsResponseParameters '
 &limitsObjectParameter;
 &absoluteObjectParameter;
+<param name="rate" style="plain" required="true"
+  xmlns="http://wadl.dev.java.net/2009/02"
+  type="xsd:list">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+      Rate-limit volume copy bandwidth, used to mitigate slow down of data
+      access from the instances.
+    </para>
+  </wadl:doc>
+</param>
 <param name="totalSnapshotsUsed" style="plain" required="true"
   xmlns="http://wadl.dev.java.net/2009/02"
   type="xsd:int">
@@ -2188,7 +2200,7 @@
 </param>'>
 <!ENTITY snapshotResponseParameters '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="status" style="plain"
-  type="string" required="true">
+  type="xsd:string" required="true">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
@@ -2198,7 +2210,7 @@
   </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02" name="description" style="plain"
-  type="string" required="true">
+  type="xsd:string" required="true">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:lang="EN">
@@ -2209,7 +2221,7 @@
 </param>
 &created_at-ResponseParameter;
 <param xmlns="http://wadl.dev.java.net/2009/02" name="metadata"
-  style="plain" type="dict"
+  style="plain" type="xsd:dict"
   required="true">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -2250,7 +2262,7 @@
     </para>
   </wadl:doc>
 </param>
-<param xmlns="http://wadl.dev.java.net/2009/02" name="name" style="plain" type="string"
+<param xmlns="http://wadl.dev.java.net/2009/02" name="name" style="plain" type="xsd:string"
   required="true">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -2316,7 +2328,7 @@
 <!-- **************************************** -->
 <!ENTITY snapshot-metadataRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="metadata"
-  style="plain" type="dict"
+  style="plain" type="xsd:dict"
   required="false">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -2755,7 +2767,7 @@
     <para>
       For information about how to use volume types to create multiple-storage
       back ends, see <link
-      xlink:href="http://docs.openstack.org /admin-guide-cloud/blockstorage_multi_backend.html">Configure
+      xlink:href="http://docs.openstack.org/admin-guide-cloud/blockstorage_multi_backend.html">Configure
       multiple-storage back ends</link>.
     </para>
   </wadl:doc>

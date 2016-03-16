@@ -127,7 +127,7 @@
         <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
             xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="List extensions">
-            <para>
+            <para role="shortdesc">
                 Lists available Networking API extensions.
             </para>
         </wadl:doc>
@@ -169,7 +169,7 @@
         <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
             xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show extension details">
-            <para>
+            <para role="shortdesc">
                 Shows details for an extension.
             </para>
         </wadl:doc>
@@ -243,7 +243,7 @@
             &sharedRequestParameter;
             &tenant_idRequestParameter;
             <param xmlns="http://wadl.dev.java.net/2009/02" required="false" name="router:external" style="plain"
-                type="xsd:bool">
+                type="xsd:boolean">
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
                     xmlns="http://docbook.org/ns/docbook" xml:lang="EN"><para>Indicates whether this
                         network is externally
@@ -409,6 +409,6 @@
         <response status="204"/>
         &fault401;
         &fault404;
-        &fault409conflict;
+        &fault409;
     </method>
 </application>
