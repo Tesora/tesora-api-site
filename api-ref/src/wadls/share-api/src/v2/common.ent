@@ -582,6 +582,7 @@
    </itemizedlist>
 </wadl:doc>
 </param>
+&shareLinksParameter;
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="project_id" style="plain" required="true"
    type="csapi:UUID">
@@ -962,6 +963,7 @@
    </para>
 </wadl:doc>
 </param>
+&shareLinksParameter;
 &shareNameParameter;'>
 <!ENTITY listSharesDetailsResponseParameters '
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -993,6 +995,7 @@
    </para>
 </wadl:doc>
 </param>
+&shareLinksParameter;
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="size" style="plain" required="true"
    type="xsd:int">
@@ -1149,17 +1152,7 @@
 </param>
 &shareNameParameter;'>
 <!ENTITY manageShareResponseParameters '
-<param xmlns="http://wadl.dev.java.net/2009/02"
-   name="links" style="plain" required="true"
-   type="xsd:list">
-<wadl:doc xmlns="http://docbook.org/ns/docbook"
-   xmlns:wadl="http://wadl.dev.java.net/2009/02"
-   xml:lang="EN">
-   <para>
-      The share links.
-   </para>
-</wadl:doc>
-</param>
+&shareLinksParameter;
 &availabilityZoneRequiredParameter;
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="share_network_id" style="plain" required="false"
@@ -1414,6 +1407,15 @@
 </wadl:doc>
 </param>'>
 <!ENTITY grantAccessRequestParameters '
+<param xmlns="http://wadl.dev.java.net/2009/02" required="true"
+  name="os-allow_access" style="plain" type="xsd:dict">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02">
+    <para>
+      The object of grant access.
+    </para>
+  </wadl:doc>
+</param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="access_level" style="plain" required="true"
    type="xsd:string">
@@ -3996,6 +3998,18 @@
    </para>
 </wadl:doc>
 </param>'>
+<!ENTITY shareLinksParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+   name="links" style="plain" required="true"
+   type="xsd:list">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   xml:lang="EN">
+   <para>
+      The share links.
+   </para>
+</wadl:doc>
+</param>'>
 <!ENTITY fileSystemProtocolParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="share_proto" style="plain" required="true"
@@ -4385,7 +4399,7 @@
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
-   name="QoS_support" style="plain" required="true"
+   name="qos" style="plain" required="true"
    type="xsd:bool">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -4544,7 +4558,7 @@
    <para>
       The pools for the back end. This value is either <code>null</code> or a string value
       that indicates the capabilities for each pool. For example, <code>pool_name</code>,
-      <code>total_capacity_gb</code>, <code>QoS_support</code>, and so on.
+      <code>total_capacity_gb</code>, <code>qos</code>, and so on.
    </para>
 </wadl:doc>
 </param>

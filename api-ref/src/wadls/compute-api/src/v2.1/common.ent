@@ -521,7 +521,7 @@
 <!ENTITY serverCreateParameters '
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="security_groups" style="plain" required="false"
-   type="xsd:string">
+   type="xsd:list">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -716,11 +716,24 @@
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
-      Enables you to boot a server from a volume when you specify additional
-      parameters. If you specify the volume status, you must set it to
-      <code>available</code>. In the OpenStack Block Storage database, the
-      volume <code>attach_status</code> must be <code>detached</code>.
+      Enables fine grained control of the block device mapping for an
+      instance. This is typically used for booting servers from
+      volumes.
    </para>
+   <para>
+      An example format would look as follows:
+     <code>
+        "block_device_mapping_v2":
+          {
+            "boot_index": "0",
+            "uuid": "ac408821-c95a-448f-9292-73986c790911",
+            "source_type": "image",
+            "volume_size": "25",
+            "destination_type": "volume",
+            "delete_on_termination": true
+          }
+      </code>
+    </para>
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -856,11 +869,11 @@
 <!ENTITY serversObjectParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="servers" style="plain" required="true"
-   type="xsd:string">
+   type="xsd:list">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
-   <para>A <code>servers</code> object.</para>
+   <para>List of <code>server</code> objects.</para>
 </wadl:doc>
 </param>'>
 <!ENTITY config_driveRequestParameter '
@@ -1413,7 +1426,7 @@
   </para>
 </wadl:doc>
 </param>'>
-<!ENTITY diskConfigRequestParameter '  
+<!ENTITY diskConfigRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
   name="OS-DCF:diskConfig" style="plain" required="false" type="xsd:string">
   <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1639,6 +1652,34 @@
    </para>
 </wadl:doc>
 </param>'>
+<!ENTITY serverListResponseParameters '
+<param name="id" style="plain" type="csapi:UUID" required="true"
+  xmlns="http://wadl.dev.java.net/2009/02">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02">
+    <para>
+      The UUID of the server.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="links" style="plain" required="true" type="xsd:list">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
+    <para>
+      Server links.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="name" style="plain" required="true" type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
+    <para>
+      The server name. The user sets the server name.
+    </para>
+  </wadl:doc>
+</param>'>
 <!ENTITY serverCreateResponseParameters '
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="server" style="plain" required="true"
@@ -1672,7 +1713,7 @@
   </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
-  name="links" style="plain" required="true" type="xsd:string">
+  name="links" style="plain" required="true" type="xsd:list">
    <wadl:doc xmlns="http://docbook.org/ns/docbook"
      xmlns:wadl="http://wadl.dev.java.net/2009/02"
      xml:lang="EN">
@@ -1683,7 +1724,7 @@
 </param>
 &diskConfigResponseParameter;
 <param xmlns="http://wadl.dev.java.net/2009/02"
-  name="security_groups" style="plain" type="xsd:string" required="true">
+  name="security_groups" style="plain" type="xsd:list" required="true">
    <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN" title="Security groups object">
@@ -1721,7 +1762,7 @@
 <!ENTITY hostIdResponseParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="hostId" style="plain" required="true"
-   type="xsd:string">
+   type="csapi:UUID">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -1823,7 +1864,7 @@
 </param>'>
 <!ENTITY serverLinksResponseParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
-  name="links" style="plain" required="true" type="xsd:string">
+  name="links" style="plain" required="true" type="xsd:list">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
   xmlns:wadl="http://wadl.dev.java.net/2009/02"
   xml:lang="EN">
@@ -1835,7 +1876,7 @@
 <!ENTITY serverMetadataResponseParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
  style="plain" name="metadata" required="true"
-   type="xsd:string">
+   type="xsd:dict">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -1920,7 +1961,7 @@
 <!ENTITY power_stateResponseParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="OS-EXT-STS:power_state" style="plain"
-   type="xsd:string" required="true">
+   type="xsd:int" required="true">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
       xmlns:wadl="http://wadl.dev.java.net/2009/02"
       xml:lang="EN">
@@ -1955,7 +1996,7 @@
 <!ENTITY volumes_attachedResponseParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
    name="os-extended-volumes:volumes_attached" style="plain"
-   type="csapi:dict" required="true">
+   type="xsd:list" required="true">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
       xmlns:wadl="http://wadl.dev.java.net/2009/02"
       xml:lang="EN">
@@ -2323,7 +2364,7 @@
   </wadl:doc>
 </param>'>
 <!ENTITY DeallocateFloatingIpQueryParameters '
-<param name="id" style="template" type="String"
+<param name="id" style="template" type="xsd:string"
   xmlns="http://wadl.dev.java.net/2009/02">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xml:lang="EN"
@@ -2334,7 +2375,7 @@
   </wadl:doc>
 </param>'>
 <!ENTITY ShowServerGroupQueryParameters '
-<param name="server_group_id" style="template" type="String"
+<param name="server_group_id" style="template" type="xsd:string"
   xmlns="http://wadl.dev.java.net/2009/02">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xml:lang="EN"
@@ -2345,7 +2386,7 @@
   </wadl:doc>
 </param>'>
 <!ENTITY DeleteServerGroupQueryParameters '
-<param name="server_group_id" style="template" type="String"
+<param name="server_group_id" style="template" type="xsd:string"
   xmlns="http://wadl.dev.java.net/2009/02">
   <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xml:lang="EN"
@@ -2476,7 +2517,7 @@
 </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
-  name="links" style="plain" required="true" type="xsd:string">
+  name="links" style="plain" required="true" type="xsd:list">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
   xmlns:wadl="http://wadl.dev.java.net/2009/02"
   xml:lang="EN">
@@ -2923,7 +2964,7 @@
 <!-- Security group parameters -->
 <!ENTITY securityGroupParameters '
 <param xmlns="http://wadl.dev.java.net/2009/02"
-  name="security_groups" style="plain" type="xsd:string" required="true">
+  name="security_groups" style="plain" type="xsd:list" required="true">
    <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN" title="Security groups object">
@@ -2941,7 +2982,7 @@
    </wadl:doc>
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
-  name="id" style="plain" type="xsd:int" required="true">
+  name="id" style="plain" type="csapi:UUID" required="true">
    <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN" title="Security group ID">
@@ -2973,7 +3014,7 @@
 <!ENTITY server_groupsObject '
 <param xmlns="http://wadl.dev.java.net/2009/02"
   style="plain" name="server_groups" required="true"
-   type="xsd:dict">
+   type="xsd:list">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -3006,7 +3047,7 @@
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
   style="plain" name="policies" required="true"
-   type="xsd:dict">
+   type="xsd:list">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -3017,7 +3058,7 @@
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
   style="plain" name="members" required="true"
-   type="xsd:dict">
+   type="xsd:list">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -3028,7 +3069,7 @@
 </param>
 <param xmlns="http://wadl.dev.java.net/2009/02"
   style="plain" name="metadata" required="true"
-   type="xsd:string">
+   type="xsd:dict">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -3042,7 +3083,7 @@
 <!ENTITY securityGroupRequestParameters '
 <param xmlns:csapi="http://docs.openstack.org/compute/api/v2"
    xmlns="http://wadl.dev.java.net/2009/02"
-   name="security_groups" style="plain" type="xsd:string" required="true">
+   name="security_groups" style="plain" type="xsd:list" required="true">
    <wadl:doc xmlns="http://docbook.org/ns/docbook"
       xmlns:wadl="http://wadl.dev.java.net/2009/02"
       xml:lang="EN" title="Security groups object">
@@ -3106,7 +3147,7 @@
 <!ENTITY security_groupsObject '
 <param xmlns:csapi="http://docs.openstack.org/compute/api/v2"
    xmlns="http://wadl.dev.java.net/2009/02" name="security_groups"
-  style="plain" type="xsd:string" required="true">
+  style="plain" type="xsd:list" required="true">
    <wadl:doc xmlns="http://docbook.org/ns/docbook"
       xmlns:wadl="http://wadl.dev.java.net/2009/02"
       xml:lang="EN" title="Security groups object">
@@ -3526,3 +3567,86 @@
 &tenantIdResponseParameter;
 &updatedResponseParameter;
 &user_idResponseParameter;'>
+<!ENTITY extensionObject '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="extension" style="plain" required="true"
+  type="xsd:dict">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+       An <code>extension</code> object.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY extensionsObject '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="extensions" style="plain" required="true"
+  type="xsd:list">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+       List of <code>extension</code> objects.
+    </para>
+  </wadl:doc>
+</param>'>
+<!ENTITY extensionResponseParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="name" style="plain" required="true"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+       Name of the extension.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="alias" style="plain" required="true"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+       A short name by which this extension is also known.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="links" style="plain" required="true"
+  type="xsd:list">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+       Links pertaining to this extension. This is a list of dictionaries,
+       each including keys <code>href</code> and <code>rel</code>.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="namespace" style="plain" required="true"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+       A URL pointing to the namespace for this extension.
+    </para>
+  </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+  name="description" style="plain" required="true"
+  type="xsd:string">
+  <wadl:doc xmlns="http://docbook.org/ns/docbook"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:lang="EN">
+    <para>
+       Text describing this extension’s purpose.
+    </para>
+  </wadl:doc>
+</param>
+&updatedResponseParameter;
+'>

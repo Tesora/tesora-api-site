@@ -205,7 +205,7 @@
                <method href="#resource_type_list"/>
                <resource id="resource_schema" path="{type_name}">
                   <param xmlns="http://wadl.dev.java.net/2009/02" name="type_name" style="template"
-                     required="true">
+                     required="true" type="xsd:string">
                   <wadl:doc
                      xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                      xml:lang="EN">
@@ -217,7 +217,7 @@
                   <method href="#resource_type_get"/>
                   <resource id="resource_template"
                      path="template">
-                     <param xmlns="http://wadl.dev.java.net/2009/02"
+                     <param xmlns="http://wadl.dev.java.net/2009/02" type="xsd:string"
                            name="template_type" style="query" required="false">
                      <wadl:doc
                         xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -552,7 +552,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="disable_rollback" style="plain"
-               required="false">
+               type="xsd:boolean" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -651,6 +651,14 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack-preview-response.json"/>
             </wadl:doc>
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack" style="plain" required="true">
+            <wadl:doc xmlns="http://docbook.org/ns/docbook"
+               xml:lang="EN">
+               <para>
+                  The <code>stack</code> object.
+               </para>
+            </wadl:doc>
+            </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="parent" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
@@ -665,6 +673,14 @@
                xml:lang="EN">
                <para>
                   The stack ID.
+               </para>
+            </wadl:doc>
+            </param>
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="links" style="plain" required="true">
+            <wadl:doc xmlns="http://docbook.org/ns/docbook"
+               xml:lang="EN">
+               <para>
+                  The share links.
                </para>
             </wadl:doc>
             </param>
@@ -703,7 +719,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="disable_rollback" style="plain"
-               required="true">
+               type="xsd:boolean" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                 <para>
@@ -722,6 +738,29 @@
                   List of stack capabilities for stack.
                </para>
             </wadl:doc>
+            </param>
+            <param xmlns="http://wadl.dev.java.net/2009/02"
+              name="creation_time" style="plain" required="true"
+              type="xsd:dateTime">
+              <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                xmlns:wadl="http://wadl.dev.java.net/2009/02"
+                xml:lang="EN">
+                <para>
+                  The date and time when the software was created.
+                </para>
+                <para>
+                  The date and time stamp format is <link
+                  xlink:href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</link>:
+                </para>
+                <programlisting>CCYY-MM-DDThh:mm:ss±hh:mm</programlisting>
+                <para>
+                  For example, <code>2015-08-27T09:49:58-05:00</code>.
+                </para>
+                <para>
+                  The <code>±hh:mm</code> value, if included, is the time zone as an
+                  offset from UTC.
+                </para>
+              </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="notification_topics" style="plain"
                required="true">
@@ -835,7 +874,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="disable_rollback" style="plain"
-               required="false">
+               type="xsd:boolean" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -941,7 +980,7 @@
             </param>
          </representation>
       </request>
-      <response status="201"/>
+      <response status="200"/>
    </method>
    <method name="POST" id="stack_action_check">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -967,7 +1006,7 @@
             </param>
          </representation>
       </request>
-      <response status="201"/>
+      <response status="200"/>
    </method>
    <method name="GET" id="stack_find">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1369,6 +1408,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack-show-output-response.json"/>
             </wadl:doc>
+            &stackoutputResponseParameters;
          </representation>
       </response>
    </method>
@@ -1399,7 +1439,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/template-validate-response.json"/>
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02"
+            <param xmlns="http://wadl.dev.java.net/2009/02" type="xsd:string"
              name="Description" style="plain" required="true">
                <wadl:doc xmlns="http://docbook.org/ns/docbook"
                   xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1410,7 +1450,7 @@
                </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="Parameters" style="plain" type="object"
+             name="Parameters" style="plain" type="xsd:dict"
                required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1422,7 +1462,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="ParameterGroups" style="plain" type="list"
+             name="ParameterGroups" style="plain" type="xsd:list"
                required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -1538,7 +1578,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/resource-schema-response.json"/>
             </wadl:doc>
-            &templateResponseParameters;
+            &resourceschemaResponseParameters;
          </representation>
       </response>
       &commonFaults;
@@ -1571,6 +1611,7 @@
           <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
             <xsdxt:code href="samples/resource-type-template-response.json"/>
           </wadl:doc>
+          &show_resourcetemplateResponseParameters;
         </representation>
       </response>
       &commonFaults;
@@ -1917,7 +1958,7 @@
                   />
             </wadl:doc>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="config" style="plain" required="false">
+             name="config" style="plain" required="false" type="xsd:string">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -1927,7 +1968,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="group" style="plain" required="false">
+             name="group" style="plain" required="false" type="xsd:string">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1939,7 +1980,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="name" style="plain" required="false">
+             name="name" style="plain" required="false" type="xsd:string">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -1948,7 +1989,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="inputs" style="plain" required="false">
+             name="inputs" style="plain" required="false" type="xsd:list">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1959,7 +2000,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="outputs" style="plain" required="false">
+             name="outputs" style="plain" required="false" type="xsd:list">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -1969,7 +2010,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="options" style="plain" required="false">
+             name="options" style="plain" required="false" type="xsd:string">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">

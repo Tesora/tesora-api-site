@@ -87,8 +87,8 @@
                 &firewallResponseParameters;
             </representation>
         </response>
-        <!-- &fault401; -->
-        <!-- &fault403; -->
+        &fault401;
+        &fault403;
     </method>
     <method name="GET" id="showFirewall">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -111,9 +111,9 @@
                 &firewallResponseParameters;
             </representation>
         </response>
-        <!-- &fault401; -->
-        <!-- &fault403; -->
-        <!-- &fault404; -->
+        &fault401;
+        &fault403;
+        &fault404;
     </method>
     <method name="POST" id="createFirewall">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Create firewall">
@@ -146,8 +146,8 @@
                 &firewallResponseParameters;
             </representation>
         </response>
-        <!-- &fault400; -->
-        <!-- &fault401; -->
+        &fault400;
+        &fault401;
     </method>
     <method name="PUT" id="updateFirewall">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Update firewall">
@@ -177,9 +177,9 @@
                 &firewallResponseParameters;
             </representation>
         </response>
-        <!-- &fault400; -->
-        <!-- &fault401; -->
-        <!-- &fault404; -->
+        &fault400;
+        &fault401;
+        &fault404;
     </method>
     <method name="DELETE" id="deleteFirewall">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Delete firewall">
@@ -188,9 +188,9 @@
             </para>
         </wadl:doc>
         <response status="204"/>
-        <!-- &fault401; -->
-        <!-- &fault404; -->
-        <!-- &fault409; -->
+        &fault401;
+        &fault404;
+        &fault409;
     </method>
     <!-- Firewall policies -->
     <method name="GET" id="listFirewallPolicies">
@@ -208,11 +208,12 @@
                     <xsdxt:code href="../samples/firewalls/firewall-policies-list-response.json"/>
                 </wadl:doc>
                 <!-- &firewall-policiesObjectParameter; -->
-                <!-- &firewallPolicyResponseParameters; -->
+                &firewallPoliciesObject;
+                &firewallPolicyResponseParameters;
             </representation>
         </response>
-        <!-- &fault401; -->
-        <!-- &fault403; -->
+        &fault401;
+        &fault403;
     </method>
     <method name="GET" id="showFirewallPolicy">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -231,13 +232,13 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-policy-show-response.json"/>
                 </wadl:doc>
-                <!-- &firewall-policyObjectParameter; -->
-                <!-- &firewallPolicyResponseParameters; -->
+                &firewall-policyObjectParameter;
+                &firewallPolicyResponseParameters;
             </representation>
         </response>
-        <!-- &fault401; -->
-        <!-- &fault403; -->
-        <!-- &fault404; -->
+        &fault401;
+        &fault403;
+        &fault404;
     </method>
     <method name="POST" id="createFirewallPolicy">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Create firewall policy">
@@ -250,8 +251,8 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-policy-create-request.json"/>
                 </wadl:doc>
-                <!-- &firewall-policyObjectParameter; -->
-                <!-- &firewallPolicyRequestParameters; -->
+                &firewall-policyObjectParameter;
+                &firewallPolicyRequestParameters;
             </representation>
         </request>
         <response status="201">
@@ -259,12 +260,12 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-policy-create-response.json"/>
                 </wadl:doc>
-                <!-- &firewall-policyObjectParameter; -->
-                <!-- &firewallPolicyResponseParameters; -->
+                &firewall-policyObjectParameter;
+                &firewallPolicyResponseParameters;
             </representation>
         </response>
-        <!-- &fault400; -->
-        <!-- &fault401; -->
+        &fault400;
+        &fault401;
     </method>
     <method name="PUT" id="updateFirewallPolicy">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Update firewall policy">
@@ -286,13 +287,13 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-policy-update-response.json"/>
                 </wadl:doc>
-                <!-- &firewall-policyObjectParameter; -->
-                <!-- &firewallPolicyResponseParameters; -->
+                &firewall-policyObjectParameter;
+                &firewallPolicyResponseParameters;
             </representation>
         </response>
-        <!-- &fault400; -->
-        <!-- &fault401; -->
-        <!-- &fault404; -->
+        &fault400;
+        &fault401;
+        &fault404;
     </method>
     <method name="PUT" id="insert_ruleFirewallPolicy">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -381,9 +382,9 @@
             </para>
         </wadl:doc>
         <response status="204"/>
-        <!-- &fault401; -->
-        <!-- &fault404; -->
-        <!-- &fault409; -->
+        &fault401;
+        &fault404;
+        &fault409;
     </method>
     <!-- Firewall rules  -->
     <method name="GET" id="listFirewallRules">
@@ -400,12 +401,12 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-rules-list-response.json"/>
                 </wadl:doc>
-                <!-- &firewallRulesObject; -->
-                <!-- &firewallRulesResponseParameters; -->
+                &firewallRulesObject;
+                &firewallRulesResponseParameters;
             </representation>
         </response>
-        <!-- &fault401; -->
-        <!-- &fault403; -->
+        &fault401;
+        &fault403;
     </method>
     <method name="GET" id="showFirewallRule">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -424,13 +425,13 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-rule-show-response.json"/>
                 </wadl:doc>
-                <!-- &firewallRuleObject; -->
-                <!-- &firewallRulesResponseParameters; -->
+                &firewallRuleObject;
+                &firewallRulesResponseParameters;
             </representation>
         </response>
-        <!-- &fault401; -->
-        <!-- &fault403; -->
-        <!-- &fault404; -->
+        &fault401;
+        &fault403;
+        &fault404;
     </method>
     <method name="POST" id="createFirewallRule">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Create firewall rule">
@@ -443,8 +444,8 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-rule-create-request.json"/>
                 </wadl:doc>
-                <!-- &firewallRuleObject; -->
-                <!-- &firewallRulesRequestParameters; -->
+                &firewallRuleObject;
+                &firewallRulesRequestParameters;
             </representation>
         </request>
         <response status="201">
@@ -452,12 +453,12 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-rule-create-response.json"/>
                 </wadl:doc>
-                <!-- &firewallRuleObject; -->
-                <!-- &firewallRulesResponseParameters; -->
+                &firewallRuleObject;
+                &firewallRulesResponseParameters;
             </representation>
         </response>
-        <!-- &fault400; -->
-        <!-- &fault401; -->
+        &fault400;
+        &fault401;
     </method>
     <method name="PUT" id="updateFirewallRule">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Update firewall rule">
@@ -470,8 +471,8 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-rule-update-request.json"/>
                 </wadl:doc>
-                <!-- &firewallRuleObject; -->
-                <!-- &firewallRulesRequestParameters; -->
+                &firewallRuleObject;
+                &firewallRulesRequestParameters;
             </representation>
         </request>
         <response status="200">
@@ -479,13 +480,13 @@
                 <wadl:doc xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
                     <xsdxt:code href="../samples/firewalls/firewall-rule-update-response.json"/>
                 </wadl:doc>
-                <!-- &firewallRuleObject; -->
-                <!-- &firewallRulesResponseParameters; -->
+                &firewallRuleObject;
+                &firewallRulesResponseParameters;
             </representation>
         </response>
-        <!-- &fault400; -->
-        <!-- &fault401; -->
-        <!-- &fault404; -->
+        &fault400;
+        &fault401;
+        &fault404;
     </method>
     <method name="DELETE" id="deleteFirewallRule">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Delete firewall rule">
@@ -494,8 +495,8 @@
             </para>
         </wadl:doc>
         <response status="204"/>
-        <!-- &fault401; -->
-        <!-- &fault404; -->
-        <!-- &fault409; -->
+        &fault401;
+        &fault404;
+        &fault409;
     </method>
 </application>

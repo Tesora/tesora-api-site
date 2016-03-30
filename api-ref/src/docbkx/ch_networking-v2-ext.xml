@@ -18,14 +18,15 @@
             Lists available Networking API v2.0 extensions and shows details for an
             extension.
         </para>
-        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-            <wadl:resource href="../wadls/networking-api/src/wadl/networks.wadl#extensions">
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
+           href="../wadls/networking-api/src/wadl/extensions.wadl"/>
+           <!-- <wadl:resource href="../wadls/networking-api/src/wadl/networks.wadl#extensions">
                 <wadl:method href="#listExtensions"/>
             </wadl:resource>
             <wadl:resource href="../wadls/networking-api/src/wadl/networks.wadl#extension">
                 <wadl:method href="#showExtension"/>
             </wadl:resource>
-        </wadl:resources>
+        </wadl:resources>-->
     </section>
     <section xml:id="flavors-framework-v2.0">
         <title>Networking Flavors Framework v2.0 (CURRENT) (flavor, service_profile)</title>
@@ -444,6 +445,15 @@
             </wadl:resource>
         </wadl:resources>
     </section>
+    <section xml:id="tag-ext">
+        <title>Tag extension (tags)</title>
+        <para>
+            Shows details for, updates, and deletes tags. This extension is
+            available since Mitaka release.
+        </para>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
+            href="../wadls/networking-api/src/wadl/tag.wadl"/>
+    </section>
     <section xml:id="vpnaas-v2.0">
 <title>VPNaaS 2.0 (CURRENT) (vpn, vpnservices, ikepolicies, ipsecpolicies, endpoint-groups, ipsec-site-connections)</title>
         <para>
@@ -512,5 +522,21 @@
          <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
             href="../wadls/networking-api/src/wadl/vpnaas-v2.0.wadl"
         > </wadl:resources>
+    </section>
+    <section xml:id="networking-ip-availability-ext">
+         <title>Network IP availability and usage stats</title>
+         <para>
+             List and show the network IP usage stats of all networks and a
+             specified network. These operations are available in the Mitaka
+             release (April 2016).
+         </para>
+         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource href="../wadls/networking-api/src/wadl/network-ip-availability.wadl#network-ip-availability">
+                <wadl:method href="#ListNetworkIpAvailability"/>
+            </wadl:resource>
+            <wadl:resource href="../wadls/networking-api/src/wadl/network-ip-availability.wadl#network-ip-availability">
+                <wadl:method href="#ShowNetworkIpAvailability"/>
+            </wadl:resource>
+         </wadl:resources>
     </section>
 </chapter>
