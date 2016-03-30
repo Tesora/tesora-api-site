@@ -40,7 +40,7 @@
                     </resource>
                     <resource id="remove_router_interface"
                         path="remove_router_interface">
-                        <method href="#removeRouterInterface"/>
+                        <method href="#deleteRouterInterface"/>
                     </resource>
                 </resource>
             </resource>
@@ -192,7 +192,9 @@
                 &router-nameResponseParameter;
                 &admin-state-upResponseParameter;
                 &tenant_idParameter;
+                &distributedResponseParameter;
                 &routesResponseParameter;
+                &router-haResponseParameter;
                 &router-idResponseParameter;
             </representation>
         </response> &fault400; &fault401;
@@ -300,7 +302,9 @@
                 &router-nameResponseParameter;
                 &admin-state-upResponseParameter;
                 &tenant_idParameter;
+                &distributedResponseParameter;
                 &routesResponseParameter;
+                &router-haResponseParameter;
                 &router-idResponseParameter;
             </representation>
         </response>

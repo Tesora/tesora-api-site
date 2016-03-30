@@ -183,6 +183,79 @@
         </para>
     </wadl:doc>
 </param>'>
+<!ENTITY container-meta-access-control-requestHeaders '
+<!-- CORS Entity here -->
+<param xmlns="http://wadl.dev.java.net/2009/02"
+    name="X-Container-Meta-Access-Control-Allow-Origin" style="header" required="false"
+    type="xsd:string">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
+        <para>
+            Originating URLs allowed to make cross-origin requests (CORS), separated
+            by spaces. This heading applies to the container only, and all objects within
+            the container with this header applied are CORS-enabled for the allowed origin
+            URLs.
+        </para>
+        <para>
+            A browser (user-agent) typically issues a <link xlink:href="https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS">preflighted
+            request</link>, which is an
+            OPTIONS call that verifies the origin is allowed to make the request. The
+            Object Storage service returns 200 if the originating URL is listed in this
+            header parameter, and issues a 401 if the originating URL is not allowed to
+            make a cross-origin request. Once a 200 is returned, the browser makes a
+            second request to the Object Storage service to retrieve the CORS-enabled
+            object.
+        </para>
+    </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+    name="X-Container-Meta-Access-Control-Max-Age" style="header" required="false"
+    type="xsd:string">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
+        <para>
+            Maximum time for the origin to hold the preflight results. A browser
+            may make an OPTIONS call to verify the origin is allowed to make the request.
+            Set the value to an integer number of seconds after the time that the request
+            was received.
+        </para>
+    </wadl:doc>
+</param>
+<param xmlns="http://wadl.dev.java.net/2009/02"
+    name="X-Container-Meta-Access-Control-Expose-Headers" style="header" required="false"
+    type="xsd:string">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
+        <para>
+            Headers the Object Storage service exposes to the browser (technically,
+            through the <code>user-agent</code> setting), in the request response,
+            separated by spaces.
+        </para>
+        <para>
+        By default the Object Storage service returns the following values for this header:
+        </para>
+        <itemizedlist>
+        <listitem>
+            <para>
+All “simple response headers” as listed on
+<link xlink:href="http://www.w3.org/TR/cors/#simple-response-header">http://www.w3.org/TR/cors/#simple-response-header</link>.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+            The headers <code>etag</code>, <code>x-timestamp</code>,
+            <code>x-trans-id</code>.
+            </para>
+        </listitem>
+        <listitem>
+            <para>All metadata headers (<code>X-Container-Meta-*</code> for containers and
+            <code>X-Object-Meta-*</code> for objects) headers listed in
+            <code>X-Container-Meta-Access-Control-Expose-Headers</code>.
+            </para>
+        </listitem>
+        </itemizedlist>
+    </wadl:doc>
+</param>'>
 <!ENTITY container-read-requestHeader '
  <param xmlns="http://wadl.dev.java.net/2009/02"
     name="X-Container-Read" style="header" required="false"
@@ -919,7 +992,7 @@
     style="query" required="true" type="xsd:string">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
-        <para>  
+        <para>
             Used with temporary URLs to sign the request with an HMAC-SHA1
             cryptographic signature that defines the allowed HTTP method,
             expiration date, full path to the object, and the secret key for the
@@ -1379,7 +1452,7 @@
 </param>'>
 <!ENTITY X-Trans-Id-ExtraRequestHeader '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="X-Trans-Id-Extra"
-    style="header" required="false" type="csapi:uuid">
+    style="header" required="false" type="csapi:UUID">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>
@@ -1404,7 +1477,7 @@
             include the same value in the <code>X-Trans-Id-Extra</code>
             request header. If an error occurs, you can find all requests that
             are related to the large object upload in the Object Storage logs.
-        </para>    
+        </para>
         <para>
             You can also use <code>X-Trans-Id-Extra</code> strings to help
             operators debug requests that fail to receive responses. The
@@ -1414,7 +1487,7 @@
 </param>'>
 <!ENTITY trans-id-responseHeader '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="X-Trans-Id"
-    style="header" required="true" type="csapi:uuid">
+    style="header" required="true" type="csapi:UUID">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN">
         <para>

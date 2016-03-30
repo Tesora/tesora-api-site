@@ -139,7 +139,7 @@
 </param>'>
 <!ENTITY datastoreNameTemplateParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
-    name="datastoreName" style="template"
+    name="datastore_name" style="template"
     type="xsd:string">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -151,8 +151,8 @@
 </param>'>
 <!ENTITY datastoreVersionIdTemplateParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
-    name="datastoreVersionId" style="template"
-    type="xsd:uuid">
+    name="datastore_version_id" style="template"
+    type="csapi:UUID">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
@@ -163,7 +163,7 @@
 </param>'>
 <!ENTITY parameterNameTemplateParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
-    name="parameterName" style="template"
+    name="parameter_name" style="template"
     type="xsd:string">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -244,7 +244,7 @@ operation.
 <!-- REQUEST PARAMETERS -->
 <!ENTITY instanceRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
-    name="instance" style="plain" type="xsd:string"
+    name="instance" style="plain" type="xsd:dict"
     required="true">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -300,7 +300,7 @@ operation.
 </param>'>
 <!ENTITY databasesRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="databases" style="plain"
-    type="xsd:string" required="false">
+    type="xsd:list" required="true">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
@@ -342,17 +342,17 @@ operation.
         </para>
         <itemizedlist>
             <listitem>
-                Upper and lower case letters.
+                <para>Upper and lower case letters.</para>
             </listitem>
             <listitem>
-                Numbers.
+                <para>Numbers.</para>
             </listitem>
             <listitem>
-                <code>@</code>, <code>?</code>, <code>#</code>, and spaces
-                except at the beginning or end of the database name.
+                <para><code>@</code>, <code>?</code>, <code>#</code>, and spaces
+                except at the beginning or end of the database name.</para>
             </listitem>
             <listitem>
-                <code>_</code> is allowed anywhere in the database name.
+                <para><code>_</code> is allowed anywhere in the database name.</para>
             </listitem>
         </itemizedlist>
         <para>
@@ -397,7 +397,7 @@ operation.
     </wadl:doc>
 </param>'>
 <!ENTITY usersRequestParameter '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="users" style="plain" type="xsd:string"
+<param xmlns="http://wadl.dev.java.net/2009/02" name="users" style="plain" type="xsd:list"
     required="true">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -599,17 +599,17 @@ operation.
         </para>
         <itemizedlist>
             <listitem>
-                Upper and lower case letters.
+                <para>Upper and lower case letters.</para>
             </listitem>
             <listitem>
-                Numbers.
+                <para>Numbers.</para>
             </listitem>
             <listitem>
-                <code>@</code>, <code>?</code>, <code>#</code>, and spaces
-                except at the beginning or end of the database name.
+                <para><code>@</code>, <code>?</code>, <code>#</code>, and spaces
+                except at the beginning or end of the database name.</para>
             </listitem>
             <listitem>
-                <code>_</code> is allowed anywhere in the database name.
+                <para><code>_</code> is allowed anywhere in the database name.</para>
             </listitem>
         </itemizedlist>
         <para>
