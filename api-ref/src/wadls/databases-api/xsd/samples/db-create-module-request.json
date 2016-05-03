@@ -1,0 +1,11 @@
+{
+    "module": {
+        "name": "myPingModule",
+        "live_update": 0,
+        "auto_apply": 0,
+        "visible": 1,
+        "module_type": "ping",
+        "all_tenants": 0,
+        "contents": "bWVzc2FnZT0iSGVsbG8gd29ybGQhIgo="
+    }
+}
