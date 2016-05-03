@@ -241,6 +241,28 @@ operation.
         </para>
     </wadl:doc>
 </param>'>
+<!ENTITY volumeTypeNameTemplateParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="volumeTypeName" style="template"
+    type="xsd:string">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            The ID or name of the volume type.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleIdTemplateParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="moduleId" style="template"
+    type="xsd:string">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            The ID or name of the module.
+        </para>
+    </wadl:doc>
+</param>'>
 <!-- REQUEST PARAMETERS -->
 <!ENTITY instanceRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
@@ -324,7 +346,7 @@ operation.
 </param>'>
 <!ENTITY databaseNameRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="name" style="plain"
-    type="xsd:string" required="true">
+    type="xsd:string" required="false">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
@@ -485,6 +507,62 @@ operation.
         </para>
     </wadl:doc>
 </param>'>
+<!ENTITY replicaOfRequestParameterDetach '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="replica_of" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            To detach a replica, set <code>replica_of</code> to null.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY slaveOfRequestParameterDetach '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="slave_of" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            To detach a replica, set <code>slave_of</code> to null.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY configParamNamesValuesRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="values" style="plain" type="xsd:dict"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Dictionary that lists configuration parameter
+            names and associated values.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY configGroupNameUpdateRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="name" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            New name of the configuration group.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY configGroupDescUpdateRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="description" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            New description of the configuration group.
+        </para>
+    </wadl:doc>
+</param>'>
 <!ENTITY localityRequestParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="locality" style="plain" type="xsd:string"
     required="false">
@@ -503,6 +581,19 @@ operation.
         </para>
     </wadl:doc>
 </param>'>
+<!ENTITY regionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="region" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            You can keep a copy of your data outside the main data center
+             by using the region parameter when you create an instance.
+             Set this parameter to the region where you want to place this instance.
+        </para>
+    </wadl:doc>
+</param>'>
 <!ENTITY datastoreVersionRequestParameterUpgrade '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="datastore_version" style="plain" type="xsd:string"
     required="true">
@@ -512,6 +603,157 @@ operation.
         <para>
             Name or ID of the datastore version to upgrade to.
         </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleNameRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="name" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Name of the module.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleTypeRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="module_type" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Name of the driver that will handle this module.
+            This driver resides on the guest. The driver handles
+            the module in different ways, depending on the contents of
+            the module. For example, if the module contains a software
+            package, you would specify a driver that can install the package.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleContentsRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="contents" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            The file you want to put inside the module. This can be
+            configuration file, license key, or software package
+            you want to install on the guest.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleLiveUpdateRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="live_update" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Set this to 1 to allow module to be updated even if it is
+            already applied to a current instance or
+            cluster. Automatically attempt to reapply
+            this module if the contents change.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleAutoApplyRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="auto_apply" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Set this to 1 to automatically apply this module when creating
+            an instance or cluster.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleAllTenantsRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="all_tenants" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Set this to 1 to make this module vaslid for all tenants.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleDescriptionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="description" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Description of the module.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleDatastoreRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="datastore" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Name or ID of datastore this module can be
+            applied to. If not specified, module can be
+            applied to all datastores.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleDatastoreVersionRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="datastore_version" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Name or ID of datastore version this module can be
+            applied to. If not specified, module can be
+            applied to all versions.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleIncludeClusteredRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="include_clustered" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Include instances that are part of a cluster (default false).
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleLimitRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="limit" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Return up to N number of the most recent results.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY moduleMarkerRequestParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="marker" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Begin displaying the results for IDs greater than the specified marker.
+        </para>
+         <para>
+            When used with <code>limit</code>, set this to the last ID displayed
+             in the previous run.
+        </para>
+
     </wadl:doc>
 </param>'>
 <!-- RESPONSE PARAMETERS -->
