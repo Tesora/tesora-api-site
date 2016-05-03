@@ -1,0 +1,10 @@
+{
+    "module": {
+        "datastore": {
+            "type": "mysql"
+        },
+        "auto_apply": 0,
+        "name": "myPingModule2",
+        "contents": "bWVzc2FnZT0iSGVsbG8gd29ybGQgZnJvbSB0aGUgZ3Vlc3QuIgo="
+    }
+}

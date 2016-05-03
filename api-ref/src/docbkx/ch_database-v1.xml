@@ -69,12 +69,21 @@
                 href="../wadls/databases-api/xsd/dbaas.wadl#instance_backups">
                 <wadl:method href="#listInstanceBackups"/>
             </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#instance_modules">
+                <wadl:method href="#applyModule"/>
+                <wadl:method href="#listModulesAppliedToInstance"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#instanceModuleId">
+                <wadl:method href="#removeModule"/>
+            </wadl:resource>
         </wadl:resources>
     </section>
     <section xml:id="database-instance-actions">
         <title>Database instance actions (action)</title>
         <para>
-            Resizes instances and volumes and restarts instances.
+            Performs various actions on instances.
         </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
@@ -84,6 +93,7 @@
                 <wadl:method href="#restartInstance"/>
                 <wadl:method href="#promoteToReplicaSource"/>
                 <wadl:method href="#ejectReplicaSource"/>
+                <wadl:method href="#resetInstanceStatus"/>
             </wadl:resource>
         </wadl:resources>
     </section>
@@ -153,7 +163,8 @@
         <title>Data stores (datastores)</title>
         <para>
             Lists data store versions, lists parameters for data stores, and
-            shows parameter details for a data store version.
+            shows parameter details for a data store version. Also lists
+            information about valid volume types for a data store version.
         </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
@@ -177,6 +188,10 @@
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#parameter_name">
                 <wadl:method href="#showParameterDetails"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#volume-types">
+                <wadl:method href="#listValidVolumeTypes"/>
             </wadl:resource>
        </wadl:resources>
     </section>
@@ -231,6 +246,7 @@
                 href="../wadls/databases-api/xsd/dbaas.wadl#clusterId">
                 <wadl:method href="#showClusterDetails"/>
                 <wadl:method href="#deleteCluster"/>
+                <wadl:method href="#resetClusterStatus"/>
             </wadl:resource>
         </wadl:resources>
     </section>
@@ -266,6 +282,35 @@
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#limits">
                 <wadl:method href="#listLimits"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <section xml:id="volume-types">
+        <title>Volume types (volume-types)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#volume_type_name">
+                <wadl:method href="#showVolumeTypeDetails"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <section xml:id="modules">
+        <title>Modules (modules)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#modules">
+                <wadl:method href="#createModule"/>
+                <wadl:method href="#listModules"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#moduleId">
+                <wadl:method href="#deleteModule"/>
+                <wadl:method href="#showModule"/>
+                <wadl:method href="#updateModule"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#module_instances">
+                <wadl:method href="#listModuleInstances"/>
             </wadl:resource>
         </wadl:resources>
     </section>
