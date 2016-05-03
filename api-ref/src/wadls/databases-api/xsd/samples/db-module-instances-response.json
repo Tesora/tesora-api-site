@@ -1,0 +1,42 @@
+{
+    "instances": [
+        {
+            "status": "ACTIVE",
+            "name": "instance_1",
+            "links": [
+                {
+                    "href": "https://dbaas:8779/v1.0/326aca2da7fd48939cb2f5a8b5fa983d/instances/2a0f9c69-fdaf-4f00-9da9-df0b010ba948",
+                    "rel": "self"
+                },
+                {
+                    "href": "https://dbaas:8779/instances/2a0f9c69-fdaf-4f00-9da9-df0b010ba948",
+                    "rel": "bookmark"
+                }
+            ],
+            "ip": [
+                "172.16.200.2"
+            ],
+            "id": "2a0f9c69-fdaf-4f00-9da9-df0b010ba948",
+            "volume": {
+                "size": 5
+            },
+            "flavor": {
+                "id": "6",
+                "links": [
+                    {
+                        "href": "https://dbaas:8779/v1.0/326aca2da7fd48939cb2f5a8b5fa983d/flavors/6",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "https://dbaas:8779/flavors/6",
+                        "rel": "bookmark"
+                    }
+                ]
+            },
+            "datastore": {
+                "version": "5.6-69",
+                "type": "mysql"
+            }
+        }
+    ]
+}
