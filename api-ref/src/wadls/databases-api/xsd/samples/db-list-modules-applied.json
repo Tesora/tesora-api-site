@@ -1,0 +1,22 @@
+{
+    "modules": [
+        {
+            "status": "OK",
+            "updated": "2016-07-18 23:01:38",
+            "admin_only": 0,
+            "name": "myPingModule",
+            "created": "2016-07-18 23:01:38",
+            "datastore_version": "all",
+            "auto_apply": 0,
+            "id": "6d68cfcf-4652-4291-bc7d-716e177045be",
+            "visible": 1,
+            "tenant": "6b2a4e1b6a7a428da2168fc930a0be17",
+            "datastore": "all",
+            "removed": null,
+            "type": "ping",
+            "message": "\"hello world.\"",
+            "contents": null,
+            "md5": "8447530c1f948f6a4b398bfb30dd18b5"
+        }
+    ]
+}
