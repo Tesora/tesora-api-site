@@ -74,6 +74,9 @@
                         <resource id="instance_backups" path="backups">
                             <method href="#listInstanceBackups"/>
                         </resource>
+                        <resource id="instance_modules" path="modules">
+                            <method href="#applyModule"/>
+                        </resource>
                         <resource id="instanceAction" path="action">
                             <method href="#resizeInstance"/>
                             <method href="#resizeVolume"/>
@@ -129,6 +132,12 @@
                         <method href="#showDatastoreDetails"/>
                         <resource id="datastore_versions" path="versions">
                             <method href="#listDatastoreVersions"/>
+                            <resource id="datastore_version_id" path="{datastore_version_id}">
+                                &datastoreVersionIdTemplateParameter;
+                                <resource id="volume-types" path="volume-types">
+                                    <method href="#listValidVolumeTypes"/>
+                                </resource>
+                            </resource>
                         </resource>
                     </resource>
                     <resource id="versions" path="versions">
@@ -201,6 +210,19 @@
                 </resource>
                 <resource id="limits" path="limits">
                     <method href="#listLimits"/>
+                </resource>
+                <resource id="volume-types" path="volume-types">
+                    <resource id="volume_type_name" path="{volume_type_name}">
+                        &volumeTypeNameTemplateParameter;
+                        <method href="#showVolumeTypeDetails"/>
+                    </resource>
+                </resource>
+                <resource id="modules" path="modules">
+                    <method href="#createModule"/>
+                    <resource id="moduleId" path="{moduleId}">
+                        &moduleIdTemplateParameter;
+                        <method href="#deleteModule"/>
+                    </resource>                    
                 </resource>
             </resource>
         </resource>
@@ -1868,24 +1890,8 @@
                     <xsdxt:code
                         href="samples/db-detach-replica-request.json"/>
                 </wadl:doc>
-                <param name="replica_of" style="plain" type="xsd:string"
-                    required="true">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            To detach a replica, set <code>replica_of</code> to null.
-                        </para>
-                    </wadl:doc>
-                </param>
-                <param name="slave_of" style="plain" type="xsd:string"
-                    required="true">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            To detach a replica, set <code>slave_of</code> to null.
-                        </para>
-                    </wadl:doc>
-                </param>
+                &replicaOfRequestParameterDetach;
+                &slaveOfRequestParameterDetach;
             </representation>
         </request>
         <response status="202">
@@ -2086,15 +2092,7 @@
                     <xsdxt:code
                         href="samples/db-patch-config-grp-request.json"/>
                 </wadl:doc>
-                <param name="values" style="plain" type="xsd:string"
-                    required="true">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            Dictionary that lists configuration parameter names and associated values.
-                        </para>
-                    </wadl:doc>
-                </param>
+                &configParamNamesValuesRequestParameter;
             </representation>
         </request>
         <response status="200">
@@ -2154,33 +2152,9 @@
                     <xsdxt:code
                         href="samples/db-update-config-grp-request.json"/>
                 </wadl:doc>
-                <param name="values" style="plain" type="xsd:string"
-                    required="true">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            Dictionary that lists configuration parameter names and associated values.
-                        </para>
-                    </wadl:doc>
-                </param>
-                <param name="name" style="plain" type="xsd:string"
-                    required="false">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            New name of the configuration group.
-                        </para>
-                    </wadl:doc>
-                </param>
-                <param name="description" style="plain" type="xsd:string"
-                    required="false">
-                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>
-                            New description of the configuration group.
-                        </para>
-                    </wadl:doc>
-                </param>
+                &configParamNamesValuesRequestParameter;
+                &configGroupNameUpdateRequestParameter;
+                &configGroupDescUpdateRequestParameter;
             </representation>
         </request>
         <response status="202">
@@ -2716,6 +2690,20 @@
                         </itemizedlist>
                     </wadl:doc>
                 </param>
+                <param name="locality" style="plain" type="xsd:string"
+                    required="false">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            For high availability, you can use anti-affinity
+                            to make sure that all cluster nodes are on different hypervisors.
+                        </para>
+                        <para>
+                            To create a cluster with high availability, set the locality
+                            argument to anti-affinity.
+                        </para>
+                    </wadl:doc>
+                </param>
             </representation>
         </request>
         <response status="200">
@@ -3218,5 +3206,164 @@
                 </wadl:doc>
             </representation>
         </response> &commonFaults; &getFaults;
+    </method>    <method name="GET" id="listValidVolumeTypes">
+        <wadl:doc xml:lang="EN" title="List valid volume types"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Lists the valid volume types for a
+                data store version.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-volume-types-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-list-volume-types-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-list-volume-types-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="showVolumeTypeDetails">
+        <wadl:doc xml:lang="EN" title="Show volume type details"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Shows details about a volume type.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-volume-type-detail-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json"
+                element="dbaas:DatabaseInstance">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-volume-type-detail-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-volume-type-detail-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="POST" id="createModule">
+        <wadl:doc xml:lang="EN" title="Create module"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                This operation creates a module. You can use a module
+                to install various useful files such as license keys
+                and software packages on a guest instance.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-create-module-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-create-module-request.json"/>
+                </wadl:doc>
+                &moduleNameRequestParameter;
+                &moduleTypeRequestParameter;
+                &moduleContentsRequestParameter;
+                &moduleLiveUpdateRequestParameter;
+                &moduleAutoApplyRequestParameter;
+                &moduleAllTenantsRequestParameter;
+                &moduleDescriptionRequestParameter;
+                &moduleDatastoreRequestParameter;
+                &moduleDatastoreVersionRequestParameter;
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-create-module-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-create-module-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="POST" id="applyModule">
+        <wadl:doc xml:lang="EN" title="Apply module(s) to an instance"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                This operation applies a module to a guest instance.
+                This means handing the module to an appropriate driver on the guest.
+                This driver is a plugin that understands what to do with the data file
+                in the module. For example, if your module contains a software package,
+                the driver code would know how to install the package.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-module-apply-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-module-apply-request.json"/>
+                </wadl:doc>
+                &moduleNameRequestParameter;
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-module-apply-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-module-apply-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults; &postPutFaults;
+    </method>
+    <method name="DELETE" id="deleteModule">
+        <wadl:doc xml:lang="EN" title="Delete module"
+            xmlns="http://docbook.org/ns/docbook"><para
+                role="shortdesc">Deletes a module.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-module-request-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="202"/> &commonFaults; <response status="422"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-delete-module-response-json-http.txt"/>
+                </wadl:doc>
+            </representation>
+        </response> &getFaults;
     </method>
 </application>

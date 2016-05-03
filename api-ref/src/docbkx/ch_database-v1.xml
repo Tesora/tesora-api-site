@@ -69,6 +69,10 @@
                 href="../wadls/databases-api/xsd/dbaas.wadl#instance_backups">
                 <wadl:method href="#listInstanceBackups"/>
             </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#instance_modules">
+                <wadl:method href="#applyModule"/>
+            </wadl:resource>
         </wadl:resources>
     </section>
     <section xml:id="database-instance-actions">
@@ -153,7 +157,8 @@
         <title>Data stores (datastores)</title>
         <para>
             Lists data store versions, lists parameters for data stores, and
-            shows parameter details for a data store version.
+            shows parameter details for a data store version. Also lists
+            information about valid volume types for a data store version.
         </para>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
@@ -177,6 +182,10 @@
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#parameter_name">
                 <wadl:method href="#showParameterDetails"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#volume-types">
+                <wadl:method href="#listValidVolumeTypes"/>
             </wadl:resource>
        </wadl:resources>
     </section>
@@ -266,6 +275,28 @@
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#limits">
                 <wadl:method href="#listLimits"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <section xml:id="volume-types">
+        <title>Volume types (volume-types)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#volume_type_name">
+                <wadl:method href="#showVolumeTypeDetails"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <section xml:id="modules">
+        <title>Modules (modules)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#modules">
+                <wadl:method href="#createModule"/>
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#moduleId">
+                <wadl:method href="#deleteModule"/>
             </wadl:resource>
         </wadl:resources>
     </section>
