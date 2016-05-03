@@ -1,0 +1,8 @@
+{
+    "volume_type": {
+        "is_public": true,
+        "description": null,
+        "id": "5f8ba4c3-24e3-456b-aebd-fa1a8c4a74bb",
+        "name": "mysql_vol_type"
+    }
+}
