@@ -1,0 +1,20 @@
+{
+    "module": {
+        "updated": "2016-08-02T19:44:14",
+        "description": null,
+        "created": "2016-07-29T17:40:39",
+        "tenant_id": "6b2a4e1b6a7a428da2168fc930a0be17",
+        "datastore_version": "all",
+        "auto_apply": 0,
+        "visible": 1,
+        "tenant": "6b2a4e1b6a7a428da2168fc930a0be17",
+        "live_update": 0,
+        "datastore_id": "8326dd33-d7a1-40e1-bf27-6f13b06c5d18",
+        "datastore": "mysql",
+        "md5": "35ea9b4736c0043bdc82f761adfddea7",
+        "type": "ping",
+        "id": "6d68cfcf-4652-4291-bc7d-716e177045be",
+        "datastore_version_id": null,
+        "name": "myPingModule2"
+    }
+}
