@@ -77,6 +77,7 @@
                         <resource id="instance_modules" path="modules">
                             <method href="#applyModule"/>
                             <method href="#listModulesAppliedToInstance"/>
+                            <method href="#retrieveModuleContents"/>
                             <resource id="instanceModuleId" path="{moduleId}">
                                 &moduleIdTemplateParameter;
                                 <method href="#removeModule"/>
@@ -3654,6 +3655,47 @@
                         href="samples/db-update-module-response-json-http.txt"/>
                     <xsdxt:code
                         href="samples/db-update-module-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="retrieveModuleContents">
+        <wadl:doc xml:lang="EN" title="Retrieve module contents"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Retrieves module contents from an instance.
+            </para>
+            <para>
+                This operation gets the modules that have been applied to an instance,
+                and then uses the <code>from_guest</code> and <code>include_contents</code>
+                query parameters to retrieve module contents.
+            </para>
+            <para>
+                By defaut, this operation places the module contents in the current
+                directory. You can use other API calls to ask the user for a different
+                location to store the module contents.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-retrieve-module-contents-request-json-http.txt"/>
+                </wadl:doc>
+                &fromGuestQueryParameter;
+                &includeContentsQueryParameter;
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-retrieve-module-contents-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-retrieve-module-contents.json"
+                    />
                 </wadl:doc>
             </representation>
         </response> &commonFaults; &getFaults;

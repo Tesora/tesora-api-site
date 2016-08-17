@@ -839,6 +839,31 @@ operation.
         </para>
     </wadl:doc>
 </param>'>
+<!-- QUERY PARAMETERS -->
+<!ENTITY fromGuestQueryParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="from_guest" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Set this query parameter to True at the end of the
+            URL after the ? character.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY includeContentsQueryParameter '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="include_contents" style="plain" type="xsd:string"
+    required="true">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Gets module contents. Set this query parameter to True at the end of the
+            URL after the ? character.
+        </para>
+    </wadl:doc>
+</param>'>
 <!-- RESPONSE PARAMETERS -->
 <!ENTITY instanceResponseParameter '
 <param xmlns="http://wadl.dev.java.net/2009/02"
