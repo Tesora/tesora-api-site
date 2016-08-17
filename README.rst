@@ -165,3 +165,4 @@ Install
 =======
 
 To learn more about the OpenStack project, see `OpenStack <http://www.openstack.org/>`_.
+To learn more about Tesora, see `Tesora <http://www.tesora.com/>`_.
