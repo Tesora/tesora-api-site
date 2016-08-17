@@ -73,6 +73,7 @@
                 href="../wadls/databases-api/xsd/dbaas.wadl#instance_modules">
                 <wadl:method href="#applyModule"/>
                 <wadl:method href="#listModulesAppliedToInstance"/>
+                <wadl:method href="#retrieveModuleContents"/>
             </wadl:resource>
             <wadl:resource
                 href="../wadls/databases-api/xsd/dbaas.wadl#instanceModuleId">
