@@ -25,11 +25,11 @@ cat << HEADER > /tmp/tesoraapi-header
       <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"></meta>
       <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
       <title>OpenStack API Documentation</title>
-      <link href="api-ref/apiref/css/bootstrap.min.css" rel="stylesheet"></link>
-      <link href="api-ref/apiref/css/main.css" rel="stylesheet" type="text/css"></link>
-      <link href="api-ref/apiref/css/style.css" rel="stylesheet"></link>
-      <link href="api-ref/apiref/css/main.css" rel="stylesheet" type="text/css"></link>
-      <link href="api-ref/apiref/css/bootstrap.min.css" rel="stylesheet"></link>
+      <link href="apiref/css/bootstrap.min.css" rel="stylesheet"></link>
+      <link href="apiref/css/main.css" rel="stylesheet" type="text/css"></link>
+      <link href="apiref/css/style.css" rel="stylesheet"></link>
+      <link href="apiref/css/main.css" rel="stylesheet" type="text/css"></link>
+      <link href="apiref/css/bootstrap.min.css" rel="stylesheet"></link>
    </head>
    <body>
 HEADER
