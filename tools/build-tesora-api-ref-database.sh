@@ -50,7 +50,7 @@ rm /tmp/footerscript
 
 # lastly, generate iframe wrapper
 cat << IFRAME > $WRAPPER
-<iframe frameborder="0" height="650" src="http://developer.elasticdb.org/api-ref/tesora-api-ref-database-v1.html" style="" width="100%"> </iframe></p>
+<iframe frameborder="0" height="650" src="http://docs.elasticdb.org/api-ref/$ZUUL_REF/publish-docs/api-ref/tesora-api-ref-database-v1.html" style="" width="100%"> </iframe></p>
 IFRAME
 
 # clean up all the files we do not care about
