@@ -238,6 +238,15 @@
                         </resource>
                     </resource>
                 </resource>
+                <resource id="mgmt" path="mgmt">
+                    <resource id="quotas" path="quotas">
+                        <resource id="tenantId" path="{tenantId}">
+                            &tenantIdTemplateParameter;
+                            <method href="#showQuotas"/>
+                            <method href="#updateQuota"/>
+                        </resource>
+                    </resource>
+                </resource>                
             </resource>
         </resource>
     </resources>
@@ -3535,7 +3544,14 @@
                 Lists the modules that have been applied to an instance.
             </para>
             <para>
-                This list includes information about each module, including status.
+                This list includes information about each module.
+            </para>
+            <para>
+                When used without the <code>from_guest</code> query parameter,
+                this operation just prints out the module information that is
+                in the database. When used with the <code>from_quest</code>
+                query parameter, this operation queries the guest and prints
+                the status of the module apply operation.
             </para>
         </wadl:doc>
         <request>
@@ -3545,6 +3561,7 @@
                     <xsdxt:code
                         href="samples/db-list-modules-applied-request-json-http.txt"/>
                 </wadl:doc>
+                &fromGuestQueryParameterOptional;
             </representation>
         </request>
         <response status="200">
@@ -3671,9 +3688,7 @@
                 query parameters to retrieve module contents.
             </para>
             <para>
-                By defaut, this operation places the module contents in the current
-                directory. You can use other API calls to ask the user for a different
-                location to store the module contents.
+                The contents come back in the payload from the call.
             </para>
         </wadl:doc>
         <request>
@@ -3683,7 +3698,7 @@
                     <xsdxt:code
                         href="samples/db-retrieve-module-contents-request-json-http.txt"/>
                 </wadl:doc>
-                &fromGuestQueryParameter;
+                &fromGuestQueryParameterRequired;
                 &includeContentsQueryParameter;
             </representation>
         </request>
@@ -3696,6 +3711,68 @@
                     <xsdxt:code
                         href="samples/db-retrieve-module-contents.json"
                     />
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="GET" id="showQuotas">
+        <wadl:doc xml:lang="EN" title="Show quotas"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Shows quotas for database resources.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-show-quotas-request-json-http.txt"
+                    />
+                </wadl:doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json"
+                element="dbaas:DatabaseInstance">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-show-quotas-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-show-quotas-response.json"/>
+                </wadl:doc>
+            </representation>
+        </response> &commonFaults; &getFaults;
+    </method>
+    <method name="PUT" id="updateQuota">
+        <wadl:doc xml:lang="EN" title="Update quota"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">
+                Updates a quota for a tenant.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-update-quota-request-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-update-quota-request.json"/>
+                </wadl:doc>
+                &quotaResourceRequestParameter;
+                &quotaLimitRequestParameter;
+            </representation>
+        </request>
+        <response status="202">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code
+                        href="samples/db-update-quota-response-json-http.txt"/>
+                    <xsdxt:code
+                        href="samples/db-update-quota-response.json"/>
                 </wadl:doc>
             </representation>
         </response> &commonFaults; &getFaults;

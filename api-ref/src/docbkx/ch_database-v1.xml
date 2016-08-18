@@ -315,4 +315,20 @@
             </wadl:resource>
         </wadl:resources>
     </section>
+    <section xml:id="mgmt">
+        <title>Management (mgmt)</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#mgmt">
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#quotas">
+            </wadl:resource>
+            <wadl:resource
+                href="../wadls/databases-api/xsd/dbaas.wadl#tenantId">
+                <wadl:method href="#showQuotas"/>
+                <wadl:method href="#updateQuota"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
 </chapter>
