@@ -840,12 +840,32 @@ operation.
     </wadl:doc>
 </param>'>
 <!-- QUERY PARAMETERS -->
-<!ENTITY fromGuestQueryParameter '
+<!ENTITY fromGuestQueryParameterRequired '
 <param xmlns="http://wadl.dev.java.net/2009/02" name="from_guest" style="plain" type="xsd:string"
     required="true">
     <wadl:doc xmlns="http://docbook.org/ns/docbook"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xml:lang="EN">
+        <para>
+            Tells the server to contact the guest and get the information
+            from it.
+        </para>
+        <para>
+            Set this query parameter to True at the end of the
+            URL after the ? character.
+        </para>
+    </wadl:doc>
+</param>'>
+<!ENTITY fromGuestQueryParameterOptional '
+<param xmlns="http://wadl.dev.java.net/2009/02" name="from_guest" style="plain" type="xsd:string"
+    required="false">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xml:lang="EN">
+        <para>
+            Tells the server to contact the guest and get the information
+            from it.
+        </para>
         <para>
             Set this query parameter to True at the end of the
             URL after the ? character.

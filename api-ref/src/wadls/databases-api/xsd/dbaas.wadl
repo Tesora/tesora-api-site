@@ -3535,7 +3535,14 @@
                 Lists the modules that have been applied to an instance.
             </para>
             <para>
-                This list includes information about each module, including status.
+                This list includes information about each module.
+            </para>
+            <para>
+                When used without the <code>from_guest</code> query parameter,
+                this operation just prints out the module information that is
+                in the database. When used with the <code>from_quest</code>
+                query parameter, this operation queries the guest and prints
+                the status of the module apply operation.
             </para>
         </wadl:doc>
         <request>
@@ -3545,6 +3552,7 @@
                     <xsdxt:code
                         href="samples/db-list-modules-applied-request-json-http.txt"/>
                 </wadl:doc>
+                &fromGuestQueryParameterOptional;
             </representation>
         </request>
         <response status="200">
@@ -3671,9 +3679,7 @@
                 query parameters to retrieve module contents.
             </para>
             <para>
-                By defaut, this operation places the module contents in the current
-                directory. You can use other API calls to ask the user for a different
-                location to store the module contents.
+                The contents come back in the payload from the call.
             </para>
         </wadl:doc>
         <request>
@@ -3683,7 +3689,7 @@
                     <xsdxt:code
                         href="samples/db-retrieve-module-contents-request-json-http.txt"/>
                 </wadl:doc>
-                &fromGuestQueryParameter;
+                &fromGuestQueryParameterRequired;
                 &includeContentsQueryParameter;
             </representation>
         </request>
