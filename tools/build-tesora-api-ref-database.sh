@@ -13,9 +13,10 @@ soup = BeautifulSoup(file(sys.argv[1]), 'html.parser')
 print soup.find(id='database-v1').parent
 EOF
 
-SOURCE="publish-docs/api-ref/api-ref-database-v1.html"
-TARGET="publish-docs/api-ref/tesora-api-ref-database-v1.html"
-WRAPPER="publish-docs/api-ref/tesora-api-ref-database-v1-iframe.html"
+OUTPUTFOLDER="publish-docs/api-ref"
+SOURCE="$OUTPUTFOLDER/api-ref-database-v1.html"
+TARGET="$OUTPUTFOLDER/tesora-api-ref-database-v1.html"
+WRAPPER="$OUTPUTFOLDER/tesora-api-ref-database-v1-iframe.html"
 
 cat << HEADER > /tmp/tesoraapi-header
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -55,3 +56,7 @@ IFRAME
 
 # clean up all the files we do not care about
 rm publish-docs/api-ref/api-ref*.html
+
+# place tar file in output folder
+cd $OUTPUTFOLDER
+tar -cvf api_ref.tar tesora-api-ref-database-v1.html ./apiref/
